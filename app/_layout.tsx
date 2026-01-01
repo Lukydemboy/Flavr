@@ -1,24 +1,71 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import "../styles/global.css";
+import { SplashScreen, Stack, useRouter } from "expo-router";
+import {
+  Nunito_200ExtraLight,
+  Nunito_300Light,
+  Nunito_400Regular,
+  Nunito_500Medium,
+  Nunito_600SemiBold,
+  Nunito_700Bold,
+  Nunito_800ExtraBold,
+  Nunito_900Black,
+  useFonts,
+} from "@expo-google-fonts/nunito";
+import { useEffect, useState } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SessionProvider } from "@/context/authContext";
+import { configureAxios } from "@/utils/requests/requests";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+configureAxios();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const router = useRouter();
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false,
+            retry: false,
+          },
+        },
+      }),
+  );
+
+  const [loaded] = useFonts({
+    Nunito_200ExtraLight,
+    Nunito_300Light,
+    Nunito_400Regular,
+    Nunito_500Medium,
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+    Nunito_800ExtraBold,
+    Nunito_900Black,
+  });
+
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, router]);
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider>
+        <SafeAreaProvider>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="login" options={{ headerShown: false }} />
+            <Stack.Screen name="mail-sent" options={{ headerShown: false }} />
+            {/*<Stack.Screen name="(tabs)" options={{ headerShown: false }} />*/}
+          </Stack>
+        </SafeAreaProvider>
+      </SessionProvider>
+    </QueryClientProvider>
   );
 }
