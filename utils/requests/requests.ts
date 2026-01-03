@@ -91,7 +91,7 @@ const refreshTokens = async (): Promise<Session | void> => {
 
   return await axios
     .request({
-      method: "GET",
+      method: "POST",
       url: `${env.api.baseUrl}/auth/tokens`,
       headers: {
         Authorization: `Bearer ${session.refreshToken}`,

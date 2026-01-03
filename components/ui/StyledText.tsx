@@ -7,7 +7,7 @@ export type FontWeight =
   | "light"
   | "regular"
   | "medium"
-  | "semiBold"
+  | "semibold"
   | "bold"
   | "extraBold"
   | "black";

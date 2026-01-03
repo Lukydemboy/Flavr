@@ -1,48 +1,107 @@
 import ChevronLeftIcon from "@/components/icons/ChevronLeft";
 import { ActionButton, Page, StyledText } from "@/components/ui";
-import { useRouter } from "expo-router";
-import { Image, Pressable, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ErrorCodes } from "@/domain/enums/error";
+import { ApiErrorResponse } from "@/domain/types/error";
+import { AxiosError } from "axios";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useState } from "react";
+import { Pressable, View } from "react-native";
+import { OtpInput } from "react-native-otp-entry";
+import { impactAsync } from "expo-haptics";
+import { useSession } from "@/context/authContext";
 
 export default function MailSent() {
+  const [otp, setOtp] = useState("");
+  const [otpIsInvalid, setOtpIsInvalid] = useState(false);
+  const { email } = useLocalSearchParams<{ email: string }>();
+  const { login } = useSession();
   const router = useRouter();
-  const { top } = useSafeAreaInsets();
+
+  const handleLogin = (otp: string) => {
+    login({ email, otp })
+      .then(() => {
+        router.dismissAll();
+        router.replace("/(tabs)");
+      })
+      .catch((err: AxiosError) => {
+        const errorResponse = err.response?.data as ApiErrorResponse;
+
+        if (errorResponse.code === ErrorCodes.OtpInvalid) {
+          setOtpIsInvalid(true);
+        }
+      });
+  };
 
   return (
-    <Page container={false}>
-      <View
-        className={`relative bg-pastel-green h-[65%] rounded-bl-[4rem] rounded-br-[4rem]`}
-      >
-        <Pressable
-          onPress={() => router.back()}
-          className="left-4"
-          style={{ top: top }}
-        >
-          <View className="w-11 h-11 bg-white rounded-xl mb-12 flex items-center justify-center">
-            <ChevronLeftIcon width={15} color="#000000" />
-          </View>
-        </Pressable>
-
-        <View className="mt-auto flex items-center justify-center mb-12">
-          <Image
-            source={require("@/assets/images/mailman.webp")}
-            className="h-96 w-96"
-          />
+    <Page safeAreaTop>
+      <Pressable onPress={() => router.back()}>
+        <View className="w-11 h-11 bg-white rounded-xl mb-4 flex items-center justify-center">
+          <ChevronLeftIcon width={15} color="#000000" />
         </View>
-      </View>
+      </Pressable>
 
-      <View className="px-8 grow">
-        <StyledText className="text-4xl font-bold mb-4 mt-8" weight="bold">
+      <View className="grow">
+        <StyledText className="text-4xl font-bold mb-4" weight="bold">
           Email sent
         </StyledText>
         <StyledText className="text-lg mb-8 text-slate-500">
           We have sent you an email with a login link. Please check your inbox.
         </StyledText>
 
+        <OtpInput
+          numberOfDigits={6}
+          focusColor="green"
+          autoFocus
+          hideStick={true}
+          blurOnFilled
+          type="numeric"
+          focusStickBlinkingDuration={500}
+          onFilled={(text) => handleLogin(text)}
+          onTextChange={(text) => {
+            setOtp(text);
+            setOtpIsInvalid(false);
+          }}
+          textInputProps={{ accessibilityLabel: "One-Time Password" }}
+          textProps={{
+            accessibilityRole: "text",
+            accessibilityLabel: "OTP digit",
+            allowFontScaling: false,
+          }}
+          theme={{
+            pinCodeContainerStyle: {
+              height: 44,
+              borderWidth: 2,
+              borderRadius: 12,
+              backgroundColor: "white",
+            },
+            pinCodeTextStyle: {
+              fontFamily: "Nunito",
+              fontSize: 20,
+              fontWeight: "bold",
+              color: "black",
+            },
+            focusStickStyle: {
+              width: 20,
+              height: 20,
+              backgroundColor: "green",
+            },
+            focusedPinCodeContainerStyle: { borderColor: "green" },
+            placeholderTextStyle: { fontSize: 20, color: "gray" },
+            filledPinCodeContainerStyle: {
+              borderColor: otpIsInvalid ? "red" : "green",
+            },
+            disabledPinCodeContainerStyle: { borderColor: "gray" },
+          }}
+        />
+
         <View className="mt-auto">
-          <ActionButton disabled={true} onPress={() => {}} text="Resend" />
+          <ActionButton
+            onPress={() => handleLogin(otp)}
+            text="Login"
+            size="large"
+          />
           <StyledText className="text-center text-xs text-gray-600 mt-2">
-            You can resend another email in 20 seconds
+            The email has been sent to your {email}
           </StyledText>
         </View>
       </View>

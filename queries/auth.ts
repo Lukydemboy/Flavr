@@ -6,7 +6,7 @@ export const useRequestMagicLink = () => {
     mutationFn: async (email: string) => {
       return axios({
         method: "POST",
-        url: `/auth/magic-link`,
+        url: `/auth/otp`,
         data: { email },
       });
     },

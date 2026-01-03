@@ -10,9 +10,14 @@ export type User = {
   username: string;
 };
 
+export type UpdateUser = {
+  email: string;
+  username: string;
+};
+
 export type Session = { accessToken: string; refreshToken: string };
 
-type Login = { email: string; password?: string };
+type Login = { email: string; otp: string };
 
 type AuthContextType = {
   login: (data: Login) => Promise<void>;
@@ -50,7 +55,6 @@ export function SessionProvider(props: PropsWithChildren) {
           return await axios
             .post(`${env.api.baseUrl}/auth/login`, {
               ...body,
-              application: "SCANNER",
             })
             .then((res) => {
               setSession(JSON.stringify(res.data as Session));

@@ -15,7 +15,7 @@ export default function LoginScreen() {
     defaultValues: { email: "" },
     onSubmit: async ({ value }) => {
       await requestMagicLink(value.email).then(() => {
-        router.push("/mail-sent");
+        router.push({ pathname: "/mail-sent", params: { email: value.email } });
       });
     },
   });

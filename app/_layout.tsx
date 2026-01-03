@@ -59,10 +59,14 @@ export default function RootLayout() {
       <SessionProvider>
         <SafeAreaProvider>
           <Stack>
-            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="start" options={{ headerShown: false }} />
             <Stack.Screen name="login" options={{ headerShown: false }} />
             <Stack.Screen name="mail-sent" options={{ headerShown: false }} />
-            {/*<Stack.Screen name="(tabs)" options={{ headerShown: false }} />*/}
+            <Stack.Screen
+              name="complete-profile"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           </Stack>
         </SafeAreaProvider>
       </SessionProvider>
