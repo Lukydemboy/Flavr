@@ -1,0 +1,10 @@
+export const sizes = [10, 20, 50, 100];
+export type PageSize = (typeof sizes)[number];
+export type Page = { number: number; size: PageSize };
+export type Pagination = Page & { totalElements: number; totalPages: number };
+export type Paginated<T> = Pagination & { content: T[] };
+export type Pageable = { page: Page };
+export type Sort = { property: string; direction: "asc" | "desc" };
+export type Sortable = { sort: Sort };
+export type Searchable = { q: string };
+export type Filterable<T extends object> = { filters: T };

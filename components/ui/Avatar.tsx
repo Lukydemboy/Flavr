@@ -5,7 +5,7 @@ import { StyledText } from "./StyledText";
 export const Avatar = () => {
   const { data: user } = useUser();
 
-  if (!user) return null;
+  if (!user || !user.username) return null;
 
   return (
     <View className="w-12 h-12 bg-slate-200 rounded-xl flex items-center justify-center">

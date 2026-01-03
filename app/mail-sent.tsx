@@ -7,10 +7,10 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, View } from "react-native";
 import { OtpInput } from "react-native-otp-entry";
-import { impactAsync } from "expo-haptics";
 import { useSession } from "@/context/authContext";
 
 export default function MailSent() {
+  const [isLoading, setIsLoading] = useState(false);
   const [otp, setOtp] = useState("");
   const [otpIsInvalid, setOtpIsInvalid] = useState(false);
   const { email } = useLocalSearchParams<{ email: string }>();
@@ -18,6 +18,7 @@ export default function MailSent() {
   const router = useRouter();
 
   const handleLogin = (otp: string) => {
+    setIsLoading(true);
     login({ email, otp })
       .then(() => {
         router.dismissAll();
@@ -29,6 +30,9 @@ export default function MailSent() {
         if (errorResponse.code === ErrorCodes.OtpInvalid) {
           setOtpIsInvalid(true);
         }
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -61,7 +65,10 @@ export default function MailSent() {
             setOtp(text);
             setOtpIsInvalid(false);
           }}
-          textInputProps={{ accessibilityLabel: "One-Time Password" }}
+          textInputProps={{
+            accessibilityLabel: "One-Time Password",
+            autoComplete: "one-time-code",
+          }}
           textProps={{
             accessibilityRole: "text",
             accessibilityLabel: "OTP digit",
@@ -96,6 +103,8 @@ export default function MailSent() {
 
         <View className="mt-auto">
           <ActionButton
+            isLoading={isLoading}
+            disabled={isLoading}
             onPress={() => handleLogin(otp)}
             text="Login"
             size="large"

@@ -9,7 +9,7 @@ export type FontWeight =
   | "medium"
   | "semibold"
   | "bold"
-  | "extraBold"
+  | "extrabold"
   | "black";
 
 type Props = {

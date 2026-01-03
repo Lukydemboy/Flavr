@@ -67,6 +67,14 @@ export default function RootLayout() {
               options={{ headerShown: false }}
             />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="groups/create"
+              options={{ title: "Create group" }}
+            />
+            <Stack.Screen
+              name="recipes/create"
+              options={{ title: "Create Recipe" }}
+            />
           </Stack>
         </SafeAreaProvider>
       </SessionProvider>

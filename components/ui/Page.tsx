@@ -19,7 +19,7 @@ export const Page = ({
     <ScrollView
       contentContainerClassName="grow"
       className={`flex flex-col grow bg-background ${customClasses} ${container ? "px-4" : ""}`}
-      style={{ paddingTop: safeAreaTop ? top : 0, paddingBottom: bottom }}
+      style={{ marginTop: safeAreaTop ? top : 0, paddingBottom: bottom }}
     >
       {children}
     </ScrollView>
