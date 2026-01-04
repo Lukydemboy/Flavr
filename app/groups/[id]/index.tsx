@@ -1,3 +1,4 @@
+import { CircleLoader } from "@/components/loaders";
 import {
   ActionButton,
   ModalComponent,
@@ -41,7 +42,9 @@ export default function GroupDetailScreen() {
   if (isLoading) {
     return (
       <Page>
-        <StyledText>Loading...</StyledText>
+        <View className="flex items-center justify-center">
+          <CircleLoader />
+        </View>
       </Page>
     );
   }
