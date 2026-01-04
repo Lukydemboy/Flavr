@@ -83,7 +83,7 @@ export const InputField = ({
   return (
     <>
       <TextInput
-        className={`input-field ${className}`}
+        className={`input-field ${className} ${error ? "border-2 border-red-500" : ""}`}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
@@ -93,9 +93,13 @@ export const InputField = ({
         multiline={multiline}
         numberOfLines={multiline ? 5 : undefined}
         style={multiline ? { height: 150 } : undefined}
-      ></TextInput>
+      />
 
-      {error && <StyledText className="text-red-500">{error}</StyledText>}
+      {error && (
+        <StyledText className="text-red-500 text-sm px-3 mt-2">
+          {error}
+        </StyledText>
+      )}
     </>
   );
 };

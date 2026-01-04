@@ -6,6 +6,13 @@ import { useForm } from "@tanstack/react-form";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
+import { z } from "zod";
+
+const createGroupSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
+  description: z.string().max(1000),
+  visibility: z.enum(Visibility),
+});
 
 export default function CreateGroupScreen() {
   const [visibility, setVisibility] = useState(Visibility.Public);
@@ -15,6 +22,7 @@ export default function CreateGroupScreen() {
 
   const form = useForm({
     defaultValues: { name: "", description: "", visibility: Visibility.Public },
+    validators: { onSubmit: createGroupSchema },
     onSubmit: async ({ value }) => {
       await createGroup(value).then(() => router.back());
     },
@@ -29,16 +37,17 @@ export default function CreateGroupScreen() {
         <form.Field name="name">
           {(field) => (
             <InputField
-              className="mb-4"
               value={field.state.value}
               onChangeText={(text) => form.setFieldValue("name", text)}
               placeholder="Group name"
-              error={field.state.meta.errors?.join(", ")}
+              error={field.state.meta.errors
+                ?.map((error) => (error ? error.message : ""))
+                .join(", ")}
             />
           )}
         </form.Field>
 
-        <StyledText className="font-bold ml-2 mb-2" weight="bold">
+        <StyledText className="font-bold ml-2 mb-2 mt-4" weight="bold">
           Description
         </StyledText>
         <form.Field name="description">
