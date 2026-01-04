@@ -1,3 +1,4 @@
+import { User } from "@/context/authContext";
 import { Group } from "@/domain/types/group";
 import { Paginated } from "@/domain/types/listings";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -52,6 +53,47 @@ export const useGroup = (id: string) => {
         method: "GET",
         url: `/groups/${id}`,
       }).then((res) => res.data);
+    },
+  });
+};
+
+export const useKickMember = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (data: { groupId: string; memberId: string }) => {
+      return axios({
+        method: "DELETE",
+        url: `/groups/${data.groupId}/members/${data.memberId}`,
+        data,
+      }).then((res) => res.data);
+    },
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: groupKeys.detail(variables.groupId),
+      });
+    },
+  });
+};
+
+// Members
+export const useInviteUsers = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (data: { groupId: string; users: User[] }) => {
+      const { groupId, users } = data;
+
+      return axios({
+        method: "POST",
+        url: `/groups/${groupId}/members`,
+        data: { users },
+      }).then((res) => res.data);
+    },
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: groupKeys.detail(variables.groupId),
+      });
     },
   });
 };

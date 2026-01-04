@@ -20,7 +20,7 @@ export default function HomeScreen() {
   return (
     <Page safeAreaTop>
       <View className="flex flex-row gap-x-3">
-        <Avatar />
+        <Avatar user={user} />
         <View>
           <StyledText className="mt-2">{user.username}</StyledText>
         </View>

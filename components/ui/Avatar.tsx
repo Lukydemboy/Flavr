@@ -1,15 +1,20 @@
-import { useUser } from "@/queries/user";
 import { View } from "react-native";
 import { StyledText } from "./StyledText";
+import { User } from "@/context/authContext";
 
-export const Avatar = () => {
-  const { data: user } = useUser();
+type Props = {
+  user: User;
+  size?: number;
+  className?: string;
+};
 
-  if (!user || !user.username) return null;
-
+export const Avatar = ({ user, size = 32, className }: Props) => {
   return (
-    <View className="w-12 h-12 bg-slate-200 rounded-xl flex items-center justify-center">
-      <StyledText className="text-lg" weight="bold">
+    <View
+      style={{ width: size, height: size }}
+      className={`${className} bg-slate-200 rounded-xl flex items-center justify-center`}
+    >
+      <StyledText className={`text-lg`} weight="bold">
         {user.username.slice(0, 1)}
       </StyledText>
     </View>

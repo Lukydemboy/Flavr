@@ -38,16 +38,15 @@ export const ModalComponent = ({
           >
             {showCloseButton && (
               <Pressable
-                style={{ boxShadow: "2px 2px 0px 0px #A09FA8" }}
-                className="absolute z-10 top-4 border right-4 bg-gray-100 rounded-lg p-2"
+                className="absolute z-10 top-0 right-0 h-10 w-10 flex items-center justify-center bg-gray-100 rounded-lg p-2"
                 onPress={onClose}
               >
-                <CrossIcon width={18} height={18} color="#172823" />
+                <CrossIcon width={14} height={14} color="#172823" />
               </Pressable>
             )}
 
             {title && (
-              <StyledText weight="black" className="text-2xl  mb-4">
+              <StyledText weight="bold" className="text-2xl mb-4">
                 {title}
               </StyledText>
             )}

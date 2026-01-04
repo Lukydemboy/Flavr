@@ -37,7 +37,7 @@ export default function GroupsScreen() {
           groups?.content.map((group) => (
             <Pressable
               key={group.id}
-              className="bg-white rounded-2xl p-4 flex flex-row justify-between items-center"
+              className="bg-white rounded-2xl p-4 flex flex-row justify-between items-center mb-4"
               onPress={() =>
                 router.push({
                   pathname: "/groups/[id]",
