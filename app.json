@@ -40,6 +40,14 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to generate recipes from it.",
+          "cameraPermission": "The app accesses your camera to take photos of recipes. So we can generate recipes in the app from it.",
+          "microphonePermission": false
+        }
       ]
     ],
     "experiments": {

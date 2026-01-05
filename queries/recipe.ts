@@ -9,6 +9,11 @@ import { Recipe } from "@/domain/types/recipe";
 import { Range } from "@/domain/types/range";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { ImagePickerAsset } from "expo-image-picker";
+import { ImagePickerUtils } from "@/utils/image-picker/image-picker";
+import { useImageManipulator } from "expo-image-manipulator";
+import { ImageUtils } from "@/utils/image/image";
+import { Platform } from "react-native";
 
 export type RecipeFilters = {
   createdAt?: Partial<Range<Date>>;
@@ -65,6 +70,38 @@ export const useGenerateRecipeFromWebpage = () => {
         method: "POST",
         url: "/recipes/generate/webpage",
         data: { url },
+      }).then((res) => res.data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: recipeKeys.lists() });
+    },
+  });
+};
+
+export const useGenerateRecipeFromImage = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (asset: ImagePickerAsset) => {
+      const image = await ImageUtils.toImage(asset);
+
+      const fileToUpload = {
+        uri:
+          Platform.OS === "ios" ? image.uri.replace("file://", "") : asset.uri,
+        type: asset.mimeType || "image/jpeg", // Ensure this matches the file type
+        name: asset.fileName || "upload.jpg",
+      };
+
+      const formData = new FormData();
+      formData.append("file", fileToUpload as any);
+
+      return axios<Recipe>({
+        method: "POST",
+        url: "/recipes/generate/image",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        data: formData,
       }).then((res) => res.data);
     },
     onSuccess: () => {

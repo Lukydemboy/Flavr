@@ -1,3 +1,4 @@
+import { ImageSheet, ImageSheetRef } from "@/components/sheets/ImageSheet";
 import { UrlSheet, UrlSheetRef } from "@/components/sheets/UrlSheet";
 import { Page, StyledText } from "@/components/ui";
 import { useRef } from "react";
@@ -5,6 +6,7 @@ import { Pressable } from "react-native";
 
 export default function CreateRecipeScreen() {
   const urlSheetRef = useRef<UrlSheetRef>(null);
+  const imageSheetRef = useRef<ImageSheetRef>(null);
 
   return (
     <>
@@ -13,7 +15,10 @@ export default function CreateRecipeScreen() {
           Create Recipe
         </StyledText>
 
-        <Pressable className="p-4 bg-pastel-green rounded-2xl mb-4">
+        <Pressable
+          onPress={() => imageSheetRef.current?.open()}
+          className="p-4 bg-pastel-green rounded-2xl mb-4"
+        >
           <StyledText className="text-lg mb-2" weight="bold">
             Generate from image
           </StyledText>
@@ -59,6 +64,7 @@ export default function CreateRecipeScreen() {
       </Page>
 
       <UrlSheet ref={urlSheetRef} />
+      <ImageSheet ref={imageSheetRef} />
     </>
   );
 }
