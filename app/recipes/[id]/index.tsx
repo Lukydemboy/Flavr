@@ -120,7 +120,16 @@ export default function RecipeDetailScreen() {
             </View>
           </View>
 
-          <View className="bg-white rounded-xl p-4 mt-6">
+          <View className="flex flex-row mt-4 gap-x-2">
+            <StyledText className="bg-white rounded-lg py-2 px-3 border-2 border-gray-300">
+              {recipe.duration / 60} minutes
+            </StyledText>
+            <StyledText className="bg-white rounded-lg py-2 px-3 border-2 border-gray-300">
+              {recipe.servings} servings
+            </StyledText>
+          </View>
+
+          <View className="bg-white rounded-xl p-4 mt-4">
             <StyledText className="mb-2" weight="bold">
               Ingredients
             </StyledText>

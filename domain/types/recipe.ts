@@ -4,6 +4,8 @@ import { Group } from "./group";
 export type Recipe = {
   id: string;
   name: string;
+  duration: number;
+  servings: number;
   ingredients: RecipeIngredient[];
   sections: RecipeSection[];
   groups?: Group[];
