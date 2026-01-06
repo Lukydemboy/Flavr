@@ -137,7 +137,7 @@ export default function GroupDetailScreen() {
                   text="Cancel"
                 />
                 <ActionButton
-                  buttonBgColorClass="bg-rose-600"
+                  buttonBgColorClass="bg-rose-500"
                   isLoading={isKickingMember}
                   disabled={isKickingMember}
                   onPress={() => {

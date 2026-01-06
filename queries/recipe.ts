@@ -14,6 +14,7 @@ import { ImagePickerUtils } from "@/utils/image-picker/image-picker";
 import { useImageManipulator } from "expo-image-manipulator";
 import { ImageUtils } from "@/utils/image/image";
 import { Platform } from "react-native";
+import { Group } from "@/domain/types/group";
 
 export type RecipeFilters = {
   createdAt?: Partial<Range<Date>>;
@@ -144,6 +145,40 @@ export const useRecipe = (id: string) => {
         method: "GET",
         url: `/recipes/${id}`,
       }).then((res) => res.data);
+    },
+  });
+};
+
+export const useDeleteRecipe = (id: string) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async () => {
+      return axios<void>({
+        method: "DELETE",
+        url: `/recipes/${id}`,
+      }).then((res) => res.data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: recipeKeys.lists() });
+    },
+  });
+};
+
+export const useSetRecipeGroups = (id: string) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (groups: Group[]) => {
+      return axios<Recipe>({
+        method: "PUT",
+        url: `/recipes/${id}/groups`,
+        data: { groups },
+      }).then((res) => res.data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: recipeKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: recipeKeys.detail(id) });
     },
   });
 };

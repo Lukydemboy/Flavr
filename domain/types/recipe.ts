@@ -1,10 +1,12 @@
 import { User } from "@/context/authContext";
+import { Group } from "./group";
 
 export type Recipe = {
   id: string;
   name: string;
   ingredients: RecipeIngredient[];
   sections: RecipeSection[];
+  groups?: Group[];
   owner?: User;
 };
 

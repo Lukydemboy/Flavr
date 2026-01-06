@@ -3,16 +3,19 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useStorageState } from "@/hooks/storage";
 import { env } from "@/utils/env/env";
 import axios from "axios";
+import { Language } from "@/domain/enums/language.enum";
 
 export type User = {
   id: string;
   email: string;
   username: string;
+  language: Language;
 };
 
 export type UpdateUser = {
   email: string;
   username: string;
+  language: Language;
 };
 
 export type Session = { accessToken: string; refreshToken: string };

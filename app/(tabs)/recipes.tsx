@@ -1,4 +1,5 @@
 import { CrossIcon } from "@/components/icons/Cross";
+import { CircleLoader } from "@/components/loaders";
 import { Page, StyledText } from "@/components/ui";
 import { InputField } from "@/components/ui/InputField";
 import { useRecipes } from "@/queries/recipe";
@@ -10,7 +11,7 @@ export default function RecipesScreen() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
 
-  const { data: recipes } = useRecipes({
+  const { data: recipes, isLoading } = useRecipes({
     q: searchQuery,
     page: { number: 1, size: 10 },
     sort: { property: "createdAt", direction: "asc" },
@@ -55,28 +56,37 @@ export default function RecipesScreen() {
       </View>
 
       <ScrollView>
-        {!recipes?.content.length && (
-          <View className="bg-gray-100 p-4 rounded-lg mb-2">
+        {isLoading && (
+          <View className="bg-gray-100 p-4 flex items-center justify-center rounded-lg mb-2">
+            <CircleLoader />
+          </View>
+        )}
+
+        {!isLoading && !recipes?.content.length && (
+          <View className="p-4 rounded-lg mb-2">
             <StyledText className="text-lg font-bold">
               No recipes found
             </StyledText>
           </View>
         )}
 
-        {recipes?.content.map((recipe) => (
-          <Pressable
-            key={recipe.id}
-            className="bg-white p-4 rounded-2xl mb-2"
-            onPress={() =>
-              router.push({
-                pathname: `/recipes/[id]`,
-                params: { id: recipe.id, title: recipe.name },
-              })
-            }
-          >
-            <StyledText className="text-lg font-bold">{recipe.name}</StyledText>
-          </Pressable>
-        ))}
+        {!isLoading &&
+          recipes?.content.map((recipe) => (
+            <Pressable
+              key={recipe.id}
+              className="bg-white p-4 rounded-2xl mb-2"
+              onPress={() =>
+                router.push({
+                  pathname: `/recipes/[id]`,
+                  params: { id: recipe.id, title: recipe.name },
+                })
+              }
+            >
+              <StyledText className="text-lg font-bold">
+                {recipe.name}
+              </StyledText>
+            </Pressable>
+          ))}
       </ScrollView>
     </Page>
   );
