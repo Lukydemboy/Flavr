@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#009966",
+        primary: "#32675E",
         background: "#F6F7FB",
         pastel: {
           green: "#D6FFD3",
@@ -26,5 +26,15 @@ module.exports = {
       },
     },
   },
+  safelist: [
+    "font-nunito-thin",
+    "font-nunito-light",
+    "font-nunito-regular",
+    "font-nunito-medium",
+    "font-nunito-semiBold",
+    "font-nunito-bold",
+    "font-nunito-extraBold",
+    "font-nunito-black",
+  ],
   plugins: [],
 };

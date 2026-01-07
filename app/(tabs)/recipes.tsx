@@ -57,7 +57,7 @@ export default function RecipesScreen() {
 
       <ScrollView>
         {isLoading && (
-          <View className="bg-gray-100 p-4 flex items-center justify-center rounded-lg mb-2">
+          <View className="p-4 flex items-center justify-center rounded-lg mb-2">
             <CircleLoader />
           </View>
         )}
