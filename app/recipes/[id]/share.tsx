@@ -91,10 +91,13 @@ export default function ShareRecipeScreen() {
           })}
       </ScrollView>
 
-      <View className="bg-white p-4 rounded-xl flex flex-row flex-wrap gap-2 mt-4">
+      <ScrollView
+        className="bg-white p-4 rounded-xl mt-4 max-h-[20%]"
+        contentContainerClassName="flex flex-row flex-wrap gap-2"
+      >
         {!selectedGroups.length && (
           <View>
-            <StyledText className="text-gray-800" weight="semibold">
+            <StyledText className="text-gray-800" weight="semiBold">
               No groups selected yet
             </StyledText>
             <StyledText className="text-xs text-gray-400 mt-2">
@@ -104,6 +107,9 @@ export default function ShareRecipeScreen() {
           </View>
         )}
 
+        <StyledText className="text-slate-600 mb-1" weight="semiBold">
+          Your recipe will be visible in the following groups:
+        </StyledText>
         {selectedGroups.map((group) => (
           <View
             key={group.id}
@@ -124,7 +130,7 @@ export default function ShareRecipeScreen() {
             </Pressable>
           </View>
         ))}
-      </View>
+      </ScrollView>
 
       <ActionButton
         viewClassName="mt-4"

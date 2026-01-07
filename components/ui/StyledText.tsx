@@ -7,9 +7,9 @@ export type FontWeight =
   | "light"
   | "regular"
   | "medium"
-  | "semibold"
+  | "semiBold"
   | "bold"
-  | "extrabold"
+  | "extraBold"
   | "black";
 
 type Props = {
@@ -23,5 +23,7 @@ export const StyledText = ({
   weight = "regular",
   className,
 }: Props) => {
-  return <Text className={`font-${weight} ${className}`}>{children}</Text>;
+  return (
+    <Text className={`font-nunito-${weight} ${className}`}>{children}</Text>
+  );
 };
