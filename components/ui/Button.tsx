@@ -1,7 +1,7 @@
 import { Pressable, View } from "react-native";
 
 import { BulletLoader } from "../loaders/BulletLoader";
-import { FontWeight, FontFamily, StyledText } from "./StyledText";
+import { FontWeight, StyledText } from "./StyledText";
 
 type ActionButtonProps = {
   text?: string;
@@ -15,7 +15,6 @@ type ActionButtonProps = {
   loaderWidth?: number;
   loaderHeight?: number;
   size?: "small" | "medium" | "large";
-  fontFamily?: FontFamily;
   children?: React.ReactNode;
   buttonBgColorClass?: string;
   textColor?: string;
@@ -28,7 +27,6 @@ export const ActionButton = ({
   viewClassName,
   disabled,
   buttonClassName,
-  fontFamily = "nunito",
   textClassName,
   textWeight = "bold",
   loaderWidth,
@@ -63,7 +61,7 @@ export const ActionButton = ({
           children
         ) : (
           <StyledText
-            weight={"semiBold"}
+            weight={"bold"}
             className={`${textColor} text-center font-semibold ${textClassName}`}
           >
             {text}

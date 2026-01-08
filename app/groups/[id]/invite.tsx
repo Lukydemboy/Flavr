@@ -84,7 +84,7 @@ export default function GroupInviteScreen() {
       <View className="bg-white p-4 rounded-xl flex flex-row flex-wrap gap-2 mt-4">
         {!selectedUsers.length && (
           <View>
-            <StyledText className="text-gray-800" weight="semibold">
+            <StyledText className="text-gray-800" weight="semiBold">
               No users selected yet
             </StyledText>
             <StyledText className="text-xs text-gray-400 mt-2">

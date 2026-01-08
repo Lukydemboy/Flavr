@@ -10,11 +10,10 @@ import { Range } from "@/domain/types/range";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { ImagePickerAsset } from "expo-image-picker";
-import { ImagePickerUtils } from "@/utils/image-picker/image-picker";
-import { useImageManipulator } from "expo-image-manipulator";
-import { ImageUtils } from "@/utils/image/image";
+import { ImageSource, ImageUtils } from "@/utils/image/image";
 import { Platform } from "react-native";
 import { Group } from "@/domain/types/group";
+import { ShareIntentFile } from "expo-share-intent";
 
 export type RecipeFilters = {
   createdAt?: Partial<Range<Date>>;
@@ -32,7 +31,7 @@ export const useCreateRecipe = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (data: any) => {
+    mutationFn: async (data: CreateRecipeInput) => {
       return axios({
         method: "POST",
         url: "/recipes",
@@ -83,13 +82,15 @@ export const useGenerateRecipeFromImage = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (asset: ImagePickerAsset) => {
-      const image = await ImageUtils.toImage(asset);
+    mutationFn: async (asset: ImageSource) => {
+      const image = await ImageUtils.normalizeAssetToUploadFile(asset);
+
+      console.log("image", image);
 
       const fileToUpload = {
         uri:
-          Platform.OS === "ios" ? image.uri.replace("file://", "") : asset.uri,
-        type: asset.mimeType || "image/jpeg", // Ensure this matches the file type
+          Platform.OS === "ios" ? image.uri.replace("file://", "") : image.uri,
+        type: asset.mimeType || "image/jpeg",
         name: asset.fileName || "upload.jpg",
       };
 

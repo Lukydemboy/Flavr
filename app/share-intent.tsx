@@ -2,8 +2,11 @@ import { Image, View } from "react-native";
 
 import { useRouter } from "expo-router";
 import { useShareIntentContext } from "expo-share-intent";
-import { useEffect, useState } from "react";
-import { useGenerateRecipeFromInstagram } from "@/queries/recipe";
+import { useCallback, useEffect, useState } from "react";
+import {
+  useGenerateRecipeFromImage,
+  useGenerateRecipeFromInstagram,
+} from "@/queries/recipe";
 import { Page, StyledText } from "@/components/ui";
 import { CircleLoader } from "@/components/loaders";
 import LottieView from "lottie-react-native";
@@ -16,21 +19,31 @@ export default function ShareIntent() {
   const { hasShareIntent, shareIntent, resetShareIntent } =
     useShareIntentContext();
 
-  const { mutateAsync: generateFromInstagram, isPending } =
-    useGenerateRecipeFromInstagram();
+  // prettier-ignore
+  const { mutateAsync: generateFromInstagram, isPending: isPendingInstagram } = useGenerateRecipeFromInstagram();
+  // prettier-ignore
+  const { mutateAsync: generateFromImage, isPending: isPendingImage } = useGenerateRecipeFromImage();
+
+  const onSuccess = useCallback(() => {
+    setIsSuccess(true);
+    setTimeout(() => {
+      resetShareIntent();
+      router.replace("/recipes");
+    }, SUCCESS_ANIMATION_DURATION);
+  }, [resetShareIntent, router]);
 
   useEffect(() => {
     if (hasShareIntent) {
       if (shareIntent.type === "weburl") {
         if (shareIntent.webUrl?.includes("instagram")) {
-          generateFromInstagram(shareIntent.webUrl).then(() => {
-            setIsSuccess(true);
-            setTimeout(() => {
-              resetShareIntent();
-              router.replace("/recipes");
-            }, SUCCESS_ANIMATION_DURATION);
-          });
+          generateFromInstagram(shareIntent.webUrl).then(() => onSuccess());
         }
+      }
+
+      if (shareIntent.files?.length) {
+        const file = shareIntent.files[0];
+
+        generateFromImage(file).then(() => onSuccess());
       }
     }
   }, [
@@ -40,6 +53,9 @@ export default function ShareIntent() {
     shareIntent.webUrl,
     router,
     resetShareIntent,
+    shareIntent.files,
+    generateFromImage,
+    onSuccess,
   ]);
 
   if (isSuccess) {
@@ -77,7 +93,7 @@ export default function ShareIntent() {
         </StyledText>
 
         <View className="flex justify-center items-center mt-4">
-          {isPending && <CircleLoader />}
+          {(isPendingInstagram || isPendingImage) && <CircleLoader />}
         </View>
 
         <StyledText

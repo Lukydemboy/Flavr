@@ -6,6 +6,7 @@ export type Recipe = {
   name: string;
   duration: number;
   servings: number;
+  generatedFrom: string | null;
   ingredients: RecipeIngredient[];
   sections: RecipeSection[];
   groups?: Group[];
@@ -14,9 +15,7 @@ export type Recipe = {
 
 export type RecipeIngredient = {
   id: string;
-  name: string;
-  quantity: number;
-  unit: string;
+  value: string;
 };
 
 export type RecipeSection = {
@@ -27,6 +26,16 @@ export type RecipeSection = {
 
 export type RecipeDirection = {
   id: string;
-  number: string;
+  number: number;
   instruction: string;
+};
+
+export type CreateRecipeInput = {
+  name: string;
+  duration: number;
+  servings: number;
+  ingredients: Omit<RecipeIngredient, "id">[];
+  sections: RecipeSection[];
+  groups?: Group[];
+  owner?: User;
 };

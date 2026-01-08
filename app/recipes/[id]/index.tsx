@@ -2,6 +2,7 @@ import PencilIcon from "@/components/icons/Pencil";
 import ShareIcon from "@/components/icons/Share";
 import TrashCan from "@/components/icons/TrashCan";
 import { CircleLoader } from "@/components/loaders";
+import { GeneratedFrom } from "@/components/recipes/GeneratedFrom";
 import {
   ActionButton,
   ModalComponent,
@@ -39,8 +40,8 @@ export default function RecipeDetailScreen() {
   const { data: user } = useUser();
   const { data: recipe, isLoading } = useRecipe(id);
 
-  const { mutateAsync: deleteRecipe, isPending: isDeleting } =
-    useDeleteRecipe(id);
+  // prettier-ignore
+  const { mutateAsync: deleteRecipe, isPending: isDeleting } = useDeleteRecipe(id);
 
   useEffect(() => navigation.setOptions({ title }), [navigation, title]);
   useEffect(() => {
@@ -120,13 +121,14 @@ export default function RecipeDetailScreen() {
             </View>
           </View>
 
-          <View className="flex flex-row mt-4 gap-x-2">
+          <View className="flex flex-row mt-4 gap-2 flex-wrap">
             <StyledText className="bg-white rounded-lg py-2 px-3 border-2 border-gray-300">
               {recipe.duration / 60} minutes
             </StyledText>
             <StyledText className="bg-white rounded-lg py-2 px-3 border-2 border-gray-300">
               {recipe.servings} servings
             </StyledText>
+            <GeneratedFrom recipe={recipe} />
           </View>
 
           <View className="bg-white rounded-xl p-4 mt-4">
@@ -140,8 +142,7 @@ export default function RecipeDetailScreen() {
                   key={ingredient.id}
                   className="flex flex-row gap-x-1 mb-2"
                 >
-                  <StyledText>• {ingredient.quantity}</StyledText>
-                  <StyledText key={ingredient.id}>{ingredient.name}</StyledText>
+                  <StyledText>• {ingredient.value}</StyledText>
                 </View>
               ))}
             </View>
@@ -155,7 +156,7 @@ export default function RecipeDetailScreen() {
 
               <View className="flex flex-col space-y-2">
                 {section.directions
-                  ?.sort((a, b) => a.number.localeCompare(b.number))
+                  ?.sort((a, b) => a.number - b.number)
                   .map((step: RecipeDirectionWithCompleted) => {
                     const isCompleted = step.completed;
 
@@ -164,7 +165,6 @@ export default function RecipeDetailScreen() {
                         key={step.id}
                         className={`relative flex flex-row gap-x-1 mb-4 p-4 rounded-lg ${isCompleted ? "bg-green-100" : "bg-gray-100"}`}
                         onPress={() => {
-                          // Mark section direction as completed
                           const updatedSections = sections.map((s) => {
                             if (s.id === section.id) {
                               return {

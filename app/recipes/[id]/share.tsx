@@ -6,7 +6,6 @@ import { Group } from "@/domain/types/group";
 import { useGroups } from "@/queries/group";
 import { useRecipe, useSetRecipeGroups } from "@/queries/recipe";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { isEqual } from "lodash";
 import { useEffect, useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
 

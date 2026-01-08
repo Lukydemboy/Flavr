@@ -78,7 +78,7 @@ export default function RootLayout() {
                 options={{ title: "Create group" }}
               />
               <Stack.Screen
-                name="recipes/create"
+                name="recipes/create/index"
                 options={{ title: "Create Recipe" }}
               />
             </Stack>
