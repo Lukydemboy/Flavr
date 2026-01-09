@@ -1,5 +1,5 @@
-import * as React from "react";
-import Svg, { G, Path } from "react-native-svg";
+import * as React from 'react';
+import Svg, { G, Path } from 'react-native-svg';
 
 type Props = {
   color?: string;
@@ -7,7 +7,7 @@ type Props = {
   height?: number;
 };
 
-function TrashCan({ width = 20, height = 20, color = "#6f4e37" }: Props) {
+function TrashCanIcon({ width = 20, height = 20, color = '#6f4e37' }: Props) {
   return (
     <Svg viewBox="0 0 20 20" height={height} width={width}>
       <G strokeWidth={0.8333}>
@@ -20,4 +20,4 @@ function TrashCan({ width = 20, height = 20, color = "#6f4e37" }: Props) {
   );
 }
 
-export default TrashCan;
+export default TrashCanIcon;

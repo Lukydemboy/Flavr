@@ -1,9 +1,9 @@
-import { Page, StyledText } from "@/components/ui";
-import { View } from "react-native";
-import { useUser } from "@/queries/user";
-import { useRouter } from "expo-router";
-import { useEffect } from "react";
-import { Avatar } from "@/components/ui/Avatar";
+import { Page, StyledText } from '@/components/ui';
+import { View } from 'react-native';
+import { useUser } from '@/queries/user';
+import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
+import { Avatar } from '@/components/ui/Avatar';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -11,7 +11,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     if (!user?.username && !isFetching) {
-      router.replace("/complete-profile");
+      router.replace('/complete-profile');
     }
   }, [user, router, isFetching]);
 

@@ -1,11 +1,11 @@
 import { TrueSheet } from '@lodev09/react-native-true-sheet';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { View } from 'react-native';
-import { ActionButton, StyledText } from '../ui';
-import { InputField } from '../ui/InputField';
 import { useForm } from '@tanstack/react-form';
 import { useGenerateRecipeFromInstagram, useGenerateRecipeFromWebpage } from '@/queries/recipe';
 import { useRouter } from 'expo-router';
+import { ActionButton, StyledText } from '@/components/ui';
+import { InputField } from '@/components/ui/InputField';
 
 type Props = {};
 export type UrlSheetRef = { open: () => void };
@@ -43,7 +43,9 @@ export const UrlSheet = forwardRef<UrlSheetRef, Props>((_, ref) => {
     open: () => sheet.current?.present(),
   }));
 
-  const onWillDismiss = () => {};
+  const onWillDismiss = () => {
+    form.reset();
+  };
 
   return (
     <TrueSheet onWillDismiss={onWillDismiss} ref={sheet} detents={['auto']} cornerRadius={24}>

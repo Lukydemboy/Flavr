@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Dropdown } from "react-native-element-dropdown";
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
 
 type Props = {
   data: { label: string; value: string }[];
@@ -33,11 +33,11 @@ export const DropdownComponent = ({ data, onSelect }: Props) => {
         labelField="label"
         valueField="value"
         renderItem={renderItem}
-        placeholder={!isFocus ? "Select topic" : "..."}
+        placeholder={!isFocus ? 'Select topic' : '...'}
         value={value}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
-        onChange={(item) => {
+        onChange={item => {
           setValue(item.value);
           onSelect(item.value);
           setIsFocus(false);
@@ -50,33 +50,33 @@ export const DropdownComponent = ({ data, onSelect }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#F2F2F2",
+    backgroundColor: '#F2F2F2',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#0f172a",
+    borderColor: '#0f172a',
   },
   dropdown: {
     height: 60,
-    borderColor: "#0f172a",
+    borderColor: '#0f172a',
     borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: "#F2F2F2",
+    backgroundColor: '#F2F2F2',
     paddingHorizontal: 16,
   },
   label: {
-    display: "none",
+    display: 'none',
   },
   placeholderStyle: {
     fontSize: 16,
-    fontFamily: "Nunito",
-    color: "#0f172a",
-    fontWeight: "semibold",
+    fontFamily: 'Nunito',
+    color: '#0f172a',
+    fontWeight: 'semibold',
   },
   selectedTextStyle: {
     fontSize: 16,
-    fontFamily: "Nunito",
-    color: "#0f172a",
-    fontWeight: "semibold",
+    fontFamily: 'Nunito',
+    color: '#0f172a',
+    fontWeight: 'semibold',
   },
   itemContainer: {
     borderRadius: 12,

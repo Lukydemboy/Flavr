@@ -1,4 +1,4 @@
-import LottieView from "lottie-react-native";
+import LottieView from 'lottie-react-native';
 
 type Props = {
   width: number;
@@ -8,7 +8,7 @@ type Props = {
 export const BulletLoader = ({ width, height }: Props) => {
   return (
     <LottieView
-      source={require("../../assets/animation/bullet-loader-white.json")}
+      source={require('../../assets/animation/bullet-loader-white.json')}
       style={{ width, height }}
       autoPlay
       loop

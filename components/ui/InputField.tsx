@@ -1,4 +1,8 @@
-import { KeyboardTypeOptions, TextInput } from "react-native";
+import {
+  KeyboardTypeOptions,
+  TextInput,
+  TextInputSubmitEditingEvent,
+} from "react-native";
 import { StyledText } from "./StyledText";
 
 type Props = {
@@ -68,6 +72,7 @@ type Props = {
     | "username-new"
     | "off"
     | undefined;
+  onSubmitEditing?: (value: string) => void;
 };
 
 export const InputField = ({
@@ -79,6 +84,7 @@ export const InputField = ({
   className,
   error,
   multiline = false,
+  onSubmitEditing,
 }: Props) => {
   return (
     <>
@@ -93,6 +99,7 @@ export const InputField = ({
         multiline={multiline}
         numberOfLines={multiline ? 5 : undefined}
         style={multiline ? { height: 150 } : undefined}
+        onSubmitEditing={(event) => onSubmitEditing?.(event.nativeEvent.text)}
       />
 
       {error && (

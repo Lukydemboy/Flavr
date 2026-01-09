@@ -1,5 +1,5 @@
-import "../styles/global.css";
-import { SplashScreen, Stack, useRouter } from "expo-router";
+import '../styles/global.css';
+import { SplashScreen, Stack, useRouter } from 'expo-router';
 import {
   Nunito_200ExtraLight,
   Nunito_300Light,
@@ -10,13 +10,13 @@ import {
   Nunito_800ExtraBold,
   Nunito_900Black,
   useFonts,
-} from "@expo-google-fonts/nunito";
-import { useEffect, useState } from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { SessionProvider } from "@/context/authContext";
-import { configureAxios } from "@/utils/requests/requests";
-import { ShareIntentProvider } from "expo-share-intent";
+} from '@expo-google-fonts/nunito';
+import { useEffect, useState } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SessionProvider } from '@/context/authContext';
+import { configureAxios } from '@/utils/requests/requests';
+import { ShareIntentProvider } from 'expo-share-intent';
 
 configureAxios();
 
@@ -61,26 +61,14 @@ export default function RootLayout() {
         <SessionProvider>
           <SafeAreaProvider>
             <Stack>
-              <Stack.Screen
-                name="share-intent"
-                options={{ headerShown: false }}
-              />
+              <Stack.Screen name="share-intent" options={{ headerShown: false }} />
               <Stack.Screen name="start" options={{ headerShown: false }} />
               <Stack.Screen name="login" options={{ headerShown: false }} />
               <Stack.Screen name="mail-sent" options={{ headerShown: false }} />
-              <Stack.Screen
-                name="complete-profile"
-                options={{ headerShown: false }}
-              />
+              <Stack.Screen name="complete-profile" options={{ headerShown: false }} />
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen
-                name="groups/create"
-                options={{ title: "Create group" }}
-              />
-              <Stack.Screen
-                name="recipes/create"
-                options={{ title: "Create Recipe" }}
-              />
+              <Stack.Screen name="groups/create" options={{ title: 'Create group' }} />
+              <Stack.Screen name="recipes/create/index" options={{ title: 'Create Recipe' }} />
             </Stack>
           </SafeAreaProvider>
         </SessionProvider>

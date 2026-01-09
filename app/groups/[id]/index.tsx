@@ -1,22 +1,12 @@
-import { CircleLoader } from "@/components/loaders";
-import {
-  ActionButton,
-  ModalComponent,
-  Page,
-  StyledText,
-} from "@/components/ui";
-import { Avatar } from "@/components/ui/Avatar";
-import { User } from "@/context/authContext";
-import { useGroup, useKickMember } from "@/queries/group";
-import { useUser } from "@/queries/user";
-import {
-  Redirect,
-  useLocalSearchParams,
-  useNavigation,
-  useRouter,
-} from "expo-router";
-import { useEffect, useState } from "react";
-import { Pressable, ScrollView, View } from "react-native";
+import { CircleLoader } from '@/components/loaders';
+import { ActionButton, ModalComponent, Page, StyledText } from '@/components/ui';
+import { Avatar } from '@/components/ui/Avatar';
+import { User } from '@/context/authContext';
+import { useGroup, useKickMember } from '@/queries/group';
+import { useUser } from '@/queries/user';
+import { Redirect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { Pressable, ScrollView, View } from 'react-native';
 
 export default function GroupDetailScreen() {
   const router = useRouter();
@@ -30,8 +20,7 @@ export default function GroupDetailScreen() {
 
   useEffect(() => navigation.setOptions({ title }), [navigation, title]);
 
-  const { mutateAsync: kickMember, isPending: isKickingMember } =
-    useKickMember();
+  const { mutateAsync: kickMember, isPending: isKickingMember } = useKickMember();
 
   useEffect(() => {
     if (user && group) {
@@ -50,7 +39,7 @@ export default function GroupDetailScreen() {
   }
 
   if (!user) {
-    return <Redirect href={"/login"} />;
+    return <Redirect href={'/login'} />;
   }
 
   return (
@@ -59,16 +48,12 @@ export default function GroupDetailScreen() {
         <StyledText className="text-xl mt-4" weight="bold">
           {group?.name}
         </StyledText>
-        <StyledText className="text-slate-500 mt-4">
-          {group?.description}
-        </StyledText>
+        <StyledText className="text-slate-500 mt-4">{group?.description}</StyledText>
 
         <View className="flex flex-row justify-between items-end mt-12">
           <View>
-            <StyledText weight="semibold">Members</StyledText>
-            <StyledText className="text-xs text-slate-500">
-              {group?.members.length} members
-            </StyledText>
+            <StyledText weight="semiBold">Members</StyledText>
+            <StyledText className="text-xs text-slate-500">{group?.members.length} members</StyledText>
           </View>
           <Pressable onPress={() => router.push(`/groups/${id}/invite`)}>
             {isOwner && (
@@ -80,36 +65,29 @@ export default function GroupDetailScreen() {
         </View>
 
         <ScrollView>
-          {group?.members.map((member) => (
+          {group?.members.map(member => (
             <View
               key={member.id}
               className="flex flex-row items-center justify-between mt-2 bg-white rounded-xl p-2 mb-2"
             >
               <View className="flex flex-row items-center">
                 <Avatar user={member} />
-                <StyledText className="text-sm text-slate-500 ml-2">
-                  {member.username}
-                </StyledText>
+                <StyledText className="text-sm text-slate-500 ml-2">{member.username}</StyledText>
               </View>
-              {isOwner &&
-                member.id !== user.id &&
-                member.id !== group.owner.id && (
-                  <Pressable
-                    onPress={() => {
-                      setSelectedMember(member);
-                      setIsKickModalVisible(true);
-                    }}
-                  >
-                    <View className="bg-rose-100 px-2 py-1 rounded-lg">
-                      <StyledText
-                        className="text-sm text-rose-600"
-                        weight="semibold"
-                      >
-                        Kick
-                      </StyledText>
-                    </View>
-                  </Pressable>
-                )}
+              {isOwner && member.id !== user.id && member.id !== group.owner.id && (
+                <Pressable
+                  onPress={() => {
+                    setSelectedMember(member);
+                    setIsKickModalVisible(true);
+                  }}
+                >
+                  <View className="bg-rose-100 px-2 py-1 rounded-lg">
+                    <StyledText className="text-sm text-rose-600" weight="semiBold">
+                      Kick
+                    </StyledText>
+                  </View>
+                </Pressable>
+              )}
             </View>
           ))}
         </ScrollView>
@@ -122,8 +100,7 @@ export default function GroupDetailScreen() {
           {selectedMember && (
             <>
               <StyledText className="text-sm text-slate-500">
-                Are you sure you want to kick {selectedMember?.username} from
-                the group? You will have to reinvite them.
+                Are you sure you want to kick {selectedMember?.username} from the group? You will have to reinvite them.
               </StyledText>
 
               <View className="flex flex-row justify-end gap-x-2 mt-4">
