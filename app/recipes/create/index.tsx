@@ -13,7 +13,9 @@ export default function CreateRecipeScreen() {
   return (
     <>
       <Page>
-        <StyledText className="text-xl font-bold mb-8 pt-6">Create Recipe</StyledText>
+        <StyledText className="text-xl mb-8 pt-6" weight="black">
+          Create Recipe
+        </StyledText>
 
         <Pressable onPress={() => imageSheetRef.current?.open()} className="p-4 bg-pastel-green rounded-2xl mb-4">
           <StyledText className="text-lg mb-2" weight="bold">

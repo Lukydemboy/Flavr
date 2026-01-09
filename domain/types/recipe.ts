@@ -1,5 +1,5 @@
-import { User } from "@/context/authContext";
-import { Group } from "./group";
+import { User } from '@/context/authContext';
+import { Group } from './group';
 
 export type Recipe = {
   id: string;
@@ -21,6 +21,7 @@ export type RecipeIngredient = {
 export type RecipeSection = {
   id: string;
   name: string;
+  description: string | null;
   directions: RecipeDirection[];
 };
 
@@ -42,7 +43,7 @@ export type CreateRecipeInput = {
   name: string;
   duration: number;
   servings: number;
-  ingredients: Omit<RecipeIngredient, "id">[];
+  ingredients: Omit<RecipeIngredient, 'id'>[];
   sections: RecipeSection[];
   groups?: Group[];
   owner?: User;

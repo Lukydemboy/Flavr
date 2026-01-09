@@ -1,10 +1,11 @@
 import PencilIcon from '@/components/icons/Pencil';
 import ShareIcon from '@/components/icons/Share';
-import TrashCan from '@/components/icons/TrashCan';
+import TrashCanIcon from '@/components/icons/TrashCan';
 import { CircleLoader } from '@/components/loaders';
+import { ConfirmationModal } from '@/components/modals/ConfirmationModal';
 import { GeneratedFrom } from '@/components/recipes/GeneratedFrom';
 import { RecipeDirectionComponent } from '@/components/recipes/RecipeDirection';
-import { ActionButton, ModalComponent, Page, StyledText } from '@/components/ui';
+import { Page, StyledText } from '@/components/ui';
 import { Avatar } from '@/components/ui/Avatar';
 import { User } from '@/context/authContext';
 import { RecipeDirectionWithCompleted, RecipeSectionWithDirections } from '@/domain/types/recipe';
@@ -23,8 +24,7 @@ export default function RecipeDetailScreen() {
   const { data: user } = useUser();
   const { data: recipe, isLoading } = useRecipe(id);
 
-  // prettier-ignore
-  const { mutateAsync: deleteRecipe, isPending: isDeleting } = useDeleteRecipe(id);
+  const { mutateAsync: deleteRecipe } = useDeleteRecipe(id);
 
   useEffect(() => navigation.setOptions({ title }), [navigation, title]);
   useEffect(() => {
@@ -83,9 +83,17 @@ export default function RecipeDetailScreen() {
                 onPress={() => setIsDeleteModalVisible(true)}
                 className="bg-rose-100 rounded-lg w-9 h-9 flex items-center justify-center border-2 border-rose-200"
               >
-                <TrashCan width={14} height={14} color="#f43f5e" />
+                <TrashCanIcon width={14} height={14} color="#f43f5e" />
               </Pressable>
-              <Pressable className="bg-white rounded-lg w-9 h-9 flex items-center justify-center border-2 border-gray-200">
+              <Pressable
+                onPress={() =>
+                  router.push({
+                    pathname: '/recipes/create/create',
+                    params: { id },
+                  })
+                }
+                className="bg-white rounded-lg w-9 h-9 flex items-center justify-center border-2 border-gray-200"
+              >
                 <PencilIcon width={14} height={14} color="#9ca3af" />
               </Pressable>
               <Pressable
@@ -152,33 +160,17 @@ export default function RecipeDetailScreen() {
         </View>
       )}
 
-      <ModalComponent modalVisible={isDeleteModalVisible} onClose={() => setIsDeleteModalVisible(false)}>
-        <View className="flex flex-col">
-          <StyledText className="text-xl mb-4" weight="bold">
-            Delete Recipe
-          </StyledText>
-          <StyledText className="text-slate-500 mb-8">Are you sure you want to delete this recipe?</StyledText>
-          <View className="flex flex-row justify-end gap-x-2">
-            <ActionButton
-              size="large"
-              buttonBgColorClass="bg-slate-300"
-              textClassName="text-slate-600"
-              disabled={isDeleting}
-              onPress={() => setIsDeleteModalVisible(false)}
-              text="Cancel"
-            />
-            <ActionButton
-              size="large"
-              buttonClassName="bg-pastel-red text-white px-4 py-2 rounded-lg"
-              buttonBgColorClass="bg-rose-500"
-              isLoading={isDeleting}
-              disabled={isDeleting}
-              onPress={() => deleteRecipe().then(() => navigation.goBack())}
-              text="Delete"
-            />
-          </View>
-        </View>
-      </ModalComponent>
+      <ConfirmationModal
+        title="Delete recipe"
+        text="Are you sure you want to delete this recipe?"
+        onConfirm={() => deleteRecipe().then(() => setIsDeleteModalVisible(false))}
+        isLoading={isLoading}
+        cancelText="Cancel"
+        confirmText="Delete"
+        isModalVisible={isDeleteModalVisible}
+        setIsModalVisible={setIsDeleteModalVisible}
+        isDestructive
+      />
     </Page>
   );
 }
