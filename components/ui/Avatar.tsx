@@ -1,6 +1,6 @@
-import { View } from "react-native";
-import { StyledText } from "./StyledText";
-import { User } from "@/context/authContext";
+import { View } from 'react-native';
+import { StyledText } from './StyledText';
+import { User } from '@/context/authContext';
 
 type Props = {
   user: User;

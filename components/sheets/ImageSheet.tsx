@@ -1,17 +1,17 @@
-import { TrueSheet } from "@lodev09/react-native-true-sheet";
-import { forwardRef, useImperativeHandle, useRef, useState } from "react";
-import { View } from "react-native";
-import { ActionButton, StyledText } from "../ui";
-import { useGenerateRecipeFromImage } from "@/queries/recipe";
-import { useRouter } from "expo-router";
-import ImagePicker from "../ui/ImagePicker";
-import { ImagePickerAsset } from "expo-image-picker";
+import { TrueSheet } from '@lodev09/react-native-true-sheet';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { View } from 'react-native';
+import { ActionButton, StyledText } from '../ui';
+import { useGenerateRecipeFromImage } from '@/queries/recipe';
+import { useRouter } from 'expo-router';
+import ImagePicker from '../ui/ImagePicker';
+import { ImagePickerAsset } from 'expo-image-picker';
 
 type Props = {};
 export type ImageSheetRef = { open: () => void };
 
 export const ImageSheet = forwardRef<ImageSheetRef, Props>((_, ref) => {
-  ImageSheet.displayName = "ImageSheet";
+  ImageSheet.displayName = 'ImageSheet';
 
   const [image, setImage] = useState<ImagePickerAsset | null>(null);
   const router = useRouter();
@@ -40,12 +40,7 @@ export const ImageSheet = forwardRef<ImageSheetRef, Props>((_, ref) => {
   };
 
   return (
-    <TrueSheet
-      onWillDismiss={onWillDismiss}
-      ref={sheet}
-      detents={["auto"]}
-      cornerRadius={24}
-    >
+    <TrueSheet onWillDismiss={onWillDismiss} ref={sheet} detents={['auto']} cornerRadius={24}>
       <View className="p-4">
         <StyledText className="mb-2 pt-2" weight="bold">
           Pick an image

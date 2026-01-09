@@ -1,5 +1,5 @@
-import * as React from "react";
-import Svg, { Path } from "react-native-svg";
+import * as React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
 type Props = {
   color?: string;
@@ -7,7 +7,7 @@ type Props = {
   height?: number;
 };
 
-function BookIcon({ width = 20, height = 20, color = "#d1d5db" }: Props) {
+function BookIcon({ width = 20, height = 20, color = '#d1d5db' }: Props) {
   return (
     <Svg viewBox="0 0 20 20" height={height} width={width}>
       <Path

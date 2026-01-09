@@ -1,17 +1,17 @@
-import ChevronLeftIcon from "@/components/icons/ChevronLeft";
-import { ActionButton, Page, StyledText } from "@/components/ui";
-import { ErrorCodes } from "@/domain/enums/error";
-import { ApiErrorResponse } from "@/domain/types/error";
-import { AxiosError } from "axios";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useState } from "react";
-import { Pressable, View } from "react-native";
-import { OtpInput } from "react-native-otp-entry";
-import { useSession } from "@/context/authContext";
+import ChevronLeftIcon from '@/components/icons/ChevronLeft';
+import { ActionButton, Page, StyledText } from '@/components/ui';
+import { ErrorCodes } from '@/domain/enums/error';
+import { ApiErrorResponse } from '@/domain/types/error';
+import { AxiosError } from 'axios';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useState } from 'react';
+import { Pressable, View } from 'react-native';
+import { OtpInput } from 'react-native-otp-entry';
+import { useSession } from '@/context/authContext';
 
 export default function MailSent() {
   const [isLoading, setIsLoading] = useState(false);
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState('');
   const [otpIsInvalid, setOtpIsInvalid] = useState(false);
   const { email } = useLocalSearchParams<{ email: string }>();
   const { login } = useSession();
@@ -22,7 +22,7 @@ export default function MailSent() {
     login({ email, otp })
       .then(() => {
         router.dismissAll();
-        router.replace("/(tabs)");
+        router.replace('/(tabs)');
       })
       .catch((err: AxiosError) => {
         const errorResponse = err.response?.data as ApiErrorResponse;
@@ -60,18 +60,18 @@ export default function MailSent() {
           blurOnFilled
           type="numeric"
           focusStickBlinkingDuration={500}
-          onFilled={(text) => handleLogin(text)}
-          onTextChange={(text) => {
+          onFilled={text => handleLogin(text)}
+          onTextChange={text => {
             setOtp(text);
             setOtpIsInvalid(false);
           }}
           textInputProps={{
-            accessibilityLabel: "One-Time Password",
-            autoComplete: "one-time-code",
+            accessibilityLabel: 'One-Time Password',
+            autoComplete: 'one-time-code',
           }}
           textProps={{
-            accessibilityRole: "text",
-            accessibilityLabel: "OTP digit",
+            accessibilityRole: 'text',
+            accessibilityLabel: 'OTP digit',
             allowFontScaling: false,
           }}
           theme={{
@@ -79,25 +79,25 @@ export default function MailSent() {
               height: 44,
               borderWidth: 2,
               borderRadius: 12,
-              backgroundColor: "white",
+              backgroundColor: 'white',
             },
             pinCodeTextStyle: {
-              fontFamily: "Nunito",
+              fontFamily: 'Nunito',
               fontSize: 20,
-              fontWeight: "bold",
-              color: "black",
+              fontWeight: 'bold',
+              color: 'black',
             },
             focusStickStyle: {
               width: 20,
               height: 20,
-              backgroundColor: "green",
+              backgroundColor: 'green',
             },
-            focusedPinCodeContainerStyle: { borderColor: "green" },
-            placeholderTextStyle: { fontSize: 20, color: "gray" },
+            focusedPinCodeContainerStyle: { borderColor: 'green' },
+            placeholderTextStyle: { fontSize: 20, color: 'gray' },
             filledPinCodeContainerStyle: {
-              borderColor: otpIsInvalid ? "red" : "green",
+              borderColor: otpIsInvalid ? 'red' : 'green',
             },
-            disabledPinCodeContainerStyle: { borderColor: "gray" },
+            disabledPinCodeContainerStyle: { borderColor: 'gray' },
           }}
         />
 

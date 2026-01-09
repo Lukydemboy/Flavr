@@ -30,6 +30,14 @@ export type RecipeDirection = {
   instruction: string;
 };
 
+export type RecipeSectionWithDirections = RecipeSection & {
+  directions: RecipeDirectionWithCompleted[];
+};
+
+export type RecipeDirectionWithCompleted = RecipeDirection & {
+  completed: boolean;
+};
+
 export type CreateRecipeInput = {
   name: string;
   duration: number;
