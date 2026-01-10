@@ -1,5 +1,6 @@
 import { User } from '@/context/authContext';
 import { Group } from './group';
+import { Image } from './image';
 
 export type Recipe = {
   id: string;
@@ -7,6 +8,7 @@ export type Recipe = {
   duration: number;
   servings: number;
   generatedFrom: string | null;
+  images: Image[];
   ingredients: RecipeIngredient[];
   sections: RecipeSection[];
   groups?: Group[];

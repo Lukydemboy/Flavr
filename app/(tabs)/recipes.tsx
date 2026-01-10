@@ -1,11 +1,12 @@
 import { CrossIcon } from '@/components/icons/Cross';
 import { CircleLoader } from '@/components/loaders';
+import { RecipePreview } from '@/components/recipes/RecipePreview';
 import { Page, StyledText } from '@/components/ui';
 import { InputField } from '@/components/ui/InputField';
 import { useRecipes } from '@/queries/recipe';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
+import { FlatList, Pressable, ScrollView, View } from 'react-native';
 
 export default function RecipesScreen() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -14,7 +15,7 @@ export default function RecipesScreen() {
   const { data: recipes, isLoading } = useRecipes({
     q: searchQuery,
     page: { number: 1, size: 10 },
-    sort: { property: 'createdAt', direction: 'asc' },
+    sort: { property: 'createdAt', direction: 'desc' },
     filters: {},
   });
 
@@ -65,21 +66,12 @@ export default function RecipesScreen() {
           </View>
         )}
 
-        {!isLoading &&
-          recipes?.content.map(recipe => (
-            <Pressable
-              key={recipe.id}
-              className="bg-white p-4 rounded-2xl mb-2"
-              onPress={() =>
-                router.push({
-                  pathname: `/recipes/[id]`,
-                  params: { id: recipe.id, title: recipe.name },
-                })
-              }
-            >
-              <StyledText className="text-lg font-bold">{recipe.name}</StyledText>
-            </Pressable>
-          ))}
+        <FlatList
+          numColumns={2}
+          data={recipes?.content}
+          columnWrapperClassName="gap-x-4"
+          renderItem={({ item }) => <RecipePreview key={item.id} recipe={item} className="w-1/2" />}
+        ></FlatList>
       </ScrollView>
     </Page>
   );
