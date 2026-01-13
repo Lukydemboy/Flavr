@@ -7,26 +7,22 @@ import { useRouter } from 'expo-router';
 import ImagePicker from '../ui/ImagePicker';
 import { ImagePickerAsset } from 'expo-image-picker';
 
-type Props = {};
+type Props = {
+  onSubmit: (image: ImagePickerAsset) => void;
+};
 export type ImageSheetRef = { open: () => void };
 
-export const ImageSheet = forwardRef<ImageSheetRef, Props>((_, ref) => {
+export const ImageSheet = forwardRef<ImageSheetRef, Props>(({ onSubmit }, ref) => {
   ImageSheet.displayName = 'ImageSheet';
 
   const [image, setImage] = useState<ImagePickerAsset | null>(null);
   const router = useRouter();
 
-  // prettier-ignore
-  const { mutateAsync: generateRecipeFromImage, isPending } = useGenerateRecipeFromImage();
-
-  const onSubmit = async () => {
+  const handleSubmit = async () => {
     if (!image) return;
 
-    await generateRecipeFromImage(image).then(() => {
-      setImage(null);
-      sheet.current?.dismiss();
-      router.back();
-    });
+    onSubmit(image);
+    sheet.current?.dismiss();
   };
 
   const sheet = useRef<TrueSheet>(null);
@@ -51,14 +47,7 @@ export const ImageSheet = forwardRef<ImageSheetRef, Props>((_, ref) => {
 
         <ImagePicker onImagePicked={setImage} />
 
-        <ActionButton
-          viewClassName="mt-6"
-          size="large"
-          text="Generate recipe"
-          isLoading={isPending}
-          disabled={!image || isPending}
-          onPress={onSubmit}
-        />
+        <ActionButton viewClassName="mt-6" size="large" text="Generate recipe" onPress={handleSubmit} />
       </View>
     </TrueSheet>
   );

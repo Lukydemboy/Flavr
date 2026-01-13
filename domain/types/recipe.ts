@@ -1,6 +1,7 @@
 import { User } from '@/context/authContext';
 import { Group } from './group';
 import { Image } from './image';
+import { Asset } from './asset';
 
 export type Recipe = {
   id: string;
@@ -49,4 +50,5 @@ export type CreateRecipeInput = {
   sections: RecipeSection[];
   groups?: Group[];
   owner?: User;
+  images?: Asset[];
 };

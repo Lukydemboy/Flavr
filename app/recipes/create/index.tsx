@@ -1,6 +1,7 @@
 import { ImageSheet, ImageSheetRef } from '@/components/sheets/ImageSheet';
 import { UrlSheet, UrlSheetRef } from '@/components/sheets/UrlSheet';
 import { Page, StyledText } from '@/components/ui';
+import { useGenerateRecipeFromImage } from '@/queries/recipe';
 import { useRouter } from 'expo-router';
 import { useRef } from 'react';
 import { Pressable } from 'react-native';
@@ -9,6 +10,8 @@ export default function CreateRecipeScreen() {
   const router = useRouter();
   const urlSheetRef = useRef<UrlSheetRef>(null);
   const imageSheetRef = useRef<ImageSheetRef>(null);
+
+  const { mutateAsync: generateRecipeFromImage, isPending: isGeneratingRecipeFromImage } = useGenerateRecipeFromImage();
 
   return (
     <>
@@ -56,7 +59,10 @@ export default function CreateRecipeScreen() {
       </Page>
 
       <UrlSheet ref={urlSheetRef} />
-      <ImageSheet ref={imageSheetRef} />
+      <ImageSheet
+        ref={imageSheetRef}
+        onSubmit={async image => await generateRecipeFromImage(image).then(() => router.back())}
+      />
     </>
   );
 }

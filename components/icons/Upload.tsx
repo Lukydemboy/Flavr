@@ -1,12 +1,12 @@
-import * as React from "react";
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
+import * as React from 'react';
+import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg';
 
 type Props = {
   width?: number;
   height?: number;
 };
 
-function UploadIcon({ width = 77, height = 96 }: Props) {
+function UploadIcon({ width = 60, height = 80 }: Props) {
   return (
     <Svg width={width} height={height} viewBox="0 0 77 96" fill="none">
       <G clipPath="url(#clip0_203_522)">

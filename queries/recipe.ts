@@ -1,5 +1,5 @@
 import { Filterable, Pageable, Paginated, Searchable, Sortable } from '@/domain/types/listings';
-import { Recipe } from '@/domain/types/recipe';
+import { CreateRecipeInput, Recipe } from '@/domain/types/recipe';
 import { Range } from '@/domain/types/range';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';

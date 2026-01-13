@@ -13,7 +13,7 @@ import { useDeleteRecipe, useRecipe } from '@/queries/recipe';
 import { useUser } from '@/queries/user';
 import { Redirect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { Pressable, View, Image } from 'react-native';
 
 export default function RecipeDetailScreen() {
   const [sections, setSections] = useState<RecipeSectionWithDirections[]>([]);
@@ -62,6 +62,8 @@ export default function RecipeDetailScreen() {
     <Page>
       {recipe && (
         <View className="mb-10">
+          {!!recipe.images.length && <Image className="h-64 w-64" source={{ uri: recipe.images[0].url }} />}
+
           <StyledText className="text-xl mt-4" weight="bold">
             {recipe?.name}
           </StyledText>

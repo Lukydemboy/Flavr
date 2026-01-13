@@ -6,12 +6,17 @@ import { InstructionSheet, InstructionSheetRef } from '@/components/recipes/shee
 import { ConfirmationSheet, ConfirmationSheetRef } from '@/components/sheets/ConfirmationSheet';
 import { ActionButton, Page, StyledText } from '@/components/ui';
 import { InputField } from '@/components/ui/InputField';
-import { Recipe, RecipeDirection, RecipeSection } from '@/domain/types/recipe';
+import { RecipeDirection, RecipeSection } from '@/domain/types/recipe';
 import { useCreateRecipe, useRecipe } from '@/queries/recipe';
 import { useForm, uuid } from '@tanstack/react-form';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { ImagePickerAsset } from 'expo-image-picker';
+import ImagePicker from '@/components/ui/ImagePicker';
+import { useUploadInternalAsset } from '@/queries/asset';
+import { ImageUtils } from '@/utils/image/image';
+import { Asset } from '@/domain/types/asset';
 
 type Step = 'General' | 'Ingredients' | 'Instructions';
 
@@ -26,9 +31,12 @@ export default function CreateRecipeScreen() {
   const stepSheetRef = useRef<InstructionSheetRef>(null);
   const confirmationSheetSectionRef = useRef<ConfirmationSheetRef>(null);
   const confirmationSheetStepRef = useRef<ConfirmationSheetRef>(null);
+  const [selectedImage, setSelectedImage] = useState<ImagePickerAsset | null>(null);
+
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const { mutateAsync: createRecipe } = useCreateRecipe();
+  const { mutateAsync: uploadImage } = useUploadInternalAsset();
   const { data: recipe } = useRecipe(id);
 
   useEffect(() => {
@@ -45,12 +53,20 @@ export default function CreateRecipeScreen() {
       instructions: '',
     },
     onSubmit: async ({ value }) => {
+      let image: Asset | undefined;
+
+      if (selectedImage) {
+        const file = await ImageUtils.normalizeAssetToUploadFile(selectedImage);
+        image = await uploadImage(file);
+      }
+
       await createRecipe({
         ...value,
         servings: parseInt(value.servings),
         duration: parseInt(value.duration) * 60,
         ingredients,
         sections,
+        images: image ? [image] : undefined,
       }).then(recipe => {
         router.replace(`/recipes/${recipe.id}`);
       });
@@ -69,7 +85,6 @@ export default function CreateRecipeScreen() {
               Give some information about your recipe, the more information you give the easier it is to find for
               others!
             </StyledText>
-
             <StyledText className="mb-2 ml-2" weight="bold">
               Name
             </StyledText>
@@ -84,7 +99,6 @@ export default function CreateRecipeScreen() {
                 />
               )}
             </form.Field>
-
             <StyledText className="mb-2 ml-2" weight="bold">
               Servings
             </StyledText>
@@ -100,7 +114,6 @@ export default function CreateRecipeScreen() {
                 />
               )}
             </form.Field>
-
             <StyledText className="mb-2 ml-2" weight="bold">
               Duration
             </StyledText>
@@ -116,6 +129,12 @@ export default function CreateRecipeScreen() {
                 />
               )}
             </form.Field>
+            <View>
+              <StyledText className="mb-2 ml-2" weight="bold">
+                Image
+              </StyledText>
+              <ImagePicker onImagePicked={setSelectedImage} />
+            </View>
 
             <ActionButton viewClassName="mt-auto" text="Ingredients" onPress={() => setStep('Ingredients')} />
           </>
