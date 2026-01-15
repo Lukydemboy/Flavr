@@ -38,21 +38,6 @@ export default function ShareIntent() {
           generateFromInstagram(shareIntent.webUrl).then(() => onSuccess());
         }
 
-        let image: string | null = null;
-        if (shareIntent.meta) {
-          Object.keys(shareIntent.meta).forEach(key => {
-            if (key.includes('image')) {
-              image = shareIntent.meta![key] ?? null;
-            }
-          });
-        }
-
-        console.log('image', image);
-        let assetId: string | null = null;
-        if (image) {
-          // upload image
-        }
-
         generateFromUrl(shareIntent.webUrl).then(() => onSuccess());
       }
 
