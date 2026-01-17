@@ -24,8 +24,10 @@ export const RecipePreview = ({ recipe, className }: Props) => {
         })
       }
     >
-      {!!recipe.images.length && (
+      {!!recipe.images.length ? (
         <Image className="w-full h-64 rounded-[2.5rem]" source={{ uri: recipe.images[0].url }} />
+      ) : (
+        <View className="w-full h-64 rounded-[2.5rem] bg-gray-200" />
       )}
 
       <View className="p-2">
