@@ -33,7 +33,7 @@ export const ActionButton = ({
   loaderHeight,
   size = 'medium',
   children,
-  buttonBgColorClass = 'bg-primary',
+  buttonBgColorClass = 'bg-primary-500',
   textColor = 'text-white',
   ...props
 }: ActionButtonProps) => {
@@ -44,7 +44,7 @@ export const ActionButton = ({
       <Pressable
         onPress={onPress}
         disabled={disabled}
-        className={`z-10 rounded-xl flex items-center px-4 ${
+        className={`z-10 rounded-full flex items-center px-4 ${
           disabled ? 'opacity-80 bg-gray-500' : `opacity-100 ${buttonBgColorClass}`
         } ${buttonSize} ${buttonClassName}`}
         {...props}

@@ -27,7 +27,7 @@ export const ConfirmationModal = ({
   return (
     <ModalComponent modalVisible={isModalVisible} onClose={() => setIsModalVisible(false)}>
       <View className="flex flex-col">
-        <StyledText className="text-xl mb-4" weight="bold">
+        <StyledText className="text-xl mb-4" weight="black">
           {title}
         </StyledText>
         <StyledText className="text-slate-500 mb-8">{text}</StyledText>
@@ -41,7 +41,7 @@ export const ConfirmationModal = ({
           />
           <ActionButton
             buttonClassName={`text-white px-4 py-2 rounded-lg`}
-            buttonBgColorClass={isDestructive ? 'bg-rose-500' : 'bg-primary'}
+            buttonBgColorClass={isDestructive ? 'bg-rose-500' : 'bg-primary-500'}
             isLoading={isLoading}
             disabled={isLoading}
             onPress={onConfirm}

@@ -34,8 +34,8 @@ export const GeneratedFrom = ({ recipe }: Props) => {
           onPress={() => Linking.openURL(recipe.generatedFrom!)}
         >
           {getGeneratedFromIcon(recipe.generatedFrom)}
-          <StyledText className="text-primary">Generated from</StyledText>
-          <StyledText className="text-primary capitalize -ml-1">
+          <StyledText className="text-primary-500">Generated from</StyledText>
+          <StyledText className="text-primary-500 capitalize -ml-1">
             {StringUtils.getHostnameFromUrl(recipe.generatedFrom)}
           </StyledText>
         </Pressable>

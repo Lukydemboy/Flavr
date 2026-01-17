@@ -1,5 +1,5 @@
-import * as React from "react";
-import Svg, { Path } from "react-native-svg";
+import * as React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
 type Props = {
   color?: string;
@@ -7,11 +7,7 @@ type Props = {
   height?: number;
 };
 
-export const CrossIcon = ({
-  width = 20,
-  height = 20,
-  color = "#6f4e37",
-}: Props) => {
+export const CrossIcon = ({ width = 20, height = 20, color = '#6f4e37' }: Props) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 12.698 12.689">
       <Path

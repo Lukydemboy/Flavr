@@ -57,7 +57,7 @@ export default function GroupDetailScreen() {
           </View>
           <Pressable onPress={() => router.push(`/groups/${id}/invite`)}>
             {isOwner && (
-              <StyledText className="text-sm px-3 py-1 rounded-lg bg-green-100 text-primary border border-green-400">
+              <StyledText className="text-sm px-3 py-1 rounded-lg bg-green-100 text-primary-500 border border-green-400">
                 Invite
               </StyledText>
             )}
