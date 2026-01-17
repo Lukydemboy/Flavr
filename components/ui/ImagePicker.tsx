@@ -36,7 +36,7 @@ export default function ImagePicker({ onImagePicked }: ImagePickerProps) {
   return (
     <View style={styles.container}>
       <Pressable
-        className="relative border-4 border-gray-300 w-full p-4 py-4 pt-6 flex items-center justify-center border-dashed rounded-lg"
+        className="relative border-4 border-gray-300 w-full p-4 pt-6 flex items-center justify-center border-dashed rounded-lg"
         onPress={pickImage}
       >
         {image ? <Image source={{ uri: image }} className="rounded-3xl" style={styles.image} /> : <UploadIcon />}
@@ -62,7 +62,6 @@ export default function ImagePicker({ onImagePicked }: ImagePickerProps) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

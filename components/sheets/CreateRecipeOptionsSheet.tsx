@@ -2,8 +2,6 @@ import { TrueSheet } from '@lodev09/react-native-true-sheet';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Pressable, View } from 'react-native';
 import { StyledText } from '../ui';
-import { UrlSheetRef } from '@/app/recipes/[id]/UrlSheet';
-import { ImageSheetRef } from './ImageSheet';
 import { useRouter } from 'expo-router';
 
 type Props = {};
@@ -11,8 +9,6 @@ export type CreateRecipeOptionsSheet = { open: () => void };
 export const CreateRecipeOptionsSheet = forwardRef<CreateRecipeOptionsSheet, Props>(({}, ref) => {
   CreateRecipeOptionsSheet.displayName = 'CreateRecipeOptionsSheet';
   const router = useRouter();
-  const urlSheetRef = useRef<UrlSheetRef>(null);
-  const imageSheetRef = useRef<ImageSheetRef>(null);
 
   const sheet = useRef<TrueSheet>(null);
 
@@ -38,7 +34,7 @@ export const CreateRecipeOptionsSheet = forwardRef<CreateRecipeOptionsSheet, Pro
         </StyledText>
 
         <Pressable
-          onPress={() => onAction(() => imageSheetRef.current?.open())}
+          onPress={() => onAction(() => router.push('recipes/create/image'))}
           className="p-4 bg-pastel-green rounded-2xl mb-4"
         >
           <StyledText className="text-lg mb-2" weight="bold">

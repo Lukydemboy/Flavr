@@ -7,7 +7,7 @@ import { useForm } from '@tanstack/react-form';
 import { useRouter } from 'expo-router';
 import { View } from 'react-native';
 
-export default function CreateRecipeScreen() {
+export default function CreateRecipeFromLinkScreen() {
   const router = useRouter();
 
   const { mutateAsync: generateRecipeFromInstagram } = useGenerateRecipeFromInstagram();
