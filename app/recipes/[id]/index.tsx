@@ -63,7 +63,7 @@ export default function RecipeDetailScreen() {
   }
 
   return (
-    <Page className="relative" container={false}>
+    <Page className="relative" safeAreaTop={!recipe?.images.length} container={false}>
       {recipe && (
         <>
           <View className="absolute z-10 flex flex-row items-start justify-between w-full" style={{ top: insets.top }}>
@@ -105,7 +105,9 @@ export default function RecipeDetailScreen() {
           <View className="mb-10">
             {!!recipe.images.length && <Image className="h-96 w-full" source={{ uri: recipe.images[0].url }} />}
 
-            <View className="rounded-tr-3xl rounded-tl-3xl -mt-24 bg-white p-4 mx-1">
+            <View
+              className={`rounded-tr-3xl rounded-tl-3xl bg-white p-4 mx-1 ${recipe?.images.length ? '-mt-24' : 'mt-24'}`}
+            >
               <StyledText className="text-2xl mt-2" weight="black">
                 {recipe?.name}
               </StyledText>
