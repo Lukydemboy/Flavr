@@ -70,7 +70,7 @@ export default function CreateGroupScreen() {
               form.setFieldValue('visibility', Visibility.Public);
               setVisibility(Visibility.Public);
             }}
-            className={`rounded-lg border-2 p-4 bg-white w-[48%] transition ${visibility === Visibility.Public ? 'border-primary bg-green-50' : 'border-gray-300'}`}
+            className={`rounded-2xl border-2 p-4 w-[48%] transition ${visibility === Visibility.Public ? 'border-primary-500 bg-primary-50' : 'border-slate-300 bg-white'}`}
           >
             <StyledText className="mb-2" weight="semiBold">
               Public
@@ -84,7 +84,7 @@ export default function CreateGroupScreen() {
               form.setFieldValue('visibility', Visibility.Private);
               setVisibility(Visibility.Private);
             }}
-            className={`rounded-lg border-2 p-4 bg-white w-[48%] transition ${visibility === Visibility.Private ? 'border-primary bg-green-50' : 'border-gray-300'}`}
+            className={`rounded-2xl border-2 p-4 w-[48%] transition ${visibility === Visibility.Private ? 'border-primary-500 bg-primary-50' : 'border-slate-300 bg-white'}`}
           >
             <StyledText className="mb-2" weight="semiBold">
               Private

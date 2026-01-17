@@ -40,7 +40,6 @@ export namespace ImageUtils {
       compress: 0.4,
       base64: false,
     });
-    console.log('result', result);
 
     return result;
   }
