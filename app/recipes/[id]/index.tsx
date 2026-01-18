@@ -8,6 +8,7 @@ import { GeneratedFrom } from '@/components/recipes/GeneratedFrom';
 import { RecipeDirectionComponent } from '@/components/recipes/RecipeDirection';
 import { Page, StyledText } from '@/components/ui';
 import { Avatar } from '@/components/ui/Avatar';
+import { TagComponent } from '@/components/ui/Tag';
 import { User } from '@/context/authContext';
 import { RecipeDirectionWithCompleted, RecipeSectionWithDirections } from '@/domain/types/recipe';
 import { useDeleteRecipe, useRecipe } from '@/queries/recipe';
@@ -105,12 +106,20 @@ export default function RecipeDetailScreen() {
             {!!recipe.images.length && <Image className="h-96 w-full" source={{ uri: recipe.images[0].url }} />}
 
             <View className={`rounded-3xl bg-white p-4 mx-2 ${recipe?.images.length ? '-mt-24' : 'mt-24'}`}>
-              <StyledText className="text-2xl mt-2" weight="black">
+              <StyledText className="text-2xl mt-2 mb-1" weight="black">
                 {recipe?.name}
               </StyledText>
 
+              {recipe.tags?.length && (
+                <View className="flex flex-row gap-1">
+                  {recipe.tags.map((tag, index) => (
+                    <TagComponent key={index} tag={tag} />
+                  ))}
+                </View>
+              )}
+
               {recipe.description && (
-                <StyledText className="text-slate-500 mt-4 mb-4 leading-relaxed">{recipe.description}</StyledText>
+                <StyledText className="text-slate-500 mt-2 mb-4 leading-relaxed">{recipe.description}</StyledText>
               )}
 
               <View className="mt-2 flex flex-row justify-between border border-slate-200 bg-slate-50 rounded-xl p-3">
