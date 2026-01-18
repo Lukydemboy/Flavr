@@ -1,9 +1,5 @@
-import {
-  KeyboardTypeOptions,
-  TextInput,
-  TextInputSubmitEditingEvent,
-} from "react-native";
-import { StyledText } from "./StyledText";
+import { KeyboardTypeOptions, TextInput, TextInputSubmitEditingEvent } from 'react-native';
+import { StyledText } from './StyledText';
 
 type Props = {
   className?: string;
@@ -14,63 +10,63 @@ type Props = {
   multiline?: boolean;
   error?: string;
   autoComplete?:
-    | "additional-name"
-    | "address-line1"
-    | "address-line2"
-    | "birthdate-day"
-    | "birthdate-full"
-    | "birthdate-month"
-    | "birthdate-year"
-    | "cc-csc"
-    | "cc-exp"
-    | "cc-exp-day"
-    | "cc-exp-month"
-    | "cc-exp-year"
-    | "cc-number"
-    | "cc-name"
-    | "cc-given-name"
-    | "cc-middle-name"
-    | "cc-family-name"
-    | "cc-type"
-    | "country"
-    | "current-password"
-    | "email"
-    | "family-name"
-    | "gender"
-    | "given-name"
-    | "honorific-prefix"
-    | "honorific-suffix"
-    | "name"
-    | "name-family"
-    | "name-given"
-    | "name-middle"
-    | "name-middle-initial"
-    | "name-prefix"
-    | "name-suffix"
-    | "new-password"
-    | "nickname"
-    | "one-time-code"
-    | "organization"
-    | "organization-title"
-    | "password"
-    | "password-new"
-    | "postal-address"
-    | "postal-address-country"
-    | "postal-address-extended"
-    | "postal-address-extended-postal-code"
-    | "postal-address-locality"
-    | "postal-address-region"
-    | "postal-code"
-    | "street-address"
-    | "sms-otp"
-    | "tel"
-    | "tel-country-code"
-    | "tel-national"
-    | "tel-device"
-    | "url"
-    | "username"
-    | "username-new"
-    | "off"
+    | 'additional-name'
+    | 'address-line1'
+    | 'address-line2'
+    | 'birthdate-day'
+    | 'birthdate-full'
+    | 'birthdate-month'
+    | 'birthdate-year'
+    | 'cc-csc'
+    | 'cc-exp'
+    | 'cc-exp-day'
+    | 'cc-exp-month'
+    | 'cc-exp-year'
+    | 'cc-number'
+    | 'cc-name'
+    | 'cc-given-name'
+    | 'cc-middle-name'
+    | 'cc-family-name'
+    | 'cc-type'
+    | 'country'
+    | 'current-password'
+    | 'email'
+    | 'family-name'
+    | 'gender'
+    | 'given-name'
+    | 'honorific-prefix'
+    | 'honorific-suffix'
+    | 'name'
+    | 'name-family'
+    | 'name-given'
+    | 'name-middle'
+    | 'name-middle-initial'
+    | 'name-prefix'
+    | 'name-suffix'
+    | 'new-password'
+    | 'nickname'
+    | 'one-time-code'
+    | 'organization'
+    | 'organization-title'
+    | 'password'
+    | 'password-new'
+    | 'postal-address'
+    | 'postal-address-country'
+    | 'postal-address-extended'
+    | 'postal-address-extended-postal-code'
+    | 'postal-address-locality'
+    | 'postal-address-region'
+    | 'postal-code'
+    | 'street-address'
+    | 'sms-otp'
+    | 'tel'
+    | 'tel-country-code'
+    | 'tel-national'
+    | 'tel-device'
+    | 'url'
+    | 'username'
+    | 'username-new'
+    | 'off'
     | undefined;
   onSubmitEditing?: (value: string) => void;
 };
@@ -89,7 +85,7 @@ export const InputField = ({
   return (
     <>
       <TextInput
-        className={`input-field ${className} ${error ? "border-2 border-red-500" : ""}`}
+        className={`input-field ${className} ${multiline ? 'rounded-3xl' : 'rounded-full'} ${error ? 'border-2 border-red-500' : ''}`}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
@@ -99,14 +95,10 @@ export const InputField = ({
         multiline={multiline}
         numberOfLines={multiline ? 5 : undefined}
         style={multiline ? { height: 150 } : undefined}
-        onSubmitEditing={(event) => onSubmitEditing?.(event.nativeEvent.text)}
+        onSubmitEditing={event => onSubmitEditing?.(event.nativeEvent.text)}
       />
 
-      {error && (
-        <StyledText className="text-red-500 text-sm px-3 mt-2">
-          {error}
-        </StyledText>
-      )}
+      {error && <StyledText className="text-red-500 text-sm px-3 mt-2">{error}</StyledText>}
     </>
   );
 };

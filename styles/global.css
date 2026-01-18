@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .input-field {
-  @apply font-nunito-regular bg-white rounded-full p-5 placeholder:text-slate-500 text-slate-800 border border-primary-50;
+  @apply font-nunito-regular bg-white p-5 placeholder:text-slate-500 text-slate-800 border border-primary-50;
 }
