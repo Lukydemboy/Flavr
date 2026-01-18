@@ -26,7 +26,7 @@ export default function RecipesScreen() {
 
   return (
     <>
-      <Page safeAreaTop className="gap-y-4">
+      <Page safeAreaTop scrollEnabled={false} className="gap-y-4 mb-28">
         <View className="relative">
           <InputField
             placeholder="Search recipes..."
@@ -35,7 +35,12 @@ export default function RecipesScreen() {
             value={searchQuery}
           />
 
-          <ScrollView horizontal className="mb-4" contentContainerClassName="gap-x-2">
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            className="mb-4"
+            contentContainerClassName="gap-x-2"
+          >
             {tags?.map(tag => (
               <Pressable
                 key={tag.id}
@@ -65,26 +70,26 @@ export default function RecipesScreen() {
           )}
         </View>
 
-        <ScrollView>
-          {isLoading && (
-            <View className="p-4 flex items-center justify-center rounded-lg mb-2">
-              <CircleLoader />
-            </View>
-          )}
+        {isLoading && (
+          <View className="p-4 flex items-center justify-center rounded-lg mb-2">
+            <CircleLoader />
+          </View>
+        )}
 
-          {!isLoading && !recipes?.content.length && (
-            <View className="p-4 rounded-lg mb-2">
-              <StyledText className="text-lg font-bold">No recipes found</StyledText>
-            </View>
-          )}
+        {!isLoading && !recipes?.content.length && (
+          <View className="p-4 rounded-lg mb-2">
+            <StyledText className="text-lg font-bold">No recipes found</StyledText>
+          </View>
+        )}
 
-          <FlatList
-            numColumns={2}
-            data={recipes?.content}
-            columnWrapperClassName="gap-x-4"
-            renderItem={({ item }) => <RecipePreview key={item.id} recipe={item} className="w-1/2" />}
-          ></FlatList>
-        </ScrollView>
+        <FlatList
+          numColumns={2}
+          data={recipes?.content}
+          showsVerticalScrollIndicator={false}
+          columnWrapperClassName="gap-4"
+          renderItem={({ item }) => <RecipePreview recipe={item} className="w-1/2" />}
+          keyExtractor={item => item.id}
+        />
       </Page>
 
       <Pressable
