@@ -5,11 +5,16 @@ import { RecipePreview } from '@/components/recipes/RecipePreview';
 import { CreateRecipeOptionsSheet } from '@/components/sheets/CreateRecipeOptionsSheet';
 import { Page, StyledText } from '@/components/ui';
 import { InputField } from '@/components/ui/InputField';
+import { Paginated } from '@/domain/types/listings';
+import { Recipe } from '@/domain/types/recipe';
 import { Tag } from '@/domain/types/tag';
-import { useRecipes } from '@/queries/recipe';
 import { useTags } from '@/queries/tag';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { useRef, useState } from 'react';
 import { FlatList, Pressable, ScrollView, View } from 'react-native';
+
+const initialPage = { number: 1, size: 10 };
 
 export default function RecipesScreen() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,11 +22,28 @@ export default function RecipesScreen() {
   const sheetRef = useRef<CreateRecipeOptionsSheet>(null);
 
   const { data: tags } = useTags();
-  const { data: recipes, isLoading } = useRecipes({
-    q: searchQuery,
-    page: { number: 1, size: 10 },
-    sort: { property: 'createdAt', direction: 'desc' },
-    filters: { tags: activeTags },
+  const { data, isLoading, fetchNextPage } = useInfiniteQuery({
+    queryKey: ['recipes', searchQuery, activeTags],
+    queryFn: async ({ pageParam }) => {
+      const params = {
+        q: searchQuery,
+        page: pageParam.number.toString(),
+        size: pageParam.size.toString(),
+        filters: JSON.stringify({ tags: activeTags }),
+      };
+
+      return axios<Paginated<Recipe>>({
+        method: 'GET',
+        url: '/recipes',
+        params,
+      }).then(res => res.data);
+    },
+    initialPageParam: initialPage,
+    getNextPageParam: (lastPage, allPages) => {
+      if (lastPage.number && lastPage.number < lastPage.totalPages) {
+        return { number: lastPage.number + 1, size: 10 };
+      }
+    },
   });
 
   return (
@@ -76,7 +98,7 @@ export default function RecipesScreen() {
           </View>
         )}
 
-        {!isLoading && !recipes?.content.length && (
+        {!isLoading && !data?.pages?.flatMap(page => page?.content || []).length && (
           <View className="p-4 rounded-lg mb-2">
             <StyledText className="text-lg font-bold">No recipes found</StyledText>
           </View>
@@ -84,8 +106,9 @@ export default function RecipesScreen() {
 
         <FlatList
           numColumns={2}
-          data={recipes?.content}
+          data={data?.pages.flatMap(page => page.content || [])}
           showsVerticalScrollIndicator={false}
+          onEndReached={() => fetchNextPage()}
           columnWrapperClassName="gap-4"
           renderItem={({ item }) => <RecipePreview recipe={item} className="w-1/2" />}
           keyExtractor={item => item.id}
