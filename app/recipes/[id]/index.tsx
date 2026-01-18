@@ -104,9 +104,7 @@ export default function RecipeDetailScreen() {
           <View className="mb-10">
             {!!recipe.images.length && <Image className="h-96 w-full" source={{ uri: recipe.images[0].url }} />}
 
-            <View
-              className={`rounded-tr-3xl rounded-tl-3xl bg-white p-4 mx-1 ${recipe?.images.length ? '-mt-24' : 'mt-24'}`}
-            >
+            <View className={`rounded-3xl bg-white p-4 mx-2 ${recipe?.images.length ? '-mt-24' : 'mt-24'}`}>
               <StyledText className="text-2xl mt-2" weight="black">
                 {recipe?.name}
               </StyledText>

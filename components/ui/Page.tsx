@@ -26,6 +26,7 @@ export const Page = ({
         <ScrollView
           contentContainerClassName={`grow ${contentContainerClassName}`}
           className={`flex flex-col grow bg-background ${customClasses} ${container ? 'px-4' : ''}`}
+          showsVerticalScrollIndicator={false}
           style={{ backgroundColor: 'transparent', marginTop: safeAreaTop ? top : 0, paddingBottom: bottom }}
         >
           {children}
