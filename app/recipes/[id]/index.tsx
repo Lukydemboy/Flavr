@@ -1,4 +1,3 @@
-import BulletsIcon from '@/components/icons/Bullets';
 import ChevronLeftIcon from '@/components/icons/ChevronLeft';
 import PencilIcon from '@/components/icons/Pencil';
 import ShareIcon from '@/components/icons/Share';
@@ -111,6 +110,10 @@ export default function RecipeDetailScreen() {
               <StyledText className="text-2xl mt-2" weight="black">
                 {recipe?.name}
               </StyledText>
+
+              {recipe.description && (
+                <StyledText className="text-slate-500 mt-4 mb-4 leading-relaxed">{recipe.description}</StyledText>
+              )}
 
               <View className="mt-2 flex flex-row justify-between border border-slate-200 bg-slate-50 rounded-xl p-3">
                 {!recipe.owner ? (

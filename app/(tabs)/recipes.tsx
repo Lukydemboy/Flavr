@@ -5,19 +5,23 @@ import { RecipePreview } from '@/components/recipes/RecipePreview';
 import { CreateRecipeOptionsSheet } from '@/components/sheets/CreateRecipeOptionsSheet';
 import { Page, StyledText } from '@/components/ui';
 import { InputField } from '@/components/ui/InputField';
+import { Tag } from '@/domain/types/tag';
 import { useRecipes } from '@/queries/recipe';
+import { useTags } from '@/queries/tag';
 import { useRef, useState } from 'react';
 import { FlatList, Pressable, ScrollView, View } from 'react-native';
 
 export default function RecipesScreen() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeTags, setActiveTags] = useState<Tag[]>([]);
   const sheetRef = useRef<CreateRecipeOptionsSheet>(null);
 
+  const { data: tags } = useTags();
   const { data: recipes, isLoading } = useRecipes({
     q: searchQuery,
     page: { number: 1, size: 10 },
     sort: { property: 'createdAt', direction: 'desc' },
-    filters: {},
+    filters: { tags: activeTags },
   });
 
   return (
@@ -30,6 +34,25 @@ export default function RecipesScreen() {
             onChangeText={query => setSearchQuery(query)}
             value={searchQuery}
           />
+
+          <ScrollView horizontal className="mb-4" contentContainerClassName="gap-x-2">
+            {tags?.map(tag => (
+              <Pressable
+                key={tag.id}
+                onPress={() =>
+                  setActiveTags(prev => (prev.includes(tag) ? prev.filter(t => t.id !== tag.id) : [...prev, tag]))
+                }
+                className={`px-4 py-2 rounded-full border transition ${activeTags.includes(tag) ? 'bg-primary-500 border-primary-500' : 'bg-white border-primary-50'}`}
+              >
+                <StyledText
+                  className={`text-sm ${activeTags.includes(tag) ? 'text-white' : 'text-slate-800'}`}
+                  weight="bold"
+                >
+                  {tag.name}
+                </StyledText>
+              </Pressable>
+            ))}
+          </ScrollView>
 
           {searchQuery && (
             <View className="absolute top-0 right-0">

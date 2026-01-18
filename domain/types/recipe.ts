@@ -6,6 +6,7 @@ import { Asset } from './asset';
 export type Recipe = {
   id: string;
   name: string;
+  description: string | null;
   duration: number;
   servings: number;
   generatedFrom: string | null;
@@ -43,6 +44,18 @@ export type RecipeDirectionWithCompleted = RecipeDirection & {
 };
 
 export type CreateRecipeInput = {
+  name: string;
+  duration: number;
+  servings: number;
+  ingredients: Omit<RecipeIngredient, 'id'>[];
+  sections: RecipeSection[];
+  groups?: Group[];
+  owner?: User;
+  images?: Asset[];
+};
+
+export type UpdateRecipeInput = {
+  id: string;
   name: string;
   duration: number;
   servings: number;

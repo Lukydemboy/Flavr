@@ -7,7 +7,7 @@ import { ConfirmationSheet, ConfirmationSheetRef } from '@/components/sheets/Con
 import { ActionButton, Page, StyledText } from '@/components/ui';
 import { InputField } from '@/components/ui/InputField';
 import { RecipeDirection, RecipeSection } from '@/domain/types/recipe';
-import { useCreateRecipe, useRecipe } from '@/queries/recipe';
+import { useCreateRecipe, useRecipe, useUpdateRecipe } from '@/queries/recipe';
 import { useForm, uuid } from '@tanstack/react-form';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
@@ -36,6 +36,7 @@ export default function CreateRecipeScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const { mutateAsync: createRecipe } = useCreateRecipe();
+  const { mutateAsync: updateRecipe } = useUpdateRecipe();
   const { mutateAsync: uploadImage } = useUploadInternalAsset();
   const { data: recipe } = useRecipe(id);
 
@@ -58,6 +59,31 @@ export default function CreateRecipeScreen() {
       if (selectedImage) {
         const file = await ImageUtils.normalizeAssetToUploadFile(selectedImage);
         image = await uploadImage(file);
+      }
+
+      if (recipe?.id) {
+        await updateRecipe({
+          id: recipe.id,
+          ...value,
+          servings: parseInt(value.servings),
+          duration: parseInt(value.duration) * 60,
+          ingredients,
+          sections,
+          images: image ? [image] : undefined,
+        }).then(() => {
+          router.back();
+        });
+      } else {
+        await createRecipe({
+          ...value,
+          servings: parseInt(value.servings),
+          duration: parseInt(value.duration) * 60,
+          ingredients,
+          sections,
+          images: image ? [image] : undefined,
+        }).then(recipe => {
+          router.replace(`/recipes/${recipe.id}`);
+        });
       }
 
       await createRecipe({

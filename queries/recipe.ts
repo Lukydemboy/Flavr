@@ -1,14 +1,16 @@
 import { Filterable, Pageable, Paginated, Searchable, Sortable } from '@/domain/types/listings';
-import { CreateRecipeInput, Recipe } from '@/domain/types/recipe';
+import { CreateRecipeInput, Recipe, UpdateRecipeInput } from '@/domain/types/recipe';
 import { Range } from '@/domain/types/range';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { ImageSource, ImageUtils } from '@/utils/image/image';
 import { Platform } from 'react-native';
 import { Group } from '@/domain/types/group';
+import { Tag } from '@/domain/types/tag';
 
 export type RecipeFilters = {
   createdAt?: Partial<Range<Date>>;
+  tags?: Tag[];
 };
 
 export const recipeKeys = {
@@ -27,6 +29,23 @@ export const useCreateRecipe = () => {
       return axios({
         method: 'POST',
         url: '/recipes',
+        data,
+      }).then(res => res.data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: recipeKeys.lists() });
+    },
+  });
+};
+
+export const useUpdateRecipe = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (data: UpdateRecipeInput) => {
+      return axios({
+        method: 'PATCH',
+        url: `/recipes/${data.id}`,
         data,
       }).then(res => res.data);
     },
