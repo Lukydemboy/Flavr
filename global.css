@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+@import 'uniwind';
+
+@theme {
+  --color-primary-50: #ebf0ef;
+  --color-primary-100: #d6e1df;
+  --color-primary-200: #adc2bf;
+  --color-primary-300: #84a49e;
+  --color-primary-400: #5b857e;
+  --color-primary-500: #32675e;
+  --color-primary-600: #2d5d55;
+  --color-primary-700: #28524b;
+  --color-primary-800: #234842;
+  --color-primary-900: #1e3e38;
+
+  --color-background: #f9fafb;
+
+  --color-pastel-green: #d6ffd3;
+  --color-pastel-purple: #d0c4ff;
+  --color-pastel-yellow: #fff8ba;
+  --color-pastel-blue: #c5e6ff;
+
+  --font-nunito-thin: Nunito_200ExtraLight;
+  --font-nunito-light: Nunito_300Light;
+  --font-nunito-regular: Nunito_400Regular;
+  --font-nunito-medium: Nunito_500Medium;
+  --font-nunito-semiBold: Nunito_600SemiBold;
+  --font-nunito-bold: Nunito_700Bold;
+  --font-nunito-extraBold: Nunito_800ExtraBold;
+  --font-nunito-black: Nunito_900Black;
+}
+
+.input-field {
+  @apply font-nunito-regular bg-white p-5 placeholder:text-slate-500 text-slate-800 border border-primary-50;
+}
