@@ -1,16 +1,16 @@
-import { ReactNode } from "react";
-import { Text } from "react-native";
+import { ReactNode } from 'react';
+import { Text } from 'react-native';
 
 export type FontWeight =
-  | "thin"
-  | "extraLight"
-  | "light"
-  | "regular"
-  | "medium"
-  | "semiBold"
-  | "bold"
-  | "extraBold"
-  | "black";
+  | 'thin'
+  | 'extraLight'
+  | 'light'
+  | 'regular'
+  | 'medium'
+  | 'semiBold'
+  | 'bold'
+  | 'extraBold'
+  | 'black';
 
 type Props = {
   children: ReactNode;
@@ -18,12 +18,7 @@ type Props = {
   className?: string;
 };
 
-export const StyledText = ({
-  children,
-  weight = "regular",
-  className,
-}: Props) => {
-  return (
-    <Text className={`font-nunito-${weight} ${className}`}>{children}</Text>
-  );
+export const StyledText = ({ children, weight = 'regular', className }: Props) => {
+  console.log('StyledText', `weight: font-nunito-${weight}`);
+  return <Text className={`font-nunito-${weight} ${className}`}>{children}</Text>;
 };

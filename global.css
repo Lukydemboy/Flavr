@@ -2,23 +2,23 @@
 @import 'uniwind';
 
 @theme {
-  --color-primary-50: #ebf0ef;
-  --color-primary-100: #d6e1df;
-  --color-primary-200: #adc2bf;
-  --color-primary-300: #84a49e;
-  --color-primary-400: #5b857e;
-  --color-primary-500: #32675e;
-  --color-primary-600: #2d5d55;
-  --color-primary-700: #28524b;
-  --color-primary-800: #234842;
-  --color-primary-900: #1e3e38;
+  --color-primary-50: '#ebf0ef';
+  --color-primary-100: '#d6e1df';
+  --color-primary-200: '#adc2bf';
+  --color-primary-300: '#84a49e';
+  --color-primary-400: '#5b857e';
+  --color-primary-500: '#32675e';
+  --color-primary-600: '#2d5d55';
+  --color-primary-700: '#28524b';
+  --color-primary-800: '#234842';
+  --color-primary-900: '#1e3e38';
 
-  --color-background: #f9fafb;
+  --color-background: '#f9fafb';
 
-  --color-pastel-green: #d6ffd3;
-  --color-pastel-purple: #d0c4ff;
-  --color-pastel-yellow: #fff8ba;
-  --color-pastel-blue: #c5e6ff;
+  --color-pastel-green: '#d6ffd3';
+  --color-pastel-purple: '#d0c4ff';
+  --color-pastel-yellow: '#fff8ba';
+  --color-pastel-blue: '#c5e6ff';
 
   --font-nunito-thin: Nunito_200ExtraLight;
   --font-nunito-light: Nunito_300Light;
@@ -28,6 +28,33 @@
   --font-nunito-bold: Nunito_700Bold;
   --font-nunito-extraBold: Nunito_800ExtraBold;
   --font-nunito-black: Nunito_900Black;
+}
+
+@layer utilities {
+  .font-nunito-thin {
+    font-family: var(--font-nunito-thin);
+  }
+  .font-nunito-light {
+    font-family: var(--font-nunito-light);
+  }
+  .font-nunito-regular {
+    font-family: var(--font-nunito-regular);
+  }
+  .font-nunito-medium {
+    font-family: var(--font-nunito-medium);
+  }
+  .font-nunito-semiBold {
+    font-family: var(--font-nunito-semiBold);
+  }
+  .font-nunito-bold {
+    font-family: var(--font-nunito-bold);
+  }
+  .font-nunito-extraBold {
+    font-family: var(--font-nunito-extraBold);
+  }
+  .font-nunito-black {
+    font-family: var(--font-nunito-black);
+  }
 }
 
 .input-field {
