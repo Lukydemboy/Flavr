@@ -1,3 +1,4 @@
+import CheckIcon from '@/components/icons/Check';
 import ChevronLeftIcon from '@/components/icons/ChevronLeft';
 import PencilIcon from '@/components/icons/Pencil';
 import ShareIcon from '@/components/icons/Share';
@@ -10,7 +11,7 @@ import { Page, StyledText } from '@/components/ui';
 import { Avatar } from '@/components/ui/Avatar';
 import { TagComponent } from '@/components/ui/Tag';
 import { User } from '@/context/authContext';
-import { RecipeDirectionWithCompleted, RecipeSectionWithDirections } from '@/domain/types/recipe';
+import { RecipeDirectionWithCompleted, RecipeIngredient, RecipeSectionWithDirections } from '@/domain/types/recipe';
 import { useDeleteRecipe, useRecipe } from '@/queries/recipe';
 import { useUser } from '@/queries/user';
 import { Redirect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
@@ -20,6 +21,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function RecipeDetailScreen() {
   const [sections, setSections] = useState<RecipeSectionWithDirections[]>([]);
+  const [completedIngredients, setCompletedIngredients] = useState<RecipeIngredient[]>([]);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const navigation = useNavigation();
   const router = useRouter();
@@ -151,17 +153,32 @@ export default function RecipeDetailScreen() {
                 </StyledText>
 
                 <View className="flex flex-col space-y-2">
-                  {recipe.ingredients.map(ingredient => (
-                    <View
-                      key={ingredient.id}
-                      className="flex flex-row items-center gap-x-3 mb-2 p-4 border border-slate-200 rounded-xl pr-8"
-                    >
-                      <View className="w-8 h-8 border-2 border-slate-200 rounded-full"></View>
-                      <StyledText className="text-slate-700" weight="bold">
-                        {ingredient.value}
-                      </StyledText>
-                    </View>
-                  ))}
+                  {recipe.ingredients.map(ingredient => {
+                    const isCompleted = completedIngredients.some(item => item.id === ingredient.id);
+
+                    return (
+                      <Pressable
+                        key={ingredient.id}
+                        onPress={() => {
+                          setCompletedIngredients(prev => {
+                            return prev.some(item => item.id === ingredient.id)
+                              ? prev.filter(item => item.id !== ingredient.id)
+                              : [...prev, ingredient];
+                          });
+                        }}
+                        className="flex flex-row items-center gap-x-3 mb-2 p-4 border border-slate-200 rounded-xl pr-8"
+                      >
+                        <View
+                          className={`w-8 h-8 border-2 flex items-center justify-center border-${isCompleted ? 'primary-500' : 'slate-200'} rounded-full ${isCompleted ? 'bg-primary-500' : ''} transition`}
+                        >
+                          {isCompleted && <CheckIcon width={14} height={14} color="#fff" />}
+                        </View>
+                        <StyledText className="text-slate-700" weight="bold">
+                          {ingredient.value}
+                        </StyledText>
+                      </Pressable>
+                    );
+                  })}
                 </View>
               </View>
 

@@ -46,6 +46,7 @@ module.exports = {
     'font-nunito-bold',
     'font-nunito-extraBold',
     'font-nunito-black',
+    'bg-primary-500',
   ],
   plugins: [],
 };
