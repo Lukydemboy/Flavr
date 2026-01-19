@@ -166,14 +166,14 @@ export default function RecipeDetailScreen() {
                               : [...prev, ingredient];
                           });
                         }}
-                        className="flex flex-row items-center gap-x-3 mb-2 p-4 border border-slate-200 rounded-xl pr-8"
+                        className={`flex flex-row items-center gap-x-3 mb-2 p-3 border border-slate-200 rounded-xl pr-8 ${isCompleted ? 'bg-primary-50' : ''}`}
                       >
                         <View
-                          className={`w-8 h-8 border-2 flex items-center justify-center border-${isCompleted ? 'primary-500' : 'slate-200'} rounded-full ${isCompleted ? 'bg-primary-500' : ''} transition`}
+                          className={`w-7 h-7 border-2 flex items-center justify-center border-${isCompleted ? 'primary-500' : 'slate-200'} rounded-full ${isCompleted ? 'bg-primary-500' : ''} transition`}
                         >
-                          {isCompleted && <CheckIcon width={14} height={14} color="#fff" />}
+                          {isCompleted && <CheckIcon width={12} height={12} color="#fff" />}
                         </View>
-                        <StyledText className="text-slate-700" weight="bold">
+                        <StyledText className="text-slate-700 text-xs" weight="bold">
                           {ingredient.value}
                         </StyledText>
                       </Pressable>
