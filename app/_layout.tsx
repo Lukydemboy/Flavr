@@ -1,4 +1,3 @@
-import '../styles/global.css';
 import { SplashScreen, Stack, useRouter } from 'expo-router';
 import {
   Nunito_200ExtraLight,
@@ -17,6 +16,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from '@/context/authContext';
 import { configureAxios } from '@/utils/requests/requests';
 import { ShareIntentProvider } from 'expo-share-intent';
+import '../global.css';
 
 configureAxios();
 
