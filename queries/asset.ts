@@ -9,7 +9,6 @@ export const useUploadInternalAsset = () => {
   return useMutation({
     mutationFn: async (asset: UploadAsset) => {
       const { mimeType, size, type = 'INTERNAL' } = asset;
-      console.log('uri', asset.uri, asset.mimeType);
 
       return axios<PresignedUrl>({
         method: 'POST',

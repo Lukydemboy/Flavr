@@ -19,6 +19,5 @@ type Props = {
 };
 
 export const StyledText = ({ children, weight = 'regular', className }: Props) => {
-  console.log('StyledText', `weight: font-nunito-${weight}`);
   return <Text className={`font-nunito-${weight} ${className}`}>{children}</Text>;
 };

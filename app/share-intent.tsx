@@ -35,7 +35,6 @@ export default function ShareIntent() {
     if (hasShareIntent) {
       if (shareIntent.type === 'weburl' && shareIntent.webUrl) {
         if (shareIntent.webUrl?.includes('instagram')) {
-          console.log('Generating recipe from Instagram');
           generateFromInstagram(shareIntent.webUrl).then(() => onSuccess());
         }
 
