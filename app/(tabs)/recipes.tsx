@@ -8,6 +8,7 @@ import { InputField } from '@/components/ui/InputField';
 import { Paginated } from '@/domain/types/listings';
 import { Recipe } from '@/domain/types/recipe';
 import { Tag } from '@/domain/types/tag';
+import { recipeKeys } from '@/queries/recipe';
 import { useTags } from '@/queries/tag';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -22,8 +23,8 @@ export default function RecipesScreen() {
   const sheetRef = useRef<CreateRecipeOptionsSheet>(null);
 
   const { data: tags } = useTags();
-  const { data, isLoading, fetchNextPage, refetch } = useInfiniteQuery({
-    queryKey: ['recipes', searchQuery, activeTags],
+  const { data, isLoading, fetchNextPage, refetch, isFetching } = useInfiniteQuery({
+    queryKey: recipeKeys.list({ q: searchQuery, filters: JSON.stringify({ tags: activeTags }) }),
     queryFn: async ({ pageParam }) => {
       const params = {
         q: searchQuery,
@@ -40,7 +41,7 @@ export default function RecipesScreen() {
     },
     initialPageParam: initialPage,
     getNextPageParam: lastPage => {
-      if (lastPage.number && lastPage.number < lastPage.totalPages) {
+      if (lastPage.number && lastPage.number < lastPage.totalPages && !isFetching) {
         return { number: lastPage.number + 1, size: 10 };
       }
     },

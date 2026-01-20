@@ -213,7 +213,12 @@ export default function RecipeDetailScreen() {
       <ConfirmationModal
         title="Delete recipe"
         text="Are you sure you want to delete this recipe?"
-        onConfirm={() => deleteRecipe().then(() => setIsDeleteModalVisible(false))}
+        onConfirm={() =>
+          deleteRecipe().then(() => {
+            setIsDeleteModalVisible(false);
+            router.back();
+          })
+        }
         isLoading={isLoading}
         cancelText="Cancel"
         confirmText="Delete"
