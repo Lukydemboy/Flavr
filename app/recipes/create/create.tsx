@@ -63,7 +63,7 @@ export default function CreateRecipeScreen() {
       }
 
       if (recipe?.id) {
-        await updateRecipe({
+        return await updateRecipe({
           id: recipe.id,
           ...value,
           servings: parseInt(value.servings),
@@ -74,20 +74,9 @@ export default function CreateRecipeScreen() {
         }).then(() => {
           router.back();
         });
-      } else {
-        await createRecipe({
-          ...value,
-          servings: parseInt(value.servings),
-          duration: parseInt(value.duration) * 60,
-          ingredients,
-          sections,
-          images: image ? [image] : undefined,
-        }).then(recipe => {
-          router.replace(`/recipes/${recipe.id}`);
-        });
       }
 
-      await createRecipe({
+      return await createRecipe({
         ...value,
         servings: parseInt(value.servings),
         duration: parseInt(value.duration) * 60,
