@@ -48,6 +48,7 @@ export default function CreateRecipeScreen() {
   const form = useForm({
     defaultValues: {
       name: recipe?.name ?? '',
+      description: recipe?.description ?? '',
       servings: recipe?.servings.toString() ?? '',
       duration: recipe?.duration ? (recipe.duration / 60).toString() : '',
       ingredient: '',
@@ -126,6 +127,21 @@ export default function CreateRecipeScreen() {
               )}
             </form.Field>
             <StyledText className="mb-2 ml-2" weight="bold">
+              Description
+            </StyledText>
+            <form.Field name="description">
+              {field => (
+                <InputField
+                  value={field.state.value}
+                  onChangeText={text => form.setFieldValue('description', text)}
+                  placeholder="Recipe description"
+                  className="mb-4"
+                  multiline
+                  error={field.state.meta.errors?.join(', ')}
+                />
+              )}
+            </form.Field>
+            <StyledText className="mb-2 ml-2" weight="bold">
               Servings
             </StyledText>
             <form.Field name="servings">
@@ -155,14 +171,14 @@ export default function CreateRecipeScreen() {
                 />
               )}
             </form.Field>
-            <View>
+            <View className="mb-8">
               <StyledText className="mb-2 ml-2" weight="bold">
                 Image
               </StyledText>
               <ImagePicker onImagePicked={setSelectedImage} />
             </View>
 
-            <ActionButton viewClassName="mt-auto" text="Ingredients" onPress={() => setStep('Ingredients')} />
+            <ActionButton viewClassName="mt-auto mb-4" text="Ingredients" onPress={() => setStep('Ingredients')} />
           </>
         )}
 
@@ -190,7 +206,7 @@ export default function CreateRecipeScreen() {
               )}
             </form.Field>
 
-            <ScrollView contentContainerClassName="bg-white rounded-xl bg-white p-4 grow mb-4 border-2 border-slate-200">
+            <ScrollView contentContainerClassName="bg-white rounded-xl p-4 grow mb-4 border-2 border-slate-200">
               {ingredients.map((ingredient, index) => (
                 <View key={index} className="relative flex flex-row gap-x-1 mb-2 bg-background p-4 rounded-xl">
                   <StyledText className="text-slate-700">{ingredient.value}</StyledText>
@@ -206,7 +222,7 @@ export default function CreateRecipeScreen() {
               ))}
             </ScrollView>
 
-            <View className="flex flex-row gap-x-2">
+            <View className="flex flex-row gap-x-2 mb-4">
               <ActionButton
                 buttonBgColorClass="bg-gray-300"
                 viewClassName="mt-auto"

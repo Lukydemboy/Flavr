@@ -1,7 +1,7 @@
 import { Image, View } from 'react-native';
 
 import { useRouter } from 'expo-router';
-import { useShareIntentContext } from 'expo-share-intent';
+import { ShareIntent, useShareIntentContext } from 'expo-share-intent';
 import { useCallback, useEffect, useState } from 'react';
 import {
   useGenerateRecipeFromImage,
@@ -14,7 +14,7 @@ import LottieView from 'lottie-react-native';
 
 const SUCCESS_ANIMATION_DURATION = 500;
 
-export default function ShareIntent() {
+export default function ShareIntentScreen() {
   const router = useRouter();
   const [isSuccess, setIsSuccess] = useState(false);
   const { hasShareIntent, shareIntent, resetShareIntent } = useShareIntentContext();
@@ -31,33 +31,27 @@ export default function ShareIntent() {
     }, SUCCESS_ANIMATION_DURATION);
   }, [resetShareIntent, router]);
 
+  const handleShareIntent = useCallback((intent: ShareIntent) => {
+    if (intent.type === 'weburl' && intent.webUrl) {
+      if (intent.webUrl?.includes('instagram')) {
+        return generateFromInstagram(intent.webUrl).then(() => onSuccess());
+      }
+
+      return generateFromUrl(intent.webUrl).then(() => onSuccess());
+    }
+
+    if (intent.files?.length) {
+      const file = intent.files[0];
+
+      return generateFromImage(file).then(() => onSuccess());
+    }
+  }, []);
+
   useEffect(() => {
     if (hasShareIntent) {
-      if (shareIntent.type === 'weburl' && shareIntent.webUrl) {
-        if (shareIntent.webUrl?.includes('instagram')) {
-          generateFromInstagram(shareIntent.webUrl).then(() => onSuccess());
-        }
-
-        generateFromUrl(shareIntent.webUrl).then(() => onSuccess());
-      }
-
-      if (shareIntent.files?.length) {
-        const file = shareIntent.files[0];
-
-        generateFromImage(file).then(() => onSuccess());
-      }
+      handleShareIntent(shareIntent);
     }
-  }, [
-    hasShareIntent,
-    generateFromInstagram,
-    shareIntent.type,
-    shareIntent.webUrl,
-    router,
-    resetShareIntent,
-    shareIntent.files,
-    generateFromImage,
-    onSuccess,
-  ]);
+  }, [hasShareIntent, handleShareIntent]);
 
   if (isSuccess) {
     return (

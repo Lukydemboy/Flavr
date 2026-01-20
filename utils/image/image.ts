@@ -6,10 +6,6 @@ import { Platform } from 'react-native';
 
 export type ImageSource = ImagePickerAsset | ShareIntentFile;
 
-const isImagePickerAsset = (asset: ImageSource): asset is ImagePickerAsset => {
-  return 'fileName' in asset;
-};
-
 export namespace ImageUtils {
   async function getImageUri(asset: ImageSource): Promise<string> {
     if ('uri' in asset) {

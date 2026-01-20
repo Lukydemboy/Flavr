@@ -113,7 +113,7 @@ export default function RecipeDetailScreen() {
               </StyledText>
 
               {recipe.tags?.length && (
-                <View className="flex flex-row gap-1">
+                <View className="flex flex-row flex-wrap gap-1">
                   {recipe.tags.map((tag, index) => (
                     <TagComponent key={index} tag={tag} />
                   ))}

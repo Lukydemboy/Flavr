@@ -12,7 +12,7 @@ import { useTags } from '@/queries/tag';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRef, useState } from 'react';
-import { FlatList, Pressable, ScrollView, View } from 'react-native';
+import { FlatList, Pressable, RefreshControl, ScrollView, View } from 'react-native';
 
 const initialPage = { number: 1, size: 10 };
 
@@ -22,7 +22,7 @@ export default function RecipesScreen() {
   const sheetRef = useRef<CreateRecipeOptionsSheet>(null);
 
   const { data: tags } = useTags();
-  const { data, isLoading, fetchNextPage } = useInfiniteQuery({
+  const { data, isLoading, fetchNextPage, refetch } = useInfiniteQuery({
     queryKey: ['recipes', searchQuery, activeTags],
     queryFn: async ({ pageParam }) => {
       const params = {
@@ -39,7 +39,7 @@ export default function RecipesScreen() {
       }).then(res => res.data);
     },
     initialPageParam: initialPage,
-    getNextPageParam: (lastPage, allPages) => {
+    getNextPageParam: lastPage => {
       if (lastPage.number && lastPage.number < lastPage.totalPages) {
         return { number: lastPage.number + 1, size: 10 };
       }
@@ -105,6 +105,7 @@ export default function RecipesScreen() {
         )}
 
         <FlatList
+          refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetch} />}
           numColumns={2}
           data={data?.pages.flatMap(page => page.content || [])}
           showsVerticalScrollIndicator={false}
