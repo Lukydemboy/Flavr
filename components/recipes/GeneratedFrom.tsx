@@ -30,7 +30,7 @@ export const GeneratedFrom = ({ recipe }: Props) => {
     <>
       {!!recipe.generatedFrom && recipe.generatedFrom !== 'image' && (
         <Pressable
-          className="flex flex-row items-center bg-emerald-50 rounded-lg py-2 px-3 border-2 border-primary-500 gap-x-2"
+          className="flex flex-row items-center bg-primary-50 rounded-lg py-2 px-3 border-2 border-primary-500 gap-x-2"
           onPress={() => Linking.openURL(recipe.generatedFrom!)}
         >
           {getGeneratedFromIcon(recipe.generatedFrom)}
