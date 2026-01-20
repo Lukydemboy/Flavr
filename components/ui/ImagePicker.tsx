@@ -3,24 +3,20 @@ import { Alert, Image, View, StyleSheet, Pressable } from 'react-native';
 import * as _ImagePicker from 'expo-image-picker';
 import UploadIcon from '../icons/Upload';
 import { StyledText } from './StyledText';
-import { ImageUtils } from '@/utils/image/image';
-import { useUploadInternalAsset } from '@/queries/asset';
 import { Asset } from '@/domain/types/asset';
+import { ImagePickerAsset } from 'expo-image-picker';
 
 type ImagePickerProps = {
-  onImagePicked: (image: Asset) => void;
+  onImagePicked: (image: ImagePickerAsset) => void;
   preSelectedImage?: Asset;
 };
 
 export default function ImagePicker({ onImagePicked, preSelectedImage }: ImagePickerProps) {
   const [image, setImage] = useState<string | null>(null);
 
-  const { mutateAsync: uploadImage } = useUploadInternalAsset();
-
   useEffect(() => {
     if (preSelectedImage) {
       setImage(preSelectedImage.url);
-      onImagePicked(preSelectedImage);
     }
   }, [preSelectedImage]);
 
@@ -40,11 +36,8 @@ export default function ImagePicker({ onImagePicked, preSelectedImage }: ImagePi
     });
 
     if (!result.canceled) {
-      const file = await ImageUtils.normalizeAssetToUploadFile(result.assets[0]);
-      const image = await uploadImage(file);
-
       setImage(result.assets[0].uri);
-      onImagePicked(image);
+      onImagePicked(result.assets[0]);
     }
   };
 

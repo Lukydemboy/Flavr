@@ -17,6 +17,7 @@ import { SessionProvider } from '@/context/authContext';
 import { configureAxios } from '@/utils/requests/requests';
 import { ShareIntentProvider } from 'expo-share-intent';
 import '../global.css';
+import AppHeader from '@/components/headers/AppHeader';
 
 configureAxios();
 
@@ -68,7 +69,12 @@ export default function RootLayout() {
               <Stack.Screen name="complete-profile" options={{ headerShown: false }} />
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="recipes/[id]/index" options={{ headerShown: false }} />
-              <Stack.Screen name="groups/create" options={{ title: 'Create group' }} />
+              <Stack.Screen
+                name="groups/create"
+                options={{
+                  header: () => <AppHeader title={'Create group'} fallbackBackscreen={'/(tabs)/groups'} />,
+                }}
+              />
             </Stack>
           </SafeAreaProvider>
         </SessionProvider>

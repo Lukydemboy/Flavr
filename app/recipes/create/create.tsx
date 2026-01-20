@@ -31,10 +31,11 @@ export default function CreateRecipeScreen() {
   const stepSheetRef = useRef<InstructionSheetRef>(null);
   const confirmationSheetSectionRef = useRef<ConfirmationSheetRef>(null);
   const confirmationSheetStepRef = useRef<ConfirmationSheetRef>(null);
-  const [recipeImage, setRecipeImage] = useState<Asset | null>(null);
+  const [selectedImage, setSelectedImage] = useState<ImagePickerAsset | null>(null);
 
   const { id } = useLocalSearchParams<{ id: string }>();
 
+  const { mutateAsync: uploadImage } = useUploadInternalAsset();
   const { mutateAsync: createRecipe } = useCreateRecipe();
   const { mutateAsync: updateRecipe } = useUpdateRecipe();
   const { data: recipe } = useRecipe(id);
@@ -54,6 +55,13 @@ export default function CreateRecipeScreen() {
       instructions: '',
     },
     onSubmit: async ({ value }) => {
+      let image: Asset | undefined;
+
+      if (selectedImage) {
+        const file = await ImageUtils.normalizeAssetToUploadFile(selectedImage);
+        image = await uploadImage(file);
+      }
+
       if (recipe?.id) {
         return await updateRecipe({
           id: recipe.id,
@@ -62,7 +70,7 @@ export default function CreateRecipeScreen() {
           duration: parseInt(value.duration) * 60,
           ingredients,
           sections,
-          images: recipeImage ? [recipeImage] : undefined,
+          images: image ? [image] : undefined,
         }).then(() => {
           router.back();
         });
@@ -74,7 +82,7 @@ export default function CreateRecipeScreen() {
         duration: parseInt(value.duration) * 60,
         ingredients,
         sections,
-        images: recipeImage ? [recipeImage] : undefined,
+        images: image ? [image] : undefined,
       }).then(recipe => {
         router.replace(`/recipes/${recipe.id}`);
       });
@@ -157,7 +165,7 @@ export default function CreateRecipeScreen() {
                 Image
               </StyledText>
 
-              <ImagePicker onImagePicked={setRecipeImage} preSelectedImage={recipe?.images[0]} />
+              <ImagePicker onImagePicked={setSelectedImage} preSelectedImage={recipe?.images[0]} />
             </View>
 
             <ActionButton viewClassName="mt-auto mb-4" text="Ingredients" onPress={() => setStep('Ingredients')} />

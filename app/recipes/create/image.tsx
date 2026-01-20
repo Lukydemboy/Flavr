@@ -3,6 +3,7 @@ import ImageIcon from '@/components/icons/Image';
 import InfoIcon from '@/components/icons/Info';
 import { ActionButton, Page, StyledText } from '@/components/ui';
 import ImagePicker from '@/components/ui/ImagePicker';
+import { Asset } from '@/domain/types/asset';
 import { useGenerateRecipeFromImage } from '@/queries/recipe';
 import { ImagePickerAsset } from 'expo-image-picker';
 import { useRouter } from 'expo-router';
@@ -10,7 +11,7 @@ import { useState } from 'react';
 import { View } from 'react-native';
 
 export default function CreateRecipeFromImageScreen() {
-  const [image, setImage] = useState<ImagePickerAsset | null>(null);
+  const [image, setImage] = useState<Asset | null>(null);
   const router = useRouter();
 
   const { mutateAsync: generateRecipeFromImage, isPending } = useGenerateRecipeFromImage();
