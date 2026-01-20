@@ -10,7 +10,7 @@ import { RecipeDirection, RecipeSection } from '@/domain/types/recipe';
 import { useCreateRecipe, useRecipe, useUpdateRecipe } from '@/queries/recipe';
 import { useForm, uuid } from '@tanstack/react-form';
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View, Image } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { ImagePickerAsset } from 'expo-image-picker';
 import ImagePicker from '@/components/ui/ImagePicker';
@@ -31,13 +31,12 @@ export default function CreateRecipeScreen() {
   const stepSheetRef = useRef<InstructionSheetRef>(null);
   const confirmationSheetSectionRef = useRef<ConfirmationSheetRef>(null);
   const confirmationSheetStepRef = useRef<ConfirmationSheetRef>(null);
-  const [selectedImage, setSelectedImage] = useState<ImagePickerAsset | null>(null);
+  const [recipeImage, setRecipeImage] = useState<Asset | null>(null);
 
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const { mutateAsync: createRecipe } = useCreateRecipe();
   const { mutateAsync: updateRecipe } = useUpdateRecipe();
-  const { mutateAsync: uploadImage } = useUploadInternalAsset();
   const { data: recipe } = useRecipe(id);
 
   useEffect(() => {
@@ -55,13 +54,6 @@ export default function CreateRecipeScreen() {
       instructions: '',
     },
     onSubmit: async ({ value }) => {
-      let image: Asset | undefined;
-
-      if (selectedImage) {
-        const file = await ImageUtils.normalizeAssetToUploadFile(selectedImage);
-        image = await uploadImage(file);
-      }
-
       if (recipe?.id) {
         return await updateRecipe({
           id: recipe.id,
@@ -70,7 +62,7 @@ export default function CreateRecipeScreen() {
           duration: parseInt(value.duration) * 60,
           ingredients,
           sections,
-          images: image ? [image] : undefined,
+          images: recipeImage ? [recipeImage] : undefined,
         }).then(() => {
           router.back();
         });
@@ -82,7 +74,7 @@ export default function CreateRecipeScreen() {
         duration: parseInt(value.duration) * 60,
         ingredients,
         sections,
-        images: image ? [image] : undefined,
+        images: recipeImage ? [recipeImage] : undefined,
       }).then(recipe => {
         router.replace(`/recipes/${recipe.id}`);
       });
@@ -164,7 +156,8 @@ export default function CreateRecipeScreen() {
               <StyledText className="mb-2 ml-2" weight="bold">
                 Image
               </StyledText>
-              <ImagePicker onImagePicked={setSelectedImage} />
+
+              <ImagePicker onImagePicked={setRecipeImage} preSelectedImage={recipe?.images[0]} />
             </View>
 
             <ActionButton viewClassName="mt-auto mb-4" text="Ingredients" onPress={() => setStep('Ingredients')} />

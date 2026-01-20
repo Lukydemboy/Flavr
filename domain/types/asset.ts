@@ -4,6 +4,5 @@ export type Asset = {
   id: string;
   source: AssetSource;
   type: AssetType;
-  url?: string;
-  storageKey?: string;
+  url: string;
 };

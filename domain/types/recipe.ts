@@ -11,7 +11,7 @@ export type Recipe = {
   duration: number;
   servings: number;
   generatedFrom: string | null;
-  images: Image[];
+  images: Asset[];
   ingredients: RecipeIngredient[];
   sections: RecipeSection[];
   groups?: Group[];

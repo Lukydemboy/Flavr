@@ -49,8 +49,9 @@ export const useUpdateRecipe = () => {
         data,
       }).then(res => res.data);
     },
-    onSuccess: () => {
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: recipeKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: recipeKeys.detail(variables.id) });
     },
   });
 };

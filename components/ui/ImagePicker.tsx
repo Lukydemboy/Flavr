@@ -1,16 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, Image, View, StyleSheet, Pressable } from 'react-native';
 import * as _ImagePicker from 'expo-image-picker';
 import UploadIcon from '../icons/Upload';
-import { ImagePickerAsset } from 'expo-image-picker';
 import { StyledText } from './StyledText';
+import { ImageUtils } from '@/utils/image/image';
+import { useUploadInternalAsset } from '@/queries/asset';
+import { Asset } from '@/domain/types/asset';
 
 type ImagePickerProps = {
-  onImagePicked: (image: ImagePickerAsset) => void;
+  onImagePicked: (image: Asset) => void;
+  preSelectedImage?: Asset;
 };
 
-export default function ImagePicker({ onImagePicked }: ImagePickerProps) {
+export default function ImagePicker({ onImagePicked, preSelectedImage }: ImagePickerProps) {
   const [image, setImage] = useState<string | null>(null);
+
+  const { mutateAsync: uploadImage } = useUploadInternalAsset();
+
+  useEffect(() => {
+    if (preSelectedImage) {
+      setImage(preSelectedImage.url);
+      onImagePicked(preSelectedImage);
+    }
+  }, [preSelectedImage]);
 
   const pickImage = async () => {
     const permissionResult = await _ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -28,8 +40,11 @@ export default function ImagePicker({ onImagePicked }: ImagePickerProps) {
     });
 
     if (!result.canceled) {
+      const file = await ImageUtils.normalizeAssetToUploadFile(result.assets[0]);
+      const image = await uploadImage(file);
+
       setImage(result.assets[0].uri);
-      onImagePicked(result.assets[0]);
+      onImagePicked(image);
     }
   };
 
