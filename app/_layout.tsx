@@ -70,6 +70,18 @@ export default function RootLayout() {
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="recipes/[id]/index" options={{ headerShown: false }} />
               <Stack.Screen
+                name="recipes/[id]/share"
+                options={{
+                  header: () => <AppHeader title={'Share recipe'} />,
+                }}
+              />
+              <Stack.Screen
+                name="recipes/create/create"
+                options={{
+                  header: () => <AppHeader title={'Create recipe'} />,
+                }}
+              />
+              <Stack.Screen
                 name="groups/create"
                 options={{
                   header: () => <AppHeader title={'Create group'} fallbackBackscreen={'/(tabs)/groups'} />,

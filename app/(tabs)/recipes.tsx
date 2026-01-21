@@ -23,7 +23,7 @@ export default function RecipesScreen() {
   const sheetRef = useRef<CreateRecipeOptionsSheet>(null);
 
   const { data: tags } = useTags();
-  const { data, isLoading, fetchNextPage, refetch, isFetching } = useInfiniteQuery({
+  const { data, fetchNextPage, refetch, isFetching } = useInfiniteQuery({
     queryKey: recipeKeys.list({ q: searchQuery, filters: JSON.stringify({ tags: activeTags }) }),
     queryFn: async ({ pageParam }) => {
       const params = {
@@ -93,25 +93,20 @@ export default function RecipesScreen() {
           )}
         </View>
 
-        {isLoading && (
-          <View className="p-4 flex items-center justify-center rounded-lg mb-2">
-            <CircleLoader />
-          </View>
-        )}
-
-        {!isLoading && !data?.pages?.flatMap(page => page?.content || []).length && (
-          <View className="p-4 rounded-lg mb-2">
-            <StyledText className="text-lg font-bold">No recipes found</StyledText>
-          </View>
-        )}
-
         <FlatList
-          refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetch} />}
+          refreshControl={<RefreshControl refreshing={isFetching} onRefresh={refetch} />}
           numColumns={2}
           data={data?.pages.flatMap(page => page.content || [])}
           showsVerticalScrollIndicator={false}
           onEndReached={() => fetchNextPage()}
           columnWrapperClassName="gap-4"
+          ListEmptyComponent={
+            <View>
+              <StyledText className="text-xl text-center mt-8 text-slate-400" weight="black">
+                No recipes found
+              </StyledText>
+            </View>
+          }
           renderItem={({ item }) => <RecipePreview recipe={item} className="w-1/2" />}
           keyExtractor={item => item.id}
         />

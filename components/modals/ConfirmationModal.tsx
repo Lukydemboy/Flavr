@@ -33,6 +33,7 @@ export const ConfirmationModal = ({
         <StyledText className="text-slate-500 mb-8">{text}</StyledText>
         <View className="flex flex-row justify-end gap-x-2">
           <ActionButton
+            size="small"
             buttonBgColorClass="bg-slate-300"
             textClassName="text-slate-600"
             disabled={isLoading}
@@ -40,7 +41,8 @@ export const ConfirmationModal = ({
             text={cancelText}
           />
           <ActionButton
-            buttonClassName={`text-white px-4 py-2 rounded-lg`}
+            size="small"
+            buttonClassName={`text-white rounded-lg`}
             buttonBgColorClass={isDestructive ? 'bg-rose-500' : 'bg-primary-500'}
             isLoading={isLoading}
             disabled={isLoading}
