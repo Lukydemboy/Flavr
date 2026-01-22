@@ -16,8 +16,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from '@/context/authContext';
 import { configureAxios } from '@/utils/requests/requests';
 import { ShareIntentProvider } from 'expo-share-intent';
-import '../global.css';
 import AppHeader from '@/components/headers/AppHeader';
+import '../global.css';
+import '../i18n';
 
 configureAxios();
 
@@ -79,6 +80,18 @@ export default function RootLayout() {
                 name="recipes/create/create"
                 options={{
                   header: () => <AppHeader title={'Create recipe'} />,
+                }}
+              />
+              <Stack.Screen
+                name="recipes/create/image"
+                options={{
+                  header: () => <AppHeader title={'Generate recipe'} fallbackBackscreen={'/(tabs)/recipes'} />,
+                }}
+              />
+              <Stack.Screen
+                name="recipes/create/link"
+                options={{
+                  header: () => <AppHeader title={'Generate recipe'} fallbackBackscreen={'/(tabs)/recipes'} />,
                 }}
               />
               <Stack.Screen

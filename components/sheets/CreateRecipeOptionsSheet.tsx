@@ -3,11 +3,13 @@ import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Pressable, View } from 'react-native';
 import { StyledText } from '../ui';
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 type Props = {};
 export type CreateRecipeOptionsSheet = { open: () => void };
 export const CreateRecipeOptionsSheet = forwardRef<CreateRecipeOptionsSheet, Props>(({}, ref) => {
   CreateRecipeOptionsSheet.displayName = 'CreateRecipeOptionsSheet';
+  const { t } = useTranslation();
   const router = useRouter();
 
   const sheet = useRef<TrueSheet>(null);
@@ -25,23 +27,20 @@ export const CreateRecipeOptionsSheet = forwardRef<CreateRecipeOptionsSheet, Pro
     <TrueSheet ref={sheet} detents={['auto']} cornerRadius={24}>
       <View className="p-4">
         <StyledText className="text-xl pt-2 ml-2" weight="black">
-          Create Recipe
+          {t('component.createSheet.title')}
         </StyledText>
 
-        <StyledText className="text mb-8 text-slate-600 mt-2 ml-2">
-          There are different ways to create a recipe. The easiest way is to generate a recipe from either an image or a
-          URL.
-        </StyledText>
+        <StyledText className="text mb-8 text-slate-600 mt-2 ml-2">{t('component.createSheet.description')}</StyledText>
 
         <Pressable
           onPress={() => onAction(() => router.push('recipes/create/image'))}
           className="p-4 bg-pastel-green rounded-2xl mb-4"
         >
           <StyledText className="text-lg mb-2" weight="bold">
-            Generate from image
+            {t('component.createSheet.option.image.title')}
           </StyledText>
           <StyledText className="text-sm text-slate-500">
-            Upload or snap an image of a recipe. We will try our best to convert it to this app.
+            {t('component.createSheet.option.image.description')}
           </StyledText>
         </Pressable>
 
@@ -50,10 +49,10 @@ export const CreateRecipeOptionsSheet = forwardRef<CreateRecipeOptionsSheet, Pro
           className="p-4 bg-pastel-yellow rounded-2xl mb-4"
         >
           <StyledText className="text-lg mb-2" weight="bold">
-            Generate from scratch
+            {t('component.createSheet.option.manual.title')}
           </StyledText>
           <StyledText className="text-sm text-slate-500">
-            Upload or snap an image of a recipe. We will try our best to convert it to this app.
+            {t('component.createSheet.option.manual.description')}
           </StyledText>
         </Pressable>
 
@@ -62,10 +61,10 @@ export const CreateRecipeOptionsSheet = forwardRef<CreateRecipeOptionsSheet, Pro
           className="p-4 bg-pastel-purple rounded-2xl mb-4"
         >
           <StyledText className="text-lg mb-2" weight="bold">
-            Generate from video
+            {t('component.createSheet.option.social.title')}
           </StyledText>
           <StyledText className="text-sm text-slate-500">
-            Import from instagram or tik-tok using the video link.
+            {t('component.createSheet.option.social.description')}
           </StyledText>
         </Pressable>
 
@@ -74,9 +73,11 @@ export const CreateRecipeOptionsSheet = forwardRef<CreateRecipeOptionsSheet, Pro
           className="p-4 bg-pastel-blue rounded-2xl mb-4"
         >
           <StyledText className="text-lg mb-2" weight="bold">
-            Generate from webpage
+            {t('component.createSheet.option.webpage.title')}
           </StyledText>
-          <StyledText className="text-sm text-slate-500">Import from a webpage using the URL.</StyledText>
+          <StyledText className="text-sm text-slate-500">
+            {t('component.createSheet.option.webpage.description')}
+          </StyledText>
         </Pressable>
       </View>
     </TrueSheet>

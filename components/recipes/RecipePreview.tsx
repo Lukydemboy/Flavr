@@ -4,6 +4,7 @@ import { Image, Pressable, View } from 'react-native';
 import { StyledText } from '../ui';
 import ClockIcon from '../icons/Clock';
 import { Avatar } from '../ui/Avatar';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   recipe: Recipe;
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export const RecipePreview = ({ recipe, className }: Props) => {
+  const { t } = useTranslation();
   const router = useRouter();
 
   return (
@@ -37,13 +39,17 @@ export const RecipePreview = ({ recipe, className }: Props) => {
 
         <View className="flex flex-row items-center gap-x-1">
           <ClockIcon color="#32675E" width={14} height={14} />
-          <StyledText className="text-sm">{recipe.duration / 60} minutes</StyledText>
+          <StyledText className="text-sm">
+            {t('screen.recipes.list.item.duration', { duration: recipe.duration / 60 })}
+          </StyledText>
         </View>
 
         {recipe.owner && (
           <View className="flex flex-row items-center gap-x-1 mt-2">
             <Avatar user={recipe.owner} size={25} className="rounded-full" />
-            <StyledText className="text-sm">shared by {recipe.owner.username}</StyledText>
+            <StyledText className="text-sm">
+              {t('screen.recipes.list.item.sharedBy', { name: recipe.owner.username })}
+            </StyledText>
           </View>
         )}
       </View>

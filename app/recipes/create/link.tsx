@@ -5,9 +5,11 @@ import { InputField } from '@/components/ui/InputField';
 import { useGenerateRecipeFromInstagram, useGenerateRecipeFromWebpage } from '@/queries/recipe';
 import { useForm } from '@tanstack/react-form';
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 export default function CreateRecipeFromLinkScreen() {
+  const { t } = useTranslation();
   const router = useRouter();
 
   const { mutateAsync: generateRecipeFromInstagram } = useGenerateRecipeFromInstagram();
@@ -39,23 +41,21 @@ export default function CreateRecipeFromLinkScreen() {
           </View>
         </View>
 
-        <StyledText className="text-slate-800 text-xl mt-6" weight="bold">
-          Import from URL
+        <StyledText className="text-slate-800 text-xl mt-6" weight="black">
+          {t('screen.create.url.title')}
         </StyledText>
-        <StyledText className="text-slate-400 mt-2 text-center mx-9">
-          Paste a link from the recipe you want to import and we'll extract the recipe details for you!
-        </StyledText>
+        <StyledText className="text-slate-400 mt-2 text-center mx-9">{t('screen.create.url.description')}</StyledText>
       </View>
 
       <StyledText className="ml-4 mb-2 pt-2" weight="bold">
-        Recipe URL
+        {t('screen.create.url.form.field.url.label')}
       </StyledText>
       <form.Field name="url">
         {field => (
           <InputField
             value={field.state.value}
             onChangeText={text => form.setFieldValue('url', text)}
-            placeholder="Recipe link"
+            placeholder={t('screen.create.url.form.field.url.placeholder')}
             autoComplete="url"
             error={field.state.meta.errors?.join(', ')}
           />
@@ -63,10 +63,7 @@ export default function CreateRecipeFromLinkScreen() {
       </form.Field>
       <View className="mt-2 mx-2 flex flex-row items-center gap-x-2">
         <InfoIcon color="#28524b" width={14} height={14} />
-        <StyledText className="text-xs text-slate-400 ml-2">
-          We try to extract the recipe details from the URL you provide. If the recipe is not found or the details are
-          incomplete, you can manually edit the recipe details.
-        </StyledText>
+        <StyledText className="text-xs text-slate-400 ml-2">{t('screen.create.url.form.field.url.hint')}</StyledText>
       </View>
 
       <form.Subscribe selector={state => [state.canSubmit, state.isSubmitting]}>
@@ -74,7 +71,7 @@ export default function CreateRecipeFromLinkScreen() {
           <ActionButton
             viewClassName="mt-auto"
             size="large"
-            text="Generate recipe"
+            text={t('screen.create.url.form.action.submit')}
             isLoading={isSubmitting}
             disabled={!canSubmit}
             onPress={form.handleSubmit}
