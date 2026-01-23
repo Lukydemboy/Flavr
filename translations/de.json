@@ -50,6 +50,11 @@
       }
     },
     "settings": {
+      "profile": {
+        "action": {
+          "editProfile": "Profil bearbeiten"
+        }
+      },
       "personalization": {
         "title": "Persönlichkeitszusammenstellung",
         "item": {
@@ -71,6 +76,40 @@
         "item": {
           "helpCenter": "Hilfezentrum",
           "privacyPolicy": "Datenschutzrichtlinie"
+        }
+      },
+      "screen": {
+        "language": {
+          "title": "Sprache",
+          "description": "Wähle deine Sprache für die App.",
+          "languageSelection": {
+            "title": "App-Sprache",
+            "options": {
+              "EN": {
+                "label": "Englisch",
+                "labelEnglish": "English"
+              },
+              "ES": {
+                "label": "Spanisch",
+                "labelEnglish": "Spanish"
+              },
+              "FR": {
+                "label": "Französisch",
+                "labelEnglish": "French"
+              },
+              "DE": {
+                "label": "Deutsch",
+                "labelEnglish": "German"
+              },
+              "NL": {
+                "label": "Niederländisch",
+                "labelEnglish": "Dutch"
+              }
+            }
+          },
+          "action": {
+            "submit": "Sprache speichern"
+          }
         }
       }
     }

@@ -50,6 +50,11 @@
       }
     },
     "settings": {
+      "profile": {
+        "action": {
+          "editProfile": "Bewerk profiel"
+        }
+      },
       "personalization": {
         "title": "Persoonlijkheid",
         "item": {
@@ -59,10 +64,10 @@
         }
       },
       "appSettings": {
-        "title": "App-Einstellungen",
+        "title": "App instellingen",
         "item": {
-          "language": "Sprache",
-          "notifications": "Benachrichtigungen",
+          "language": "Taal",
+          "notifications": "Notificaties",
           "theme": "Thema"
         }
       },
@@ -71,6 +76,40 @@
         "item": {
           "helpCenter": "Hulpcentrum",
           "privacyPolicy": "Privacybeleid"
+        }
+      },
+      "screen": {
+        "language": {
+          "title": "Taal",
+          "description": "Kies jouw taal voor de app.",
+          "languageSelection": {
+            "title": "App taal",
+            "options": {
+              "EN": {
+                "label": "Engels",
+                "labelEnglish": "English"
+              },
+              "ES": {
+                "label": "Español",
+                "labelEnglish": "Spanish"
+              },
+              "FR": {
+                "label": "Français",
+                "labelEnglish": "French"
+              },
+              "DE": {
+                "label": "Deutsch",
+                "labelEnglish": "German"
+              },
+              "NL": {
+                "label": "Nederlands",
+                "labelEnglish": "Dutch"
+              }
+            }
+          },
+          "action": {
+            "submit": "Taal opslaan"
+          }
         }
       }
     }

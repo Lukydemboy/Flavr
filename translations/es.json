@@ -50,6 +50,11 @@
       }
     },
     "settings": {
+      "profile": {
+        "action": {
+          "editProfile": "Editar perfil"
+        }
+      },
       "personalization": {
         "title": "Personalización",
         "item": {
@@ -71,6 +76,40 @@
         "item": {
           "helpCenter": "Centro de ayuda",
           "privacyPolicy": "Política de privacidad"
+        }
+      },
+      "screen": {
+        "language": {
+          "title": "Idioma",
+          "description": "Seleccione el idioma para la aplicación.",
+          "languageSelection": {
+            "title": "Idioma de la aplicación",
+            "options": {
+              "EN": {
+                "label": "Inglés",
+                "labelEnglish": "English"
+              },
+              "ES": {
+                "label": "Español",
+                "labelEnglish": "Spanish"
+              },
+              "FR": {
+                "label": "Francés",
+                "labelEnglish": "French"
+              },
+              "DE": {
+                "label": "Alemán",
+                "labelEnglish": "German"
+              },
+              "NL": {
+                "label": "Holandés",
+                "labelEnglish": "Dutch"
+              }
+            }
+          },
+          "action": {
+            "submit": "Guardar"
+          }
         }
       }
     }

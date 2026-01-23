@@ -6,7 +6,7 @@ import { Avatar } from '@/components/ui/Avatar';
 import { useUser } from '@/queries/user';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import TagIcon from '@/components/icons/Tag';
 import ForkKnifeIcon from '@/components/icons/ForkKnife';
 import WarningIcon from '@/components/icons/Warning';
@@ -31,12 +31,11 @@ export default function SettingsScreen() {
           {user.username}
         </StyledText>
         <StyledText className="mt-2 text-center text-slate-400">{user.email}</StyledText>
-
         <ActionButton
           onPress={() => console.log('test')}
           buttonClassName="w-full"
           viewClassName="w-full mt-4"
-          text="Edit profile"
+          text={t('screen.settings.profile.action.editProfile')}
         />
       </View>
 
@@ -44,7 +43,7 @@ export default function SettingsScreen() {
         <StyledText className="text-primary-500" weight="bold">
           {t('screen.settings.personalization.title')}
         </StyledText>
-        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6">
+        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
               <TagIcon width={24} height={24} color="#32675e" />
@@ -53,7 +52,7 @@ export default function SettingsScreen() {
           </View>
           <ChevronRightIcon width={18} height={18} />
         </View>
-        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6">
+        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
               <ForkKnifeIcon width={24} height={24} color="#32675e" />
@@ -62,7 +61,7 @@ export default function SettingsScreen() {
           </View>
           <ChevronRightIcon width={18} height={18} />
         </View>
-        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex flex-row items-center justify-center pr-6">
+        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex flex-row items-center justify-center pr-6 shadow-sm">
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
               <WarningIcon width={24} height={24} color="#32675e" />
@@ -77,7 +76,10 @@ export default function SettingsScreen() {
         <StyledText className="text-primary-500" weight="bold">
           {t('screen.settings.appSettings.title')}
         </StyledText>
-        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6">
+        <Pressable
+          onPress={() => router.push('/settings/language')}
+          className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm"
+        >
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
               <GlobeIcon width={24} height={24} color="#32675e" />
@@ -85,8 +87,8 @@ export default function SettingsScreen() {
             <StyledText weight="bold">{t('screen.settings.appSettings.item.language')}</StyledText>
           </View>
           <ChevronRightIcon width={18} height={18} />
-        </View>
-        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6">
+        </Pressable>
+        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
               <BellIcon width={24} height={24} color="#32675e" />
@@ -95,7 +97,7 @@ export default function SettingsScreen() {
           </View>
           <ChevronRightIcon width={18} height={18} />
         </View>
-        {/*<View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6">
+        {/*<View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center"></View>
             <StyledText weight="bold">{t('screen.settings.appSettings.item.theme')}</StyledText>
@@ -108,7 +110,7 @@ export default function SettingsScreen() {
         <StyledText className="text-primary-500" weight="bold">
           {t('screen.settings.support.title')}
         </StyledText>
-        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6">
+        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
               <QuestionMarkCircleIcon width={24} height={24} />
@@ -117,7 +119,7 @@ export default function SettingsScreen() {
           </View>
           <ChevronRightIcon width={18} height={18} />
         </View>
-        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6">
+        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
               <ShieldIcon width={24} height={24} color="#32675e" />

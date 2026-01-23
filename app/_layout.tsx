@@ -19,11 +19,14 @@ import { ShareIntentProvider } from 'expo-share-intent';
 import AppHeader from '@/components/headers/AppHeader';
 import '../global.css';
 import '../i18n';
+import { useStorageState } from '@/hooks/storage';
+import i18n, { LANGUAGE_STORAGE_KEY } from '../i18n';
 
 configureAxios();
 
 export default function RootLayout() {
   const router = useRouter();
+  const [[isLoadingInitialLanguage, initialLanguage]] = useStorageState(LANGUAGE_STORAGE_KEY);
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -36,7 +39,15 @@ export default function RootLayout() {
       }),
   );
 
-  const [loaded] = useFonts({
+  useEffect(() => {
+    if (!isLoadingInitialLanguage) {
+      if (initialLanguage && initialLanguage !== i18n.language) {
+        i18n.changeLanguage(initialLanguage);
+      }
+    }
+  }, [isLoadingInitialLanguage, initialLanguage]);
+
+  const [fontsLoaded] = useFonts({
     Nunito_200ExtraLight,
     Nunito_300Light,
     Nunito_400Regular,
@@ -48,12 +59,12 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if (loaded) {
+    if (fontsLoaded && !isLoadingInitialLanguage) {
       SplashScreen.hideAsync();
     }
-  }, [loaded, router]);
+  }, [fontsLoaded, isLoadingInitialLanguage, router]);
 
-  if (!loaded) {
+  if (!fontsLoaded || isLoadingInitialLanguage) {
     return null;
   }
 
@@ -98,6 +109,12 @@ export default function RootLayout() {
                 name="groups/create"
                 options={{
                   header: () => <AppHeader title={'Create group'} fallbackBackscreen={'/(tabs)/groups'} />,
+                }}
+              />
+              <Stack.Screen
+                name="settings/language"
+                options={{
+                  header: () => <AppHeader title={'Language'} fallbackBackscreen={'/(tabs)/settings'} />,
                 }}
               />
             </Stack>
