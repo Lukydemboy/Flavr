@@ -48,6 +48,31 @@
       "ingredients": {
         "title": "Ingrediënten"
       }
+    },
+    "settings": {
+      "personalization": {
+        "title": "Persoonlijkheid",
+        "item": {
+          "preferredTags": "Voorkeurslabels",
+          "dietaryPreferences": "Voorkeursvoeding",
+          "allergies": "Voorkeursallergieën"
+        }
+      },
+      "appSettings": {
+        "title": "App-Einstellungen",
+        "item": {
+          "language": "Sprache",
+          "notifications": "Benachrichtigungen",
+          "theme": "Thema"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "item": {
+          "helpCenter": "Hulpcentrum",
+          "privacyPolicy": "Privacybeleid"
+        }
+      }
     }
   },
   "component": {

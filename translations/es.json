@@ -48,6 +48,31 @@
           "title": "Ingredientes"
         }
       }
+    },
+    "settings": {
+      "personalization": {
+        "title": "Personalización",
+        "item": {
+          "preferredTags": "Etiquetas preferidas",
+          "dietaryPreferences": "Preferencias dietéticas",
+          "allergies": "Alergias"
+        }
+      },
+      "appSettings": {
+        "title": "Configuración de la aplicación",
+        "item": {
+          "language": "Idioma",
+          "notifications": "Notificaciones",
+          "theme": "Tema"
+        }
+      },
+      "support": {
+        "title": "Soporte",
+        "item": {
+          "helpCenter": "Centro de ayuda",
+          "privacyPolicy": "Política de privacidad"
+        }
+      }
     }
   },
   "component": {

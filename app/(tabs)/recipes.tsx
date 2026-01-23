@@ -100,11 +100,13 @@ export default function RecipesScreen() {
           onEndReached={() => fetchNextPage()}
           columnWrapperClassName="gap-4"
           ListEmptyComponent={
-            <View>
-              <StyledText className="text-xl text-center mt-8 text-slate-400" weight="black">
-                {t('screen.recipes.list.empty')}
-              </StyledText>
-            </View>
+            <>
+              {!isFetching && (
+                <StyledText className="text-xl text-center mt-8 text-slate-400" weight="black">
+                  {t('screen.recipes.list.empty')}
+                </StyledText>
+              )}
+            </>
           }
           renderItem={({ item }) => <RecipePreview recipe={item} className="w-1/2" />}
           keyExtractor={item => item.id}

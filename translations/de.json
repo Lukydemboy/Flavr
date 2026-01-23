@@ -48,6 +48,31 @@
           "title": "Zutaten"
         }
       }
+    },
+    "settings": {
+      "personalization": {
+        "title": "Persönlichkeitszusammenstellung",
+        "item": {
+          "preferredTags": "Vorlieb für Labels",
+          "dietaryPreferences": "Vorlieb für Speisen",
+          "allergies": "Vorlieb für Allergien"
+        }
+      },
+      "appSettings": {
+        "title": "App-Einstellungen",
+        "item": {
+          "language": "Sprache",
+          "notifications": "Benachrichtigungen",
+          "theme": "Thema"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "item": {
+          "helpCenter": "Hilfezentrum",
+          "privacyPolicy": "Datenschutzrichtlinie"
+        }
+      }
     }
   },
   "recipes": {

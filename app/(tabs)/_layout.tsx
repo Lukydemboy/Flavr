@@ -1,4 +1,5 @@
 import BookIcon from '@/components/icons/Book';
+import CogIcon from '@/components/icons/Cog';
 import HouseIcon from '@/components/icons/House';
 import PeopleIcon from '@/components/icons/People';
 import { HapticTab } from '@/components/ui';
@@ -63,6 +64,17 @@ export default function TabLayout() {
           popToTopOnBlur: true,
           title: 'Groups',
           tabBarIcon: ({ focused }) => <PeopleIcon width={28} height={28} color={focused ? 'black' : '#A09FA8'} />,
+          tabBarShowLabel: false,
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          headerShown: false,
+          lazy: false,
+          popToTopOnBlur: true,
+          title: 'Settings',
+          tabBarIcon: ({ focused }) => <CogIcon width={24} height={24} color={focused ? 'black' : '#A09FA8'} />,
           tabBarShowLabel: false,
         }}
       />

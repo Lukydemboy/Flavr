@@ -48,6 +48,31 @@
       "ingredients": {
         "title": "Ingrédients"
       }
+    },
+    "settings": {
+      "personalization": {
+        "title": "Perso",
+        "item": {
+          "preferredTags": "Préférences",
+          "dietaryPreferences": "Préférences alimentaires",
+          "allergies": "Allergies"
+        }
+      },
+      "appSettings": {
+        "title": "Paramètres de l'application",
+        "item": {
+          "language": "Langue",
+          "notifications": "Notifications",
+          "theme": "Thème"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "item": {
+          "helpCenter": "Centre d'aide",
+          "privacyPolicy": "Politique de confidentialité"
+        }
+      }
     }
   },
   "component": {
