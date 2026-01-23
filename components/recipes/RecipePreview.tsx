@@ -20,7 +20,7 @@ export const RecipePreview = ({ recipe, className }: Props) => {
       onPress={() =>
         router.push({
           pathname: `/recipes/[id]`,
-          params: { id: recipe.id, title: recipe.name },
+          params: { id: recipe.id, title: recipe.name, imageUrl: recipe.images?.[0]?.url },
         })
       }
     >
