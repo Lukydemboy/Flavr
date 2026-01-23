@@ -12,8 +12,14 @@ import ForkKnifeIcon from '@/components/icons/ForkKnife';
 import WarningIcon from '@/components/icons/Warning';
 import QuestionMarkCircleIcon from '@/components/icons/QuestionMarkCircle';
 import ShieldIcon from '@/components/icons/Shield';
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import packageJson from '../../package.json';
+import { useSession } from '@/context/authContext';
+
+const version = packageJson.version;
 
 export default function SettingsScreen() {
+  const { signOut } = useSession();
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -129,6 +135,22 @@ export default function SettingsScreen() {
           <ChevronRightIcon width={18} height={18} />
         </View>
       </View>
+
+      <Pressable
+        onPress={() =>
+          signOut().then(() => {
+            router.dismissAll();
+            router.replace('/');
+          })
+        }
+        className="bg-red-100 p-4 mb-12 rounded-xl"
+      >
+        <StyledText className="text-center text-rose-600" weight="black">
+          Log out
+        </StyledText>
+      </Pressable>
+
+      <StyledText className="text-center text-slate-500 mb-6">Flavr {version}</StyledText>
     </Page>
   );
 }

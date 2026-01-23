@@ -12,7 +12,7 @@ export default function StartPage() {
           <Image className="w-full h-full" source={require('@/assets/images/start.webp')} />
         </View>
       </View>
-      <View className="px-8 pt-8 grow">
+      <View className="relative px-8 pt-8 grow z-10">
         <StyledText className="text-4xl leading-relaxed" weight="bold">
           Start sharing your cooking journey
         </StyledText>

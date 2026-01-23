@@ -60,7 +60,7 @@
         "item": {
           "preferredTags": "Voorkeurslabels",
           "dietaryPreferences": "Voorkeursvoeding",
-          "allergies": "Voorkeursallergieën"
+          "allergies": "Allergieën"
         }
       },
       "appSettings": {
