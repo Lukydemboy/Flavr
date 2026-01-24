@@ -20,6 +20,7 @@ import AppHeader from '@/components/headers/AppHeader';
 import { StorageKeys, useStorageState } from '@/hooks/storage';
 import '../global.css';
 import i18n from '../i18n';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 configureAxios();
 
@@ -71,53 +72,55 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <ShareIntentProvider>
         <SessionProvider>
-          <SafeAreaProvider>
-            <Stack>
-              <Stack.Screen name="share-intent" options={{ headerShown: false }} />
-              <Stack.Screen name="start" options={{ headerShown: false }} />
-              <Stack.Screen name="login" options={{ headerShown: false }} />
-              <Stack.Screen name="mail-sent" options={{ headerShown: false }} />
-              <Stack.Screen name="complete-profile" options={{ headerShown: false }} />
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="recipes/[id]/index" options={{ headerShown: false }} />
-              <Stack.Screen
-                name="recipes/[id]/share"
-                options={{
-                  header: () => <AppHeader title={'Share recipe'} />,
-                }}
-              />
-              <Stack.Screen
-                name="recipes/create/create"
-                options={{
-                  header: () => <AppHeader title={'Create recipe'} />,
-                }}
-              />
-              <Stack.Screen
-                name="recipes/create/image"
-                options={{
-                  header: () => <AppHeader title={'Generate recipe'} fallbackBackscreen={'/(tabs)/recipes'} />,
-                }}
-              />
-              <Stack.Screen
-                name="recipes/create/link"
-                options={{
-                  header: () => <AppHeader title={'Generate recipe'} fallbackBackscreen={'/(tabs)/recipes'} />,
-                }}
-              />
-              <Stack.Screen
-                name="groups/create"
-                options={{
-                  header: () => <AppHeader title={'Create group'} fallbackBackscreen={'/(tabs)/groups'} />,
-                }}
-              />
-              <Stack.Screen
-                name="settings/language"
-                options={{
-                  header: () => <AppHeader title={'Language'} fallbackBackscreen={'/(tabs)/settings'} />,
-                }}
-              />
-            </Stack>
-          </SafeAreaProvider>
+          <GestureHandlerRootView>
+            <SafeAreaProvider>
+              <Stack>
+                <Stack.Screen name="share-intent" options={{ headerShown: false }} />
+                <Stack.Screen name="start" options={{ headerShown: false }} />
+                <Stack.Screen name="login" options={{ headerShown: false }} />
+                <Stack.Screen name="mail-sent" options={{ headerShown: false }} />
+                <Stack.Screen name="complete-profile" options={{ headerShown: false }} />
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="recipes/[id]/index" options={{ headerShown: false }} />
+                <Stack.Screen
+                  name="recipes/[id]/share"
+                  options={{
+                    header: () => <AppHeader title={'Share recipe'} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="recipes/create/create"
+                  options={{
+                    header: () => <AppHeader title={'Create recipe'} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="recipes/create/image"
+                  options={{
+                    header: () => <AppHeader title={'Generate recipe'} fallbackBackscreen={'/(tabs)/recipes'} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="recipes/create/link"
+                  options={{
+                    header: () => <AppHeader title={'Generate recipe'} fallbackBackscreen={'/(tabs)/recipes'} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="groups/create"
+                  options={{
+                    header: () => <AppHeader title={'Create group'} fallbackBackscreen={'/(tabs)/groups'} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="settings/language"
+                  options={{
+                    header: () => <AppHeader title={'Language'} fallbackBackscreen={'/(tabs)/settings'} />,
+                  }}
+                />
+              </Stack>
+            </SafeAreaProvider>
+          </GestureHandlerRootView>
         </SessionProvider>
       </ShareIntentProvider>
     </QueryClientProvider>

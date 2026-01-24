@@ -45,8 +45,9 @@
         "web": "Genereerd van {{host}}",
         "image": "Genereerd vanaf afbeelding"
       },
-      "ingredients": {
-        "title": "Ingrediënten"
+      "details": {
+        "ingredients": "Ingrediënten",
+        "directions": "Instructies"
       }
     },
     "settings": {

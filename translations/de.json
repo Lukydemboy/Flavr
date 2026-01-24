@@ -44,8 +44,9 @@
           "web": "Generiert von {{host}}",
           "image": "Generiert von Bild"
         },
-        "ingredients": {
-          "title": "Zutaten"
+        "details": {
+          "ingredients": "Zutaten",
+          "directions": "Zubereitung"
         }
       }
     },

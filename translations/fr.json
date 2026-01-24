@@ -45,8 +45,9 @@
         "web": "Généré depuis {{host}}",
         "image": "Généré depuis image"
       },
-      "ingredients": {
-        "title": "Ingrédients"
+      "details": {
+        "ingredients": "Ingrédients",
+        "directions": "Instructies"
       }
     },
     "settings": {
