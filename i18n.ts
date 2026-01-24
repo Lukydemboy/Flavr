@@ -8,8 +8,7 @@ import nl from './translations/nl.json';
 import es from './translations/es.json';
 import de from './translations/de.json';
 import * as SecureStore from 'expo-secure-store';
-
-export const LANGUAGE_STORAGE_KEY = 'language';
+import { StorageKeys } from './hooks/storage';
 
 i18n
   .use(LanguageDetector)
@@ -29,7 +28,7 @@ export const changeLanguage = async (language: Language): Promise<void> => {
   await i18n.changeLanguage(language);
 
   try {
-    await SecureStore.setItemAsync(LANGUAGE_STORAGE_KEY, language);
+    await SecureStore.setItemAsync(StorageKeys.Language, language);
   } catch {}
 };
 

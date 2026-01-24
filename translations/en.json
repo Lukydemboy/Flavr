@@ -85,23 +85,23 @@
           "languageSelection": {
             "title": "Primary language",
             "options": {
-              "EN": {
+              "en": {
                 "label": "English",
                 "labelEnglish": "English"
               },
-              "ES": {
+              "es": {
                 "label": "Español",
                 "labelEnglish": "Spanish"
               },
-              "FR": {
+              "fr": {
                 "label": "Français",
                 "labelEnglish": "French"
               },
-              "DE": {
+              "de": {
                 "label": "Deutsch",
                 "labelEnglish": "German"
               },
-              "NL": {
+              "nl": {
                 "label": "Nederlands",
                 "labelEnglish": "Dutch"
               }

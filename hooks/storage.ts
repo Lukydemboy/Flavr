@@ -4,6 +4,7 @@ import { Platform } from 'react-native';
 
 export enum StorageKeys {
   Session = 'session',
+  Language = 'language',
 }
 
 type UseStateHook<T> = [[boolean, T | null], (value: T | null) => void];

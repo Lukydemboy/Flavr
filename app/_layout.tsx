@@ -17,16 +17,15 @@ import { SessionProvider } from '@/context/authContext';
 import { configureAxios } from '@/utils/requests/requests';
 import { ShareIntentProvider } from 'expo-share-intent';
 import AppHeader from '@/components/headers/AppHeader';
+import { StorageKeys, useStorageState } from '@/hooks/storage';
 import '../global.css';
-import '../i18n';
-import { useStorageState } from '@/hooks/storage';
-import i18n, { LANGUAGE_STORAGE_KEY } from '../i18n';
+import i18n from '../i18n';
 
 configureAxios();
 
 export default function RootLayout() {
   const router = useRouter();
-  const [[isLoadingInitialLanguage, initialLanguage]] = useStorageState(LANGUAGE_STORAGE_KEY);
+  const [[isLoadingInitialLanguage, initialLanguage]] = useStorageState(StorageKeys.Language);
   const [queryClient] = useState(
     () =>
       new QueryClient({

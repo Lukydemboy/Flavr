@@ -85,23 +85,23 @@
           "languageSelection": {
             "title": "App-Sprache",
             "options": {
-              "EN": {
+              "en": {
                 "label": "Englisch",
                 "labelEnglish": "English"
               },
-              "ES": {
+              "es": {
                 "label": "Spanisch",
                 "labelEnglish": "Spanish"
               },
-              "FR": {
+              "fr": {
                 "label": "Französisch",
                 "labelEnglish": "French"
               },
-              "DE": {
+              "de": {
                 "label": "Deutsch",
                 "labelEnglish": "German"
               },
-              "NL": {
+              "nl": {
                 "label": "Niederländisch",
                 "labelEnglish": "Dutch"
               }

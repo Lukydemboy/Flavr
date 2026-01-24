@@ -1,8 +1,7 @@
 import GlobeIcon from '@/components/icons/Globe';
 import { ActionButton, Page, StyledText } from '@/components/ui';
 import { Language } from '@/domain/enums/language.enum';
-import { useStorageState } from '@/hooks/storage';
-import { LANGUAGE_STORAGE_KEY } from '@/i18n';
+import { StorageKeys, useStorageState } from '@/hooks/storage';
 import { useUpdateUser } from '@/queries/user';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
@@ -10,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, View } from 'react-native';
 
 export default function SettingsLanguageScreen() {
-  const [[isLoadingLanguageState, language]] = useStorageState<Language>(LANGUAGE_STORAGE_KEY);
+  const [[isLoadingLanguageState, language]] = useStorageState<Language>(StorageKeys.Language);
   const [selectedLanguage, setSelectedLanguage] = useState<Language>();
   const { t } = useTranslation();
   const router = useRouter();

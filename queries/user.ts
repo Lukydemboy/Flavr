@@ -3,8 +3,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { UpdateUser, User } from '@/context/authContext';
 import { Range } from '@/domain/types/range';
 import axios from 'axios';
-import { useStorageState } from '@/hooks/storage';
-import { changeLanguage, LANGUAGE_STORAGE_KEY } from '@/i18n';
+import { changeLanguage } from '@/i18n';
 
 export const userKeys = {
   self: ['self'] as const,
@@ -20,8 +19,6 @@ export type UserFilters = {
 };
 
 export const useUser = () => {
-  const [_, setLanguage] = useStorageState(LANGUAGE_STORAGE_KEY);
-
   return useQuery({
     queryKey: userKeys.self,
     staleTime: 1000 * 60 * 5,

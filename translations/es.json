@@ -85,23 +85,23 @@
           "languageSelection": {
             "title": "Idioma de la aplicación",
             "options": {
-              "EN": {
+              "en": {
                 "label": "Inglés",
                 "labelEnglish": "English"
               },
-              "ES": {
+              "es": {
                 "label": "Español",
                 "labelEnglish": "Spanish"
               },
-              "FR": {
+              "fr": {
                 "label": "Francés",
                 "labelEnglish": "French"
               },
-              "DE": {
+              "de": {
                 "label": "Alemán",
                 "labelEnglish": "German"
               },
-              "NL": {
+              "nl": {
                 "label": "Holandés",
                 "labelEnglish": "Dutch"
               }
