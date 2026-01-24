@@ -42,8 +42,8 @@
       "duration": "{{duration}} minuten",
       "servings": "{{servings}} personen",
       "generatedFrom": {
-        "web": "Genereerd van {{host}}",
-        "image": "Genereerd vanaf afbeelding"
+        "web": "Gegenereerd van {{host}}",
+        "image": "Gegenereerd van een afbeelding"
       },
       "details": {
         "ingredients": "Ingrediënten",
