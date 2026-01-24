@@ -1,17 +1,17 @@
-import HyperLinkIcon from '@/components/icons/HyperLink';
 import ImageIcon from '@/components/icons/Image';
 import InfoIcon from '@/components/icons/Info';
 import { ActionButton, Page, StyledText } from '@/components/ui';
 import ImagePicker from '@/components/ui/ImagePicker';
 import { Asset } from '@/domain/types/asset';
 import { useGenerateRecipeFromImage } from '@/queries/recipe';
-import { ImagePickerAsset } from 'expo-image-picker';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 export default function CreateRecipeFromImageScreen() {
   const [image, setImage] = useState<Asset | null>(null);
+  const { t } = useTranslation();
   const router = useRouter();
 
   const { mutateAsync: generateRecipeFromImage, isPending } = useGenerateRecipeFromImage();
@@ -27,26 +27,21 @@ export default function CreateRecipeFromImageScreen() {
           </View>
         </View>
 
-        <StyledText className="text-slate-800 text-xl mt-6" weight="bold">
-          Import from image
+        <StyledText className="text-slate-800 text-xl mt-6" weight="black">
+          {t('screen.create.image.title')}
         </StyledText>
-        <StyledText className="text-slate-400 mt-2 text-center mx-9">
-          Paste a link from the recipe you want to import and we'll extract the recipe details for you!
-        </StyledText>
+        <StyledText className="text-slate-400 mt-2 text-center mx-9">{t('screen.create.image.description')}</StyledText>
       </View>
 
       <ImagePicker onImagePicked={setImage} />
       <View className="mt-2 mx-2 flex flex-row items-center gap-x-2">
         <InfoIcon color="#28524b" width={14} height={14} />
-        <StyledText className="text-xs text-slate-400 ml-2">
-          We try to extract the recipe details from the image you provide. If the recipe is not found or the details are
-          incomplete, you can manually edit the recipe details.
-        </StyledText>
+        <StyledText className="text-xs text-slate-400 ml-2">{t('screen.create.image.hint')}</StyledText>
       </View>
       <ActionButton
         viewClassName="mt-auto"
         size="large"
-        text="Generate recipe"
+        text={t('screen.create.image.action.generate')}
         isLoading={isPending}
         disabled={!image || isPending}
         onPress={() => generateRecipeFromImage(image!).then(() => router.back())}

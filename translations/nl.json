@@ -1,0 +1,147 @@
+{
+  "screen": {
+    "recipes": {
+      "search": {
+        "placeholder": "Zoek recepten..."
+      },
+      "list": {
+        "empty": "Geen recepten gevonden",
+        "item": {
+          "duration": "{{duration}} minuten",
+          "sharedBy": "gedeeld door {{name}}"
+        }
+      }
+    },
+    "create": {
+      "image": {
+        "title": "Genereer vanaf een afbeelding",
+        "description": "Upload of neem een foto van een recept. We doen ons best deze te converteren.",
+        "hint": "We proberen het recept te genereren op basis van de afbeelding die u uploadt of neemt. Als het recept niet wordt gevonden of de details onvolledig zijn, kunt u de receptdetails handmatig bewerken.",
+        "action": {
+          "generate": "Genereer recept"
+        }
+      },
+      "url": {
+        "title": "Genereer vanaf URL",
+        "description": "Voer een URL in naar een recept. We doen ons best deze te converteren.",
+        "form": {
+          "field": {
+            "url": {
+              "label": "Recipe URL",
+              "placeholder": "Enter a URL",
+              "hint": "We try to extract the recipe details from the URL you provide. If the recipe is not found or the details are incomplete, you can manually edit the recipe details."
+            }
+          },
+          "action": {
+            "submit": "Generate recipe"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "duration": "{{duration}} minuten",
+      "servings": "{{servings}} personen",
+      "generatedFrom": {
+        "web": "Genereerd van {{host}}",
+        "image": "Genereerd vanaf afbeelding"
+      },
+      "ingredients": {
+        "title": "Ingrediënten"
+      }
+    },
+    "settings": {
+      "profile": {
+        "action": {
+          "editProfile": "Bewerk profiel"
+        }
+      },
+      "personalization": {
+        "title": "Persoonlijkheid",
+        "item": {
+          "preferredTags": "Voorkeurslabels",
+          "dietaryPreferences": "Voorkeursvoeding",
+          "allergies": "Allergieën"
+        }
+      },
+      "appSettings": {
+        "title": "App instellingen",
+        "item": {
+          "language": "Taal",
+          "notifications": "Notificaties",
+          "theme": "Thema"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "item": {
+          "helpCenter": "Hulpcentrum",
+          "privacyPolicy": "Privacybeleid"
+        }
+      },
+      "screen": {
+        "language": {
+          "title": "Taal",
+          "description": "Kies jouw taal voor de app.",
+          "languageSelection": {
+            "title": "App taal",
+            "options": {
+              "en": {
+                "label": "Engels",
+                "labelEnglish": "English"
+              },
+              "es": {
+                "label": "Español",
+                "labelEnglish": "Spanish"
+              },
+              "fr": {
+                "label": "Français",
+                "labelEnglish": "French"
+              },
+              "de": {
+                "label": "Deutsch",
+                "labelEnglish": "German"
+              },
+              "nl": {
+                "label": "Nederlands",
+                "labelEnglish": "Dutch"
+              }
+            }
+          },
+          "action": {
+            "submit": "Taal opslaan"
+          }
+        }
+      }
+    }
+  },
+  "component": {
+    "createSheet": {
+      "title": "Maak een nieuw recept",
+      "description": "Er zijn verschillende manieren om een recept te maken. De eenvoudigste manier is het genereren van een recept vanaf een afbeelding of een URL.",
+      "option": {
+        "image": {
+          "title": "Genereren vanaf afbeelding",
+          "description": "Upload of neem een foto van een recept. We proberen het best te converteren naar dit app."
+        },
+        "manual": {
+          "title": "Voeg handmatig een recept toe",
+          "description": "Voer de receptdetails handmatig in."
+        },
+        "social": {
+          "title": "Genereren vanaf sociale media",
+          "description": "Voer een URL in naar een recept. We proberen het best te converteren naar dit app."
+        },
+        "webpage": {
+          "title": "Genereren vanaf webpagina",
+          "description": "Importeer van een webpagina met behulp van de URL."
+        }
+      }
+    },
+    "imagePicker": {
+      "title": "Selecteer een afbeelding",
+      "action": {
+        "remove": "Verwijderen"
+      }
+    }
+  }
+}

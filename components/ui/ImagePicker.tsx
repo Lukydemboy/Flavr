@@ -5,6 +5,7 @@ import UploadIcon from '../icons/Upload';
 import { StyledText } from './StyledText';
 import { Asset } from '@/domain/types/asset';
 import { ImagePickerAsset } from 'expo-image-picker';
+import { useTranslation } from 'react-i18next';
 
 type ImagePickerProps = {
   onImagePicked: (image: ImagePickerAsset) => void;
@@ -12,6 +13,7 @@ type ImagePickerProps = {
 };
 
 export default function ImagePicker({ onImagePicked, preSelectedImage }: ImagePickerProps) {
+  const { t } = useTranslation();
   const [image, setImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -50,7 +52,7 @@ export default function ImagePicker({ onImagePicked, preSelectedImage }: ImagePi
         {image ? <Image source={{ uri: image }} className="rounded-3xl" style={styles.image} /> : <UploadIcon />}
         {!image && (
           <StyledText className="text-slate-600 mt-4" weight="bold">
-            Select image
+            {t('component.imagePicker.title')}
           </StyledText>
         )}
         {image && (
@@ -59,7 +61,7 @@ export default function ImagePicker({ onImagePicked, preSelectedImage }: ImagePi
             className="bg-white border-rose-600 border-2 rounded-xl py-2 px-4 mt-4"
           >
             <StyledText className="text-sm text-rose-600" weight="semiBold">
-              Remove image
+              {t('component.imagePicker.action.remove')}
             </StyledText>
           </Pressable>
         )}

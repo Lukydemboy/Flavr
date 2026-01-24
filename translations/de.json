@@ -1,0 +1,159 @@
+{
+  "screen": {
+    "recipes": {
+      "search": {
+        "placeholder": "Suche nach Rezepten..."
+      },
+      "list": {
+        "empty": "Keine Rezepte gefunden",
+        "item": {
+          "duration": "{{duration}} Minuten",
+          "sharedBy": "geteilte von {{name}}"
+        }
+      }
+    },
+    "create": {
+      "image": {
+        "title": "Erstelle aus einem Bild",
+        "description": "Lade ein Bild hoch oder nehme eine Foto eines Rezeptes. Wir versuchen es in ein Rezept für diese App zu konvertieren.",
+        "hint": "Wir versuchen die Details des Rezeptes aus dem Bild zu extrahieren. Wenn das Rezept nicht gefunden wird oder die Details unvollständig sind, kannst du die Details des Rezeptes manuell bearbeiten.",
+        "action": {
+          "generate": "Rezept erstellen"
+        }
+      },
+      "url": {
+        "title": "Erstelle aus einer URL",
+        "description": "Gib eine URL zu einem Rezept ein. Wir versuchen es in ein Rezept für diese App zu konvertieren.",
+        "form": {
+          "field": {
+            "url": {
+              "label": "URL des Rezeptes",
+              "placeholder": "Gib eine URL ein",
+              "hint": "Wir versuchen die Details des Rezeptes aus der URL zu extrahieren. Wenn das Rezept nicht gefunden wird oder die Details unvollständig sind, kannst du die Details des Rezeptes manuell bearbeiten."
+            }
+          },
+          "action": {
+            "submit": "Rezept erstellen"
+          }
+        }
+      },
+      "recipe": {
+        "duration": "{{duration}} Minuten",
+        "servings": "{{servings}} Portionen",
+        "generatedFrom": {
+          "web": "Generiert von {{host}}",
+          "image": "Generiert von Bild"
+        },
+        "ingredients": {
+          "title": "Zutaten"
+        }
+      }
+    },
+    "settings": {
+      "profile": {
+        "action": {
+          "editProfile": "Profil bearbeiten"
+        }
+      },
+      "personalization": {
+        "title": "Persönlichkeitszusammenstellung",
+        "item": {
+          "preferredTags": "Vorlieb für Labels",
+          "dietaryPreferences": "Vorlieb für Speisen",
+          "allergies": "Vorlieb für Allergien"
+        }
+      },
+      "appSettings": {
+        "title": "App-Einstellungen",
+        "item": {
+          "language": "Sprache",
+          "notifications": "Benachrichtigungen",
+          "theme": "Thema"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "item": {
+          "helpCenter": "Hilfezentrum",
+          "privacyPolicy": "Datenschutzrichtlinie"
+        }
+      },
+      "screen": {
+        "language": {
+          "title": "Sprache",
+          "description": "Wähle deine Sprache für die App.",
+          "languageSelection": {
+            "title": "App-Sprache",
+            "options": {
+              "en": {
+                "label": "Englisch",
+                "labelEnglish": "English"
+              },
+              "es": {
+                "label": "Spanisch",
+                "labelEnglish": "Spanish"
+              },
+              "fr": {
+                "label": "Französisch",
+                "labelEnglish": "French"
+              },
+              "de": {
+                "label": "Deutsch",
+                "labelEnglish": "German"
+              },
+              "nl": {
+                "label": "Niederländisch",
+                "labelEnglish": "Dutch"
+              }
+            }
+          },
+          "action": {
+            "submit": "Sprache speichern"
+          }
+        }
+      }
+    }
+  },
+  "recipes": {
+    "search": {
+      "placeholder": "Suche nach Rezepten..."
+    },
+    "list": {
+      "empty": "Keine Rezepte gefunden",
+      "item": {
+        "duration": "{{duration}} Minuten",
+        "sharedBy": "geteilte von {{name}}"
+      }
+    }
+  },
+  "component": {
+    "createSheet": {
+      "title": "Erstelle ein neues Rezept",
+      "description": "Es gibt verschiedene Möglichkeiten, ein Rezept zu erstellen. Die einfachste Möglichkeit ist es, ein Rezept aus einem Bild oder einer URL zu generieren.",
+      "option": {
+        "image": {
+          "title": "Erstelle aus einem Bild",
+          "description": "Lade ein Bild hoch oder nehme eine Foto eines Rezeptes. Wir versuchen es in ein Rezept für diese App zu konvertieren."
+        },
+        "manual": {
+          "title": "Erstelle manuell ein Rezept",
+          "description": "Gib die Details des Rezeptes manuell ein."
+        },
+        "social": {
+          "title": "Erstelle aus einem Social Media",
+          "description": "Gib eine URL zu einem Rezept auf einem Social Media Netzwerk ein. Wir versuchen es in ein Rezept für diese App zu konvertieren."
+        },
+        "webpage": {
+          "title": "Erstelle aus einer Webseite",
+          "description": "Importiere ein Rezept aus einer Webseite, indem du die URL eingibst."
+        }
+      }
+    },
+    "imagePicker": {
+      "title": "Wähle ein Bild aus",
+      "action": {
+        "remove": "Entfernen"
+      }
+    }
+  }
+}

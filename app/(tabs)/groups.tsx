@@ -2,9 +2,11 @@ import { ChevronRightIcon } from '@/components/icons/ChevronRight';
 import { Page, StyledText } from '@/components/ui';
 import { useGroups } from '@/queries/group';
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 
 export default function GroupsScreen() {
+  const { t } = useTranslation();
   const router = useRouter();
 
   const { data: groups, isLoading } = useGroups();

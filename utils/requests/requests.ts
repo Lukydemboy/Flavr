@@ -5,6 +5,7 @@ import { router } from 'expo-router';
 import { Platform } from 'react-native';
 import { StorageKeys } from '@/hooks/storage';
 import { Session } from '@/context/authContext';
+import { Language } from '@/domain/enums/language.enum';
 
 type Tokens = {
   accessToken: string;
@@ -18,11 +19,13 @@ export const configureAxios = () => {
 
   axios.interceptors.request.use(async config => {
     const tokens = await getTokensFromStorage();
+    const language = await getLanguageFromStorage();
 
     if (!config.headers) config.headers = new AxiosHeaders();
     if (tokens) config = addAuthHeader(config, tokens);
 
     config.headers.Accept = 'application/vnd.api+json';
+    config.headers['X-Language'] = language;
 
     return config;
   });
@@ -58,6 +61,13 @@ const getTokensFromStorage = async (): Promise<Tokens | null> => {
     Platform.OS === 'web' ? localStorage.getItem(StorageKeys.Session) : SecureStore.getItem(StorageKeys.Session);
 
   return sessionString ? (JSON.parse(sessionString) as Tokens) : null;
+};
+
+const getLanguageFromStorage = async (): Promise<Language> => {
+  const language =
+    Platform.OS === 'web' ? localStorage.getItem(StorageKeys.Language) : SecureStore.getItem(StorageKeys.Language);
+
+  return (language as Language) ?? Language.English;
 };
 
 const addAuthHeader = (

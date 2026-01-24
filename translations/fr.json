@@ -1,0 +1,147 @@
+{
+  "screen": {
+    "recipes": {
+      "search": {
+        "placeholder": "Chercher des recettes..."
+      },
+      "list": {
+        "empty": "Aucune recette trouvée",
+        "item": {
+          "duration": "{{duration}} minutes",
+          "sharedBy": "partagé par {{name}}"
+        }
+      }
+    },
+    "create": {
+      "image": {
+        "title": "Générer à partir d'une image",
+        "description": "Téléchargez ou prenez une photo d'une recette. Nous essayons de la convertir en recette pour cette application.",
+        "hint": "Nous essayons de générer la recette à partir de l'image que vous téléchargez ou prenez. Si la recette n'est pas trouvée ou les détails sont incomplets, vous pouvez éditer manuellement les détails de la recette.",
+        "action": {
+          "generate": "Générer la recette"
+        }
+      },
+      "url": {
+        "title": "Générer à partir d'une URL",
+        "description": "Entrez une URL vers une recette. Nous essayons de la convertir en recette pour cette application.",
+        "form": {
+          "field": {
+            "url": {
+              "label": "URL de la recette",
+              "placeholder": "Entrez une URL",
+              "hint": "Nous essayons d'extraire les détails de la recette à partir de l'URL que vous fournissez. Si la recette n'est pas trouvée ou les détails sont incomplets, vous pouvez éditer manuellement les détails de la recette."
+            }
+          },
+          "action": {
+            "submit": "Générer la recette"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "duration": "{{duration}} minutes",
+      "servings": "{{servings}} portions",
+      "generatedFrom": {
+        "web": "Généré depuis {{host}}",
+        "image": "Généré depuis image"
+      },
+      "ingredients": {
+        "title": "Ingrédients"
+      }
+    },
+    "settings": {
+      "profile": {
+        "action": {
+          "editProfile": "Éditer le profil"
+        }
+      },
+      "personalization": {
+        "title": "Perso",
+        "item": {
+          "preferredTags": "Préférences",
+          "dietaryPreferences": "Préférences alimentaires",
+          "allergies": "Allergies"
+        }
+      },
+      "appSettings": {
+        "title": "Paramètres de l'application",
+        "item": {
+          "language": "Langue",
+          "notifications": "Notifications",
+          "theme": "Thème"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "item": {
+          "helpCenter": "Centre d'aide",
+          "privacyPolicy": "Politique de confidentialité"
+        }
+      },
+      "screen": {
+        "language": {
+          "title": "Langue",
+          "description": "Choisissez la langue pour l'application.",
+          "languageSelection": {
+            "title": "Langue de l'application",
+            "options": {
+              "en": {
+                "label": "Anglais",
+                "labelEnglish": "English"
+              },
+              "es": {
+                "label": "Espagnol",
+                "labelEnglish": "Spanish"
+              },
+              "fr": {
+                "label": "Français",
+                "labelEnglish": "French"
+              },
+              "de": {
+                "label": "Allemand",
+                "labelEnglish": "German"
+              },
+              "nl": {
+                "label": "Néerlandais",
+                "labelEnglish": "Dutch"
+              }
+            }
+          },
+          "action": {
+            "submit": "Sauvegarder la langue"
+          }
+        }
+      }
+    }
+  },
+  "component": {
+    "createSheet": {
+      "title": "Créer un nouveau recette",
+      "description": "Il existe différentes manières de créer un recette. La manière la plus simple est de générer une recette à partir d'une image ou d'une URL.",
+      "option": {
+        "image": {
+          "title": "Générer à partir d'une image",
+          "description": "Téléchargez ou prenez une photo d'une recette. Nous essayons de la convertir en recette pour cette application."
+        },
+        "manual": {
+          "title": "Ajouter manuellement une recette",
+          "description": "Entrez les détails de la recette manuellement."
+        },
+        "social": {
+          "title": "Générer à partir de médias sociaux",
+          "description": "Entrez une URL vers une recette sur un réseau social. Nous essayons de la convertir en recette pour cette application."
+        },
+        "webpage": {
+          "title": "Générer à partir d'une page web",
+          "description": "Importez une recette depuis une page web en utilisant l'URL."
+        }
+      }
+    },
+    "imagePicker": {
+      "title": "Sélectionner une image",
+      "action": {
+        "remove": "Supprimer"
+      }
+    }
+  }
+}

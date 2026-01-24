@@ -1,21 +1,26 @@
-import { PropsWithChildren, createContext, useContext, useState } from "react";
-import { useQueryClient } from "@tanstack/react-query";
-import { useStorageState } from "@/hooks/storage";
-import { env } from "@/utils/env/env";
-import axios from "axios";
-import { Language } from "@/domain/enums/language.enum";
+import { PropsWithChildren, createContext, useContext, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useStorageState } from '@/hooks/storage';
+import { env } from '@/utils/env/env';
+import axios from 'axios';
+import { Language } from '@/domain/enums/language.enum';
 
 export type User = {
   id: string;
   email: string;
   username: string;
   language: Language;
+  preferences?: {
+    language: Language;
+  };
 };
 
 export type UpdateUser = {
   email: string;
   username: string;
-  language: Language;
+  preferences: {
+    language: Language;
+  };
 };
 
 export type Session = { accessToken: string; refreshToken: string };
@@ -37,9 +42,9 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 export function useSession() {
   const value = useContext(AuthContext);
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     if (value === null) {
-      throw new Error("useSession must be wrapped in a <SessionProvider />");
+      throw new Error('useSession must be wrapped in a <SessionProvider />');
     }
   }
 
@@ -47,7 +52,7 @@ export function useSession() {
 }
 
 export function SessionProvider(props: PropsWithChildren) {
-  const [[, session], setSession] = useStorageState("session");
+  const [[, session], setSession] = useStorageState('session');
   const [error] = useState<Error | undefined>(undefined);
   const queryClient = useQueryClient();
 
@@ -59,10 +64,10 @@ export function SessionProvider(props: PropsWithChildren) {
             .post(`${env.api.baseUrl}/auth/login`, {
               ...body,
             })
-            .then((res) => {
+            .then(res => {
               setSession(JSON.stringify(res.data as Session));
             })
-            .catch((err) => {
+            .catch(err => {
               console.error(err);
             });
         },

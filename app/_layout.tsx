@@ -16,13 +16,16 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from '@/context/authContext';
 import { configureAxios } from '@/utils/requests/requests';
 import { ShareIntentProvider } from 'expo-share-intent';
-import '../global.css';
 import AppHeader from '@/components/headers/AppHeader';
+import { StorageKeys, useStorageState } from '@/hooks/storage';
+import '../global.css';
+import i18n from '../i18n';
 
 configureAxios();
 
 export default function RootLayout() {
   const router = useRouter();
+  const [[isLoadingInitialLanguage, initialLanguage]] = useStorageState(StorageKeys.Language);
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -35,7 +38,15 @@ export default function RootLayout() {
       }),
   );
 
-  const [loaded] = useFonts({
+  useEffect(() => {
+    if (!isLoadingInitialLanguage) {
+      if (initialLanguage && initialLanguage !== i18n.language) {
+        i18n.changeLanguage(initialLanguage);
+      }
+    }
+  }, [isLoadingInitialLanguage, initialLanguage]);
+
+  const [fontsLoaded] = useFonts({
     Nunito_200ExtraLight,
     Nunito_300Light,
     Nunito_400Regular,
@@ -47,12 +58,12 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if (loaded) {
+    if (fontsLoaded && !isLoadingInitialLanguage) {
       SplashScreen.hideAsync();
     }
-  }, [loaded, router]);
+  }, [fontsLoaded, isLoadingInitialLanguage, router]);
 
-  if (!loaded) {
+  if (!fontsLoaded || isLoadingInitialLanguage) {
     return null;
   }
 
@@ -82,9 +93,27 @@ export default function RootLayout() {
                 }}
               />
               <Stack.Screen
+                name="recipes/create/image"
+                options={{
+                  header: () => <AppHeader title={'Generate recipe'} fallbackBackscreen={'/(tabs)/recipes'} />,
+                }}
+              />
+              <Stack.Screen
+                name="recipes/create/link"
+                options={{
+                  header: () => <AppHeader title={'Generate recipe'} fallbackBackscreen={'/(tabs)/recipes'} />,
+                }}
+              />
+              <Stack.Screen
                 name="groups/create"
                 options={{
                   header: () => <AppHeader title={'Create group'} fallbackBackscreen={'/(tabs)/groups'} />,
+                }}
+              />
+              <Stack.Screen
+                name="settings/language"
+                options={{
+                  header: () => <AppHeader title={'Language'} fallbackBackscreen={'/(tabs)/settings'} />,
                 }}
               />
             </Stack>

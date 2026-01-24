@@ -16,6 +16,7 @@ import { useDeleteRecipe, useRecipe } from '@/queries/recipe';
 import { useUser } from '@/queries/user';
 import { Redirect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, View, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -26,6 +27,7 @@ export default function RecipeDetailScreen() {
   const navigation = useNavigation();
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
   const { id, title, imageUrl } = useLocalSearchParams<{ id: string; title: string; imageUrl: string }>();
   const { data: user } = useUser();
   const { data: recipe, isLoading } = useRecipe(id);
@@ -146,10 +148,10 @@ export default function RecipeDetailScreen() {
 
                 <View className="flex flex-row mt-4 gap-2 flex-wrap">
                   <StyledText className="bg-white rounded-lg py-2 px-3 border-2 border-gray-300">
-                    {recipe.duration / 60} minutes
+                  {t('screen.recipe.duration', { duration: recipe.duration / 60 })}
                   </StyledText>
                   <StyledText className="bg-white rounded-lg py-2 px-3 border-2 border-gray-300">
-                    {recipe.servings} servings
+                  {t('screen.recipe.duration', { duration: recipe.servings / 60 })}
                   </StyledText>
                   <GeneratedFrom recipe={recipe} />
                 </View>

@@ -1,0 +1,147 @@
+{
+  "screen": {
+    "recipes": {
+      "search": {
+        "placeholder": "Search recipes..."
+      },
+      "list": {
+        "empty": "No recipes found",
+        "item": {
+          "duration": "{{duration}} minutes",
+          "sharedBy": "Shared by {{name}}"
+        }
+      }
+    },
+    "create": {
+      "image": {
+        "title": "Create from an image",
+        "description": "Upload or snap an image of a recipe. We will try our best to convert it to this app.",
+        "hint": "We try to extract the recipe details from the image you provide. If the recipe is not found or the details are incomplete, you can manually edit the recipe details.",
+        "action": {
+          "generate": "Generate recipe"
+        }
+      },
+      "url": {
+        "title": "Create from URL",
+        "description": "Enter a URL to a recipe. We will try our best to convert it to this app.",
+        "form": {
+          "field": {
+            "url": {
+              "label": "Recipe URL",
+              "placeholder": "Enter a URL",
+              "hint": "We try to extract the recipe details from the URL you provide. If the recipe is not found or the details are incomplete, you can manually edit the recipe details."
+            }
+          },
+          "action": {
+            "submit": "Generate recipe"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "duration": "{{duration}} minutes",
+      "servings": "{{servings}} servings",
+      "generatedFrom": {
+        "web": "Generated from {{host}}",
+        "image": "Generated from image"
+      },
+      "ingredients": {
+        "title": "Ingredients"
+      }
+    },
+    "settings": {
+      "profile": {
+        "action": {
+          "editProfile": "Edit profile"
+        }
+      },
+      "personalization": {
+        "title": "Personalization",
+        "item": {
+          "preferredTags": "Preferred Tags",
+          "dietaryPreferences": "Dietary Preferences",
+          "allergies": "Allergies"
+        }
+      },
+      "appSettings": {
+        "title": "App Settings",
+        "item": {
+          "language": "Language",
+          "notifications": "Notifications",
+          "theme": "Theme"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "item": {
+          "helpCenter": "Help center",
+          "privacyPolicy": "Privacy Policy"
+        }
+      },
+      "screen": {
+        "language": {
+          "title": "Language",
+          "description": "Select your preferred language for the app.",
+          "languageSelection": {
+            "title": "Primary language",
+            "options": {
+              "en": {
+                "label": "English",
+                "labelEnglish": "English"
+              },
+              "es": {
+                "label": "Español",
+                "labelEnglish": "Spanish"
+              },
+              "fr": {
+                "label": "Français",
+                "labelEnglish": "French"
+              },
+              "de": {
+                "label": "Deutsch",
+                "labelEnglish": "German"
+              },
+              "nl": {
+                "label": "Nederlands",
+                "labelEnglish": "Dutch"
+              }
+            }
+          },
+          "action": {
+            "submit": "Save language"
+          }
+        }
+      }
+    }
+  },
+  "component": {
+    "createSheet": {
+      "title": "Create a new recipe",
+      "description": "There are different ways to create a recipe. The easiest way is to generate a recipe from either an image or a URL.",
+      "option": {
+        "image": {
+          "title": "Generate from image",
+          "description": "Upload or snap an image of a recipe. We will try our best to convert it to this app."
+        },
+        "manual": {
+          "title": "Create manually",
+          "description": "Enter the recipe details manually."
+        },
+        "social": {
+          "title": "Generate from social media",
+          "description": "Enter a URL to a recipe. We will try our best to convert it to this app."
+        },
+        "webpage": {
+          "title": "Generate from web page",
+          "description": "Import from a webpage using the URL."
+        }
+      }
+    },
+    "imagePicker": {
+      "title": "Select an image",
+      "action": {
+        "remove": "Remove"
+      }
+    }
+  }
+}
