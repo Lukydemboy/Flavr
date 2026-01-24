@@ -64,8 +64,6 @@ export default function RecipeDetailScreen() {
     return <Redirect href={'/recipes'} />;
   }
 
-  console.log(imageUrl);
-
   return (
     <Page className="relative" safeAreaTop={!recipe?.images.length && !imageUrl} container={false}>
       {(!!recipe?.images.length || imageUrl) && (
