@@ -21,9 +21,6 @@ export const configureAxios = () => {
     const tokens = await getTokensFromStorage();
     const language = await getLanguageFromStorage();
 
-    console.log('Tokens:', tokens);
-    console.log('Language:', language);
-
     if (!config.headers) config.headers = new AxiosHeaders();
     if (tokens) config = addAuthHeader(config, tokens);
 
