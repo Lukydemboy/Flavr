@@ -111,6 +111,15 @@
           "action": {
             "submit": "Guardar"
           }
+        },
+        "allergies": {
+          "notice": {
+            "title": "Por qué esto es importante",
+            "description": "Estos ajustes ocultarán automáticamente las recetas que contengan estos ingredientes y alertarán a tus grupos compartidos para mantener a todos a salvo."
+          },
+          "action": {
+            "submit": "Guardar alergias"
+          }
         }
       }
     }

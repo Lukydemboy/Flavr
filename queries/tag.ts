@@ -1,11 +1,6 @@
-import { Range } from '@/domain/types/range';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Tag } from '@/domain/types/tag';
-
-export type RecipeFilters = {
-  createdAt?: Partial<Range<Date>>;
-};
 
 export const tagKeys = {
   all: ['tags'] as const,

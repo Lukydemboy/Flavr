@@ -4,6 +4,7 @@ import { UpdateUser, User } from '@/context/authContext';
 import { Range } from '@/domain/types/range';
 import axios from 'axios';
 import { changeLanguage } from '@/i18n';
+import { Allergen } from '@/domain/types/allergen';
 
 export const userKeys = {
   self: ['self'] as const,
@@ -12,6 +13,7 @@ export const userKeys = {
   list: (filters: object) => [...userKeys.lists(), { filters }] as const,
   details: () => [...userKeys.all, 'detail'] as const,
   detail: (id: string) => [...userKeys.details(), id] as const,
+  allergies: ['self', 'allergies'] as const,
 };
 
 export type UserFilters = {
@@ -76,6 +78,30 @@ export const useUpdateUser = () => {
 
         return res.data;
       });
+    },
+  });
+};
+
+export const useAllergies = () =>
+  useQuery({
+    queryKey: userKeys.allergies,
+    queryFn: async () => {
+      return axios<Allergen[]>({
+        method: 'GET',
+        url: '/users/me/allergies',
+      }).then(res => res.data);
+    },
+  });
+
+export const useUpdateAllergies = () => {
+  return useMutation({
+    mutationKey: userKeys.allergies,
+    mutationFn: async (allergens: Allergen[]) => {
+      return axios<Allergen[]>({
+        method: 'PUT',
+        url: `users/me/allergies`,
+        data: { allergens },
+      }).then(res => res.data);
     },
   });
 };

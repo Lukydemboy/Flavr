@@ -111,6 +111,15 @@
           "action": {
             "submit": "Taal opslaan"
           }
+        },
+        "allergies": {
+          "notice": {
+            "title": "Waarom dit belangrijk is",
+            "description": "Deze instellingen verbergen automatisch recepten die deze ingrediënten bevatten en waarschuwen je gedeelde groepen om iedereen veilig te houden."
+          },
+          "action": {
+            "submit": "Allergieën opslaan"
+          }
         }
       }
     }

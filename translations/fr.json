@@ -111,6 +111,15 @@
           "action": {
             "submit": "Sauvegarder la langue"
           }
+        },
+        "allergies": {
+          "notice": {
+            "title": "Pourquoi c’est important",
+            "description": "Ces paramètres masqueront automatiquement les recettes contenant ces ingrédients et alerteront vos groupes partagés afin d’assurer la sécurité de tous."
+          },
+          "action": {
+            "submit": "Enregistrer les allergies"
+          }
         }
       }
     }

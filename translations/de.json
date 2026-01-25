@@ -111,6 +111,15 @@
           "action": {
             "submit": "Sprache speichern"
           }
+        },
+        "allergies": {
+          "notice": {
+            "title": "Warum das wichtig ist",
+            "description": "Diese Einstellungen blenden Rezepte mit diesen Zutaten automatisch aus und benachrichtigen deine geteilten Gruppen, um alle zu schützen."
+          },
+          "action": {
+            "submit": "Allergien speichern"
+          }
         }
       }
     }

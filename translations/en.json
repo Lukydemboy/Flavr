@@ -111,6 +111,15 @@
           "action": {
             "submit": "Save language"
           }
+        },
+        "allergies": {
+          "notice": {
+            "title": "Why this matters",
+            "description": "These settings will automatically hide recipes containing these ingredients and alert your shared groups to keep everyone safe."
+          },
+          "action": {
+            "submit": "Save allergies"
+          }
         }
       }
     }

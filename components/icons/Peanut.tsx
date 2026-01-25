@@ -1,0 +1,24 @@
+import * as React from 'react';
+import Svg, { Path } from 'react-native-svg';
+
+type Props = {
+  color?: string;
+  width?: number;
+  height?: number;
+};
+
+function PeanutIcon({ color, width, height }: Props) {
+  return (
+    <Svg fill="none" viewBox="0 0 24 24" height={height} width={width}>
+      <Path
+        fill={color}
+        fillRule="evenodd"
+        d="M15.846 1.25c-3.56 0-6.49 2.703-6.863 6.155-4.146-.018-7.733 3.417-7.733 7.672a7.673 7.673 0 007.673 7.673c4.255 0 7.69-3.587 7.672-7.733 3.452-.374 6.155-3.303 6.155-6.863a6.904 6.904 0 00-6.904-6.904zM10 20v-2H8v2h2zm0-7v2H8v-2h2zm7-2V9h-2v2h2zm-3 4v2h-2v-2h2z"
+        clipRule="evenodd"
+        strokeWidth={1}
+      />
+    </Svg>
+  );
+}
+
+export default PeanutIcon;
