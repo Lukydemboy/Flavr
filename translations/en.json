@@ -120,6 +120,12 @@
           "action": {
             "submit": "Save allergies"
           }
+        },
+        "dietaryPreferences": {
+          "description": "These settings will automatically hide recipes containing these ingredients and alert your shared groups to keep everyone safe.",
+          "action": {
+            "submit": "Save preferences"
+          }
         }
       }
     }

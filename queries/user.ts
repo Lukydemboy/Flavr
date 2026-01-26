@@ -5,6 +5,7 @@ import { Range } from '@/domain/types/range';
 import axios from 'axios';
 import { changeLanguage } from '@/i18n';
 import { Allergen } from '@/domain/types/allergen';
+import { Tag } from '@/domain/types/tag';
 
 export const userKeys = {
   self: ['self'] as const,
@@ -14,6 +15,7 @@ export const userKeys = {
   details: () => [...userKeys.all, 'detail'] as const,
   detail: (id: string) => [...userKeys.details(), id] as const,
   allergies: ['self', 'allergies'] as const,
+  dietaryPreferences: ['self', 'dietaryPreferences'] as const,
 };
 
 export type UserFilters = {
@@ -101,6 +103,30 @@ export const useUpdateAllergies = () => {
         method: 'PUT',
         url: `users/me/allergies`,
         data: { allergens },
+      }).then(res => res.data);
+    },
+  });
+};
+
+export const useDietaryPreferences = () =>
+  useQuery({
+    queryKey: userKeys.dietaryPreferences,
+    queryFn: async () => {
+      return axios<Tag[]>({
+        method: 'GET',
+        url: '/users/me/dietary-preferences',
+      }).then(res => res.data);
+    },
+  });
+
+export const useUpdateDietaryPreferences = () => {
+  return useMutation({
+    mutationKey: userKeys.dietaryPreferences,
+    mutationFn: async (preferences: Tag[]) => {
+      return axios<Tag[]>({
+        method: 'PUT',
+        url: `users/me/dietary-preferences`,
+        data: { preferences },
       }).then(res => res.data);
     },
   });

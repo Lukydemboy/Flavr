@@ -113,6 +113,12 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen
+                  name="settings/dietary-preferences"
+                  options={{
+                    header: () => <AppHeader title={'Dietary preferences'} fallbackBackscreen={'/(tabs)/settings'} />,
+                  }}
+                />
+                <Stack.Screen
                   name="settings/allergies"
                   options={{
                     header: () => <AppHeader title={'Allergies'} fallbackBackscreen={'/(tabs)/settings'} />,
