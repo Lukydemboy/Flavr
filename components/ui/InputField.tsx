@@ -9,6 +9,7 @@ type Props = {
   onChangeText: (text: string) => void;
   multiline?: boolean;
   error?: string;
+  disabled?: boolean;
   autoComplete?:
     | 'additional-name'
     | 'address-line1'
@@ -79,6 +80,7 @@ export const InputField = ({
   onChangeText,
   className,
   error,
+  disabled = false,
   multiline = false,
   onSubmitEditing,
 }: Props) => {
@@ -92,6 +94,7 @@ export const InputField = ({
         keyboardType={keyboardType}
         autoCapitalize="sentences"
         autoComplete={autoComplete}
+        readOnly={disabled}
         multiline={multiline}
         numberOfLines={multiline ? 5 : undefined}
         style={multiline ? { height: 150 } : undefined}

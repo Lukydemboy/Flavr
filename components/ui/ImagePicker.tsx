@@ -8,11 +8,12 @@ import { ImagePickerAsset } from 'expo-image-picker';
 import { useTranslation } from 'react-i18next';
 
 type ImagePickerProps = {
-  onImagePicked: (image: ImagePickerAsset) => void;
+  onImagePicked: (image: ImagePickerAsset | null) => void;
   preSelectedImage?: Asset;
+  className?: string;
 };
 
-export default function ImagePicker({ onImagePicked, preSelectedImage }: ImagePickerProps) {
+export default function ImagePicker({ onImagePicked, preSelectedImage, className }: ImagePickerProps) {
   const { t } = useTranslation();
   const [image, setImage] = useState<string | null>(null);
 
@@ -46,7 +47,7 @@ export default function ImagePicker({ onImagePicked, preSelectedImage }: ImagePi
   return (
     <View style={styles.container}>
       <Pressable
-        className="relative border-4 border-gray-300 w-full p-4 pt-6 flex items-center justify-center border-dashed rounded-lg"
+        className={`relative border-4 border-gray-300 w-full p-4 pt-6 flex items-center justify-center border-dashed rounded-lg ${className}`}
         onPress={pickImage}
       >
         {image ? <Image source={{ uri: image }} className="rounded-3xl" style={styles.image} /> : <UploadIcon />}
@@ -57,7 +58,10 @@ export default function ImagePicker({ onImagePicked, preSelectedImage }: ImagePi
         )}
         {image && (
           <Pressable
-            onPress={() => setImage(null)}
+            onPress={() => {
+              setImage(null);
+              onImagePicked(null);
+            }}
             className="bg-white border-rose-600 border-2 rounded-xl py-2 px-4 mt-4"
           >
             <StyledText className="text-sm text-rose-600" weight="semiBold">

@@ -38,7 +38,7 @@ export default function SettingsScreen() {
         </StyledText>
         <StyledText className="mt-2 text-center text-slate-400">{user.email}</StyledText>
         <ActionButton
-          onPress={() => console.log('test')}
+          onPress={() => router.push('/settings/edit-profile')}
           buttonClassName="w-full"
           viewClassName="w-full mt-4"
           text={t('screen.settings.profile.action.editProfile')}

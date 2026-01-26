@@ -1,11 +1,14 @@
 import { Filterable, Pageable, Paginated, Searchable, Sortable } from '@/domain/types/listings';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { UpdateUser, User } from '@/context/authContext';
+import { UpdateUser, UpdateUserImage, User } from '@/context/authContext';
 import { Range } from '@/domain/types/range';
 import axios from 'axios';
 import { changeLanguage } from '@/i18n';
 import { Allergen } from '@/domain/types/allergen';
 import { Tag } from '@/domain/types/tag';
+import { ImageUtils } from '@/utils/image/image';
+import { Asset } from '@/domain/types/asset';
+import { useUploadInternalAsset } from './asset';
 
 export const userKeys = {
   self: ['self'] as const,
@@ -75,6 +78,33 @@ export const useUpdateUser = () => {
         method: 'PATCH',
         url: '/users/me',
         data: user,
+      }).then(res => {
+        queryClient.invalidateQueries({ queryKey: userKeys.self });
+
+        return res.data;
+      });
+    },
+  });
+};
+
+export const useUpdateUserImage = () => {
+  const queryClient = useQueryClient();
+  const { mutateAsync: uploadImage } = useUploadInternalAsset();
+
+  return useMutation({
+    mutationFn: async (data: UpdateUserImage) => {
+      const { image } = data;
+      let _image: Asset | undefined;
+
+      if (image) {
+        const file = await ImageUtils.normalizeAssetToUploadFile(image);
+        _image = await uploadImage(file);
+      }
+
+      return axios<User>({
+        method: 'PUT',
+        url: '/users/me/image',
+        data: { image: _image },
       }).then(res => {
         queryClient.invalidateQueries({ queryKey: userKeys.self });
 

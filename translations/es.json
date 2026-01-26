@@ -80,6 +80,20 @@
         }
       },
       "screen": {
+        "editProfile": {
+          "form": {
+            "email": {
+              "label": "Correo electrónico"
+            },
+            "bio": {
+              "label": "Biografía",
+              "placeholder": "Descríbete"
+            }
+          },
+          "action": {
+            "submit": "Guardar perfil"
+          }
+        },
         "language": {
           "title": "Idioma",
           "description": "Seleccione el idioma para la aplicación.",

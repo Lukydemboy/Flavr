@@ -80,6 +80,20 @@
         }
       },
       "screen": {
+        "editProfile": {
+          "form": {
+            "email": {
+              "label": "Email"
+            },
+            "bio": {
+              "label": "Bio",
+              "placeholder": "Describe yourself"
+            }
+          },
+          "action": {
+            "submit": "Save profile"
+          }
+        },
         "language": {
           "title": "Language",
           "description": "Select your preferred language for the app.",

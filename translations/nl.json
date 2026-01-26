@@ -80,6 +80,20 @@
         }
       },
       "screen": {
+        "editProfile": {
+          "form": {
+            "email": {
+              "label": "E-mailadres"
+            },
+            "bio": {
+              "label": "Bio",
+              "placeholder": "Beschrijf jezelf"
+            }
+          },
+          "action": {
+            "submit": "Profiel opslaan"
+          }
+        },
         "language": {
           "title": "Taal",
           "description": "Kies jouw taal voor de app.",
