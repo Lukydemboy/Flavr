@@ -77,7 +77,7 @@ export default function SettingsDietaryPreferencesScreen() {
       </ScrollView>
 
       <ActionButton
-        viewClassName="mt-auto"
+        viewClassName="mt-auto pt-2"
         isLoading={isPending}
         disabled={isPending}
         onPress={() => updateDietaryPreferences(selectedPreferences).then(() => router.back())}

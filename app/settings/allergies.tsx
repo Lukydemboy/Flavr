@@ -10,12 +10,14 @@ import { ActionButton, Page, StyledText } from '@/components/ui';
 import { Allergen } from '@/domain/types/allergen';
 import { useAllergens } from '@/queries/allergen';
 import { useAllergies, useUpdateAllergies } from '@/queries/user';
+import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, Switch, View } from 'react-native';
 
 export default function SettingsAllergiesScreen() {
   const { t } = useTranslation();
+  const router = useRouter();
   const [selectedAllergies, setSelectedAllergies] = useState<Allergen[]>([]);
 
   const { data: allergens, isLoading } = useAllergens();
@@ -23,7 +25,6 @@ export default function SettingsAllergiesScreen() {
   const { mutateAsync: updateAllergies, isPending } = useUpdateAllergies();
 
   useEffect(() => {
-    console.log(allergies);
     if (!isLoadingAllergies && allergies) {
       setSelectedAllergies(allergies);
     }
@@ -79,10 +80,10 @@ export default function SettingsAllergiesScreen() {
       </ScrollView>
 
       <ActionButton
-        viewClassName="mt-auto"
+        viewClassName="mt-auto pt-2"
         isLoading={isPending}
         disabled={isPending}
-        onPress={() => updateAllergies(selectedAllergies)}
+        onPress={() => updateAllergies(selectedAllergies).then(() => router.back())}
         text={t('screen.settings.screen.allergies.action.submit')}
       />
     </Page>
