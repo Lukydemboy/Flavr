@@ -6,7 +6,7 @@ import { useUpdateUser } from '@/queries/user';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View, Image } from 'react-native';
 
 export default function SettingsLanguageScreen() {
   const [[isLoadingLanguageState, language]] = useStorageState<Language>(StorageKeys.Language);
@@ -40,7 +40,7 @@ export default function SettingsLanguageScreen() {
               onPress={() => setSelectedLanguage(value)}
               className="flex flex-row items-center bg-white p-4 rounded-xl gap-x-4 shadow-sm"
             >
-              <GlobeIcon width={24} height={24} color="#32675e" />
+              {getFlagIcon(value)}
               <View>
                 <StyledText className="text-base" weight="bold">
                   {t(`screen.settings.screen.language.languageSelection.options.${value}.label`)}
@@ -67,9 +67,29 @@ export default function SettingsLanguageScreen() {
         viewClassName="mt-auto"
         isLoading={isPending}
         disabled={isPending}
-        onPress={() => updateUser({ preferences: { language: selectedLanguage } }).then(() => router.back())}
+        onPress={() => {
+          if (!selectedLanguage) return;
+          updateUser({ preferences: { language: selectedLanguage } }).then(() => router.back());
+        }}
         text={t('screen.settings.screen.language.action.submit')}
       />
     </Page>
   );
 }
+
+const getFlagIcon = (language: Language) => {
+  switch (language) {
+    case 'en':
+      return <Image className="w-8 h-5 rounded-xs" source={require('../../assets/flags/en.webp')} />;
+    case 'fr':
+      return <Image className="w-8 h-5 rounded-xs" source={require('../../assets/flags/fr.webp')} />;
+    case 'nl':
+      return <Image className="w-8 h-5 rounded-xs" source={require('../../assets/flags/nl.webp')} />;
+    case 'es':
+      return <Image className="w-8 h-5 rounded-xs" source={require('../../assets/flags/es.webp')} />;
+    case 'de':
+      return <Image className="w-8 h-5 rounded-xs" source={require('../../assets/flags/de.webp')} />;
+    default:
+      return <GlobeIcon width={24} height={24} color="#32675e" />;
+  }
+};
