@@ -98,7 +98,8 @@ export default function RecipesScreen() {
           data={data?.pages.flatMap(page => page.content || [])}
           showsVerticalScrollIndicator={false}
           onEndReached={() => fetchNextPage()}
-          columnWrapperClassName="gap-4"
+          columnWrapperClassName="justify-between"
+          contentContainerClassName="gap-4"
           ListEmptyComponent={
             <>
               {!isFetching && (
@@ -108,7 +109,7 @@ export default function RecipesScreen() {
               )}
             </>
           }
-          renderItem={({ item }) => <RecipePreview recipe={item} className="w-1/2" />}
+          renderItem={({ item }) => <RecipePreview recipe={item} className="w-[48%]" />}
           keyExtractor={item => item.id}
         />
       </Page>
