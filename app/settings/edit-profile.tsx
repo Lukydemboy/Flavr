@@ -14,11 +14,10 @@ export default function SettingsEditProfileScreen() {
   const { data: user } = useUser();
   const [bio, setBio] = useState<string>(user?.bio || '');
 
-  const { mutateAsync: updateUserImage } = useUpdateUserImage();
+  const { mutateAsync: updateUser, isPending: isUpdatingUser } = useUpdateUser();
+  const { mutateAsync: updateUserImage, isPending: isUpdatingImage } = useUpdateUserImage();
 
-  if (!user) {
-    return null;
-  }
+  if (!user) return null;
 
   return (
     <Page scrollEnabled={false}>
@@ -27,9 +26,7 @@ export default function SettingsEditProfileScreen() {
           <View className="relative w-full">
             <ImagePicker
               className="w-full"
-              onImagePicked={async image => {
-                await updateUserImage({ image });
-              }}
+              onImagePicked={async image => await updateUserImage({ image })}
               preSelectedImage={user.image ?? undefined}
             />
           </View>
@@ -52,18 +49,18 @@ export default function SettingsEditProfileScreen() {
           {t('screen.settings.screen.editProfile.form.bio.label')}
         </StyledText>
         <InputField
-          value={user.bio || ''}
-          placeholder={t('screen.settings.screen.editProfile.form.bio.placeholder')}
+          value={bio || ''}
           multiline
+          placeholder={t('screen.settings.screen.editProfile.form.bio.placeholder')}
           onChangeText={(text: string) => setBio(text)}
         />
       </ScrollView>
 
       <ActionButton
         viewClassName="mt-auto pt-2"
-        // isLoading={isPending}
-        // disabled={isPending}
-        onPress={() => updateUser({ ...user, bio }).then(() => router.back())}
+        isLoading={isUpdatingImage || isUpdatingUser}
+        disabled={isUpdatingImage || isUpdatingUser}
+        onPress={() => updateUser({ bio: bio ?? null }).then(() => router.back())}
         text={t('screen.settings.screen.editProfile.action.submit')}
       />
     </Page>
