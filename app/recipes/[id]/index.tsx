@@ -125,7 +125,7 @@ export default function RecipeDetailScreen() {
                     {t('screen.recipe.duration', { duration: recipe.duration / 60 })}
                   </StyledText>
                   <StyledText className="bg-white rounded-lg py-2 px-3 border-2 border-gray-300">
-                    {t('screen.recipe.duration', { duration: recipe.servings / 60 })}
+                    {t('screen.recipe.servings', { servings: recipe.servings })}
                   </StyledText>
                   <GeneratedFrom recipe={recipe} />
                 </View>
