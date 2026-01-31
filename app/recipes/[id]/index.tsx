@@ -24,13 +24,11 @@ export default function RecipeDetailScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
-  const { id, title, imageUrl } = useLocalSearchParams<{ id: string; title: string; imageUrl: string }>();
+  const { id, imageUrl } = useLocalSearchParams<{ id: string; title: string; imageUrl: string }>();
   const { data: user } = useUser();
   const { data: recipe, isLoading } = useRecipe(id);
 
   const { mutateAsync: deleteRecipe } = useDeleteRecipe(id);
-
-  useEffect(() => navigation.setOptions({ title }), [navigation, title]);
 
   if (!user) {
     return <Redirect href={'/login'} />;

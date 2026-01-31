@@ -15,6 +15,7 @@ export type User = {
   language: Language;
   image: Asset | null;
   bio: string | null;
+  pushToken: string | null;
   preferences?: {
     language: Language;
   };
@@ -24,6 +25,7 @@ export type UpdateUser = {
   email: string;
   username: string;
   bio: string | null;
+  pushToken: string | null;
   preferences: {
     language: Language;
   };

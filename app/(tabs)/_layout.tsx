@@ -3,10 +3,26 @@ import CogIcon from '@/components/icons/Cog';
 import HouseIcon from '@/components/icons/House';
 import PeopleIcon from '@/components/icons/People';
 import { HapticTab } from '@/components/ui';
+import { useUpdateUser, useUser } from '@/queries/user';
+import { PushNotifications } from '@/utils/push-notifications/push-notifications';
 import { Tabs } from 'expo-router';
+import { useEffect } from 'react';
 import { Platform } from 'react-native';
 
 export default function TabLayout() {
+  const { data: user } = useUser();
+  const { mutateAsync: updateUser } = useUpdateUser();
+
+  useEffect(() => {
+    PushNotifications.registerForPushNotificationsAsync()
+      .then(pushToken => {
+        if (pushToken && user?.pushToken !== pushToken) {
+          updateUser({ pushToken });
+        }
+      })
+      .catch((error: any) => console.log('something went wrong when registering for push notifications', error));
+  }, [updateUser]);
+
   return (
     <Tabs
       screenOptions={{
