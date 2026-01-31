@@ -113,6 +113,14 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen
+                  name="groups/[id]/index"
+                  options={{
+                    header: props => (
+                      <AppHeader title={props.options.title ?? ''} fallbackBackscreen={'/(tabs)/groups'} {...props} />
+                    ),
+                  }}
+                />
+                <Stack.Screen
                   name="settings/edit-profile"
                   options={{
                     header: () => <AppHeader title={'Edit profile'} fallbackBackscreen={'/(tabs)/settings'} />,
