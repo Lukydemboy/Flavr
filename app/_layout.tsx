@@ -18,13 +18,15 @@ import { configureAxios } from '@/utils/requests/requests';
 import { ShareIntentProvider } from 'expo-share-intent';
 import AppHeader from '@/components/headers/AppHeader';
 import { StorageKeys, useStorageState } from '@/hooks/storage';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import '../global.css';
 import i18n from '../i18n';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useTranslation } from 'react-i18next';
 
 configureAxios();
 
 export default function RootLayout() {
+  const { t } = useTranslation();
   const router = useRouter();
   const [[isLoadingInitialLanguage, initialLanguage]] = useStorageState(StorageKeys.Language);
   const [queryClient] = useState(
@@ -85,31 +87,31 @@ export default function RootLayout() {
                 <Stack.Screen
                   name="recipes/[id]/share"
                   options={{
-                    header: () => <AppHeader title={'Share recipe'} />,
+                    header: () => <AppHeader title={t('screen.shareRecipe.title')} />,
                   }}
                 />
                 <Stack.Screen
                   name="recipes/create/create"
                   options={{
-                    header: () => <AppHeader title={'Create recipe'} />,
+                    header: () => <AppHeader title={t('screen.create.title')} />,
                   }}
                 />
                 <Stack.Screen
                   name="recipes/create/image"
                   options={{
-                    header: () => <AppHeader title={'Generate recipe'} fallbackBackscreen={'/(tabs)/recipes'} />,
+                    header: () => <AppHeader title={t('screen.create.title')} fallbackBackscreen={'/(tabs)/recipes'} />,
                   }}
                 />
                 <Stack.Screen
                   name="recipes/create/link"
                   options={{
-                    header: () => <AppHeader title={'Generate recipe'} fallbackBackscreen={'/(tabs)/recipes'} />,
+                    header: () => <AppHeader title={t('screen.create.title')} fallbackBackscreen={'/(tabs)/recipes'} />,
                   }}
                 />
                 <Stack.Screen
                   name="groups/create"
                   options={{
-                    header: () => <AppHeader title={'Create group'} fallbackBackscreen={'/(tabs)/groups'} />,
+                    header: () => <AppHeader title={t('screen.create.title')} fallbackBackscreen={'/(tabs)/groups'} />,
                   }}
                 />
                 <Stack.Screen
@@ -123,31 +125,56 @@ export default function RootLayout() {
                 <Stack.Screen
                   name="settings/edit-profile"
                   options={{
-                    header: () => <AppHeader title={'Edit profile'} fallbackBackscreen={'/(tabs)/settings'} />,
+                    header: () => (
+                      <AppHeader
+                        title={t('screen.settings.editProfile.title')}
+                        fallbackBackscreen={'/(tabs)/settings'}
+                      />
+                    ),
                   }}
                 />
                 <Stack.Screen
                   name="settings/dietary-preferences"
                   options={{
-                    header: () => <AppHeader title={'Dietary preferences'} fallbackBackscreen={'/(tabs)/settings'} />,
+                    header: () => (
+                      <AppHeader
+                        title={t('screen.settings.screen.dietaryPreferences.title')}
+                        fallbackBackscreen={'/(tabs)/settings'}
+                      />
+                    ),
                   }}
                 />
                 <Stack.Screen
                   name="settings/allergies"
                   options={{
-                    header: () => <AppHeader title={'Allergies'} fallbackBackscreen={'/(tabs)/settings'} />,
+                    header: () => (
+                      <AppHeader
+                        title={t('screen.settings.screen.allergies.title')}
+                        fallbackBackscreen={'/(tabs)/settings'}
+                      />
+                    ),
                   }}
                 />
                 <Stack.Screen
                   name="settings/notifications"
                   options={{
-                    header: () => <AppHeader title={'Notifications'} fallbackBackscreen={'/(tabs)/settings'} />,
+                    header: () => (
+                      <AppHeader
+                        title={t('screen.settings.screen.notifications.title')}
+                        fallbackBackscreen={'/(tabs)/settings'}
+                      />
+                    ),
                   }}
                 />
                 <Stack.Screen
                   name="settings/language"
                   options={{
-                    header: () => <AppHeader title={'Language'} fallbackBackscreen={'/(tabs)/settings'} />,
+                    header: () => (
+                      <AppHeader
+                        title={t('screen.settings.screen.language.title')}
+                        fallbackBackscreen={'/(tabs)/settings'}
+                      />
+                    ),
                   }}
                 />
               </Stack>

@@ -13,6 +13,7 @@
       }
     },
     "create": {
+      "title": "New recipe",
       "image": {
         "title": "Create from an image",
         "description": "Upload or snap an image of a recipe. We will try our best to convert it to this app.",
@@ -50,6 +51,13 @@
         "directions": "Directions"
       }
     },
+    "shareRecipe": {
+      "title": "Share recipe",
+      "description": "Share this recipe with your friends and family.",
+      "action": {
+        "submit": "Share recipe"
+      }
+    },
     "settings": {
       "profile": {
         "action": {
@@ -81,6 +89,7 @@
       },
       "screen": {
         "editProfile": {
+          "title": "Profile",
           "form": {
             "email": {
               "label": "Email"
@@ -127,6 +136,7 @@
           }
         },
         "allergies": {
+          "title": "Allergies",
           "notice": {
             "title": "Why this matters",
             "description": "These settings will automatically hide recipes containing these ingredients and alert your shared groups to keep everyone safe."
@@ -136,12 +146,14 @@
           }
         },
         "dietaryPreferences": {
+          "title": "Dietary preferences",
           "description": "These settings will automatically hide recipes containing these ingredients and alert your shared groups to keep everyone safe.",
           "action": {
             "submit": "Save preferences"
           }
         },
         "notifications": {
+          "title": "Notifications",
           "description": "These settings determine which notifications you receive. You can choose which notifications you want to receive.",
           "option": {
             "share": {

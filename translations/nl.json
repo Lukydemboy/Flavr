@@ -13,6 +13,7 @@
       }
     },
     "create": {
+      "title": "Nieuw recept",
       "image": {
         "title": "Genereer vanaf een afbeelding",
         "description": "Upload of neem een foto van een recept. We doen ons best deze te converteren.",
@@ -50,6 +51,13 @@
         "directions": "Instructies"
       }
     },
+    "shareRecipe": {
+      "title": "Deel recept",
+      "description": "Deel dit recept met je vrienden en familie. Wanneer je het recept deelt, kunnen ze het recept bekijken en delen.",
+      "action": {
+        "submit": "Deel recept"
+      }
+    },
     "settings": {
       "profile": {
         "action": {
@@ -81,6 +89,7 @@
       },
       "screen": {
         "editProfile": {
+          "title": "Profiel",
           "form": {
             "email": {
               "label": "E-mailadres"
@@ -127,6 +136,7 @@
           }
         },
         "allergies": {
+          "title": "Allergieën",
           "notice": {
             "title": "Waarom dit belangrijk is",
             "description": "Deze instellingen verbergen automatisch recepten die deze ingrediënten bevatten en waarschuwen je gedeelde groepen om iedereen veilig te houden."
@@ -136,12 +146,14 @@
           }
         },
         "dietaryPreferences": {
+          "title": "Voedingsvoorkeuren",
           "description": "Deze instellingen verbergen automatisch recepten die deze ingrediënten bevatten en waarschuwen je gedeelde groepen om iedereen veilig te houden.",
           "action": {
             "submit": "Voorkeuren opslaan"
           }
         },
         "notifications": {
+          "title": "Notificaties",
           "description": "Deze instellingen bepalen welke meldingen je ontvangt. Je kiest zelf welke meldingen je wilt ontvangen.",
           "option": {
             "share": {

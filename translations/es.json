@@ -13,6 +13,7 @@
       }
     },
     "create": {
+      "title": "Crear receta",
       "image": {
         "title": "Crear desde una imagen",
         "description": "Cargue una imagen o tome una foto de una receta. Intentamos convertirla en una receta para esta aplicación.",
@@ -50,6 +51,13 @@
         }
       }
     },
+    "shareRecipe": {
+      "title": "Compartir receta",
+      "description": "Comparte esta receta con tus amigos y familiares. Cuando compartes la receta, pueden verla y compartirla.",
+      "action": {
+        "submit": "Compartir receta"
+      }
+    },
     "settings": {
       "profile": {
         "action": {
@@ -81,6 +89,7 @@
       },
       "screen": {
         "editProfile": {
+          "title": "Editar perfil",
           "form": {
             "email": {
               "label": "Correo electrónico"
@@ -127,6 +136,7 @@
           }
         },
         "allergies": {
+          "title": "Alergias",
           "notice": {
             "title": "Por qué esto es importante",
             "description": "Estos ajustes ocultarán automáticamente las recetas que contengan estos ingredientes y alertarán a tus grupos compartidos para mantener a todos a salvo."
@@ -136,12 +146,14 @@
           }
         },
         "dietaryPreferences": {
+          "title": "Preferencias dietéticas",
           "description": "Estas configuraciones ocultarán automáticamente las recetas que contengan estos ingredientes y avisarán a tus grupos compartidos para mantener a todos seguros.",
           "action": {
             "submit": "Guardar preferencias"
           }
         },
         "notifications": {
+          "title": "Notificaciones",
           "description": "Estas configuraciones determinan qué notificaciones recibes. Puedes elegir cuáles deseas recibir.",
           "option": {
             "share": {

@@ -7,9 +7,11 @@ import { useGroups } from '@/queries/group';
 import { useRecipe, useSetRecipeGroups } from '@/queries/recipe';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, View } from 'react-native';
 
 export default function ShareRecipeScreen() {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGroups, setSelectedGroups] = useState<Group[]>([]);
   const [filteredGroups, setFilteredGroups] = useState<Group[]>([]);
@@ -44,8 +46,8 @@ export default function ShareRecipeScreen() {
 
   return (
     <Page>
-      <StyledTitle className="text-xl text-left font-bold mb-2 pt-6">Share recipe</StyledTitle>
-      <StyledText className="text-slate-500 text-left mb-4">
+      <StyledText className="text-slate-500 leading-relaxed text-left mb-4">
+        {t('screen.shareRecipe.description')}
         Select the groups you want the recipe to be shared with.
       </StyledText>
       <InputField
@@ -121,7 +123,7 @@ export default function ShareRecipeScreen() {
         disabled={isPending}
         isLoading={isPending}
         onPress={() => shareRecipe(selectedGroups).then(() => router.back())}
-        text="Share recipe"
+        text={t('screen.shareRecipe.action.submit')}
       />
     </Page>
   );

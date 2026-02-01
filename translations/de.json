@@ -13,6 +13,7 @@
       }
     },
     "create": {
+      "title": "Erstelle ein Rezept",
       "image": {
         "title": "Erstelle aus einem Bild",
         "description": "Lade ein Bild hoch oder nehme eine Foto eines Rezeptes. Wir versuchen es in ein Rezept für diese App zu konvertieren.",
@@ -50,6 +51,13 @@
         }
       }
     },
+    "shareRecipe": {
+      "title": "Rezept teilen",
+      "description": "Teile dein Rezept mit anderen Nutzern oder Gruppen.",
+      "action": {
+        "submit": "Rezept teilen"
+      }
+    },
     "settings": {
       "profile": {
         "action": {
@@ -81,6 +89,7 @@
       },
       "screen": {
         "editProfile": {
+          "title": "Profil bearbeiten",
           "form": {
             "email": {
               "label": "E-Mail"
@@ -127,6 +136,7 @@
           }
         },
         "allergies": {
+          "title": "Allergien",
           "notice": {
             "title": "Warum das wichtig ist",
             "description": "Diese Einstellungen blenden Rezepte mit diesen Zutaten automatisch aus und benachrichtigen deine geteilten Gruppen, um alle zu schützen."
@@ -136,12 +146,14 @@
           }
         },
         "dietaryPreferences": {
+          "title": "Diätvorlieben",
           "description": "Diese Einstellungen blenden automatisch Rezepte aus, die diese Zutaten enthalten, und informieren deine geteilten Gruppen, um alle zu schützen.",
           "action": {
             "submit": "Einstellungen speichern"
           }
         },
         "notifications": {
+          "title": "Benachrichtigungen",
           "description": "Diese Einstellungen bestimmen, welche Benachrichtigungen du erhältst. Du kannst selbst auswählen, welche du bekommen möchtest.",
           "option": {
             "share": {
@@ -169,18 +181,6 @@
             "submit": "Einstellungen speichern"
           }
         }
-      }
-    }
-  },
-  "recipes": {
-    "search": {
-      "placeholder": "Suche nach Rezepten..."
-    },
-    "list": {
-      "empty": "Keine Rezepte gefunden",
-      "item": {
-        "duration": "{{duration}} Minuten",
-        "sharedBy": "geteilte von {{name}}"
       }
     }
   },
