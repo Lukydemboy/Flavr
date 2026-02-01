@@ -140,6 +140,30 @@
           "action": {
             "submit": "Save preferences"
           }
+        },
+        "notifications": {
+          "description": "These settings determine which notifications you receive. You can choose which notifications you want to receive.",
+          "option": {
+            "share": {
+              "title": "Shared recipes",
+              "description": "When someone shares a recipe in a group."
+            },
+            "invites": {
+              "title": "Group invitations",
+              "description": "When you are invited to a new group."
+            },
+            "comment": {
+              "title": "Comments",
+              "description": "When someone comments on a recipe."
+            },
+            "like": {
+              "title": "Likes",
+              "description": "When someone likes your recipe."
+            }
+          },
+          "action": {
+            "submit": "Save preferences"
+          }
         }
       }
     }

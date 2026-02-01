@@ -1,6 +1,5 @@
 import { Filterable, Pageable, Paginated, Searchable, Sortable } from '@/domain/types/listings';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { UpdateUser, UpdateUserImage, User } from '@/context/authContext';
 import { Range } from '@/domain/types/range';
 import axios from 'axios';
 import { changeLanguage } from '@/i18n';
@@ -9,6 +8,7 @@ import { Tag } from '@/domain/types/tag';
 import { ImageUtils } from '@/utils/image/image';
 import { Asset } from '@/domain/types/asset';
 import { useUploadInternalAsset } from './asset';
+import { User, UpdateUser, UpdateUserImage } from '@/domain/types/user';
 
 export const userKeys = {
   self: ['self'] as const,

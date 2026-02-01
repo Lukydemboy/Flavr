@@ -1,39 +1,8 @@
+import axios from 'axios';
 import { PropsWithChildren, createContext, useContext, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useStorageState } from '@/hooks/storage';
 import { env } from '@/utils/env/env';
-import axios from 'axios';
-import { Language } from '@/domain/enums/language.enum';
-import { UploadAsset } from '@/domain/types/upload-file';
-import { ImageSource } from '@/utils/image/image';
-import { Asset } from '@/domain/types/asset';
-
-export type User = {
-  id: string;
-  email: string;
-  username: string;
-  language: Language;
-  image: Asset | null;
-  bio: string | null;
-  pushToken: string | null;
-  preferences?: {
-    language: Language;
-  };
-};
-
-export type UpdateUser = {
-  email: string;
-  username: string;
-  bio: string | null;
-  pushToken: string | null;
-  preferences: {
-    language: Language;
-  };
-};
-
-export type UpdateUserImage = {
-  image: ImageSource | null;
-};
 
 export type Session = { accessToken: string; refreshToken: string };
 

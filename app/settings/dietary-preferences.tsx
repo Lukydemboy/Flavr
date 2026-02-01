@@ -44,7 +44,7 @@ export default function SettingsDietaryPreferencesScreen() {
 
   return (
     <Page scrollEnabled={false}>
-      <ScrollView className="shrink">
+      <ScrollView contentContainerClassName="grow">
         <StyledText className="mb-6 text-slate-500 leading-relaxed text-sm">
           {t('screen.settings.screen.dietaryPreferences.description')}
         </StyledText>

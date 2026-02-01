@@ -134,6 +134,36 @@
           "action": {
             "submit": "Allergieën opslaan"
           }
+        },
+        "dietaryPreferences": {
+          "description": "Deze instellingen verbergen automatisch recepten die deze ingrediënten bevatten en waarschuwen je gedeelde groepen om iedereen veilig te houden.",
+          "action": {
+            "submit": "Voorkeuren opslaan"
+          }
+        },
+        "notifications": {
+          "description": "Deze instellingen bepalen welke meldingen je ontvangt. Je kiest zelf welke meldingen je wilt ontvangen.",
+          "option": {
+            "share": {
+              "title": "Gedeelde recepten",
+              "description": "Wanneer iemand een recept deelt in een groep."
+            },
+            "invites": {
+              "title": "Groep invitaties",
+              "description": "Wanneer je uitgenodigd wordt voor een nieuwe groep."
+            },
+            "comment": {
+              "title": "Opmerkingen",
+              "description": "Wanneer iemand een opmerking maakt op een recept."
+            },
+            "like": {
+              "title": "Likes",
+              "description": "Wanneer iemand jouw recept leuk vindt."
+            }
+          },
+          "action": {
+            "submit": "Voorkeuren opslaan"
+          }
         }
       }
     }

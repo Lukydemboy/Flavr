@@ -134,6 +134,36 @@
           "action": {
             "submit": "Allergien speichern"
           }
+        },
+        "dietaryPreferences": {
+          "description": "Diese Einstellungen blenden automatisch Rezepte aus, die diese Zutaten enthalten, und informieren deine geteilten Gruppen, um alle zu schützen.",
+          "action": {
+            "submit": "Einstellungen speichern"
+          }
+        },
+        "notifications": {
+          "description": "Diese Einstellungen bestimmen, welche Benachrichtigungen du erhältst. Du kannst selbst auswählen, welche du bekommen möchtest.",
+          "option": {
+            "share": {
+              "title": "Geteilte Rezepte",
+              "description": "Wenn jemand ein Rezept in einer Gruppe teilt."
+            },
+            "invites": {
+              "title": "Gruppeneinladungen",
+              "description": "Wenn du zu einer neuen Gruppe eingeladen wirst."
+            },
+            "comment": {
+              "title": "Kommentare",
+              "description": "Wenn jemand einen Kommentar zu einem Rezept hinterlässt."
+            },
+            "like": {
+              "title": "Likes",
+              "description": "Wenn jemand dein Rezept mag."
+            }
+          },
+          "action": {
+            "submit": "Einstellungen speichern"
+          }
         }
       }
     }

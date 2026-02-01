@@ -9,18 +9,17 @@ import { GeneratedFrom } from '@/components/recipes/GeneratedFrom';
 import { Page, StyledText } from '@/components/ui';
 import { Avatar } from '@/components/ui/Avatar';
 import { TagComponent } from '@/components/ui/Tag';
-import { User } from '@/context/authContext';
+import { User } from '@/domain/types/user';
 import { useDeleteRecipe, useRecipe } from '@/queries/recipe';
 import { useUser } from '@/queries/user';
-import { Redirect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function RecipeDetailScreen() {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-  const navigation = useNavigation();
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();

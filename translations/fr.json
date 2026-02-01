@@ -134,6 +134,36 @@
           "action": {
             "submit": "Enregistrer les allergies"
           }
+        },
+        "dietaryPreferences": {
+          "description": "Ces paramètres masqueront automatiquement les recettes contenant ces ingrédients et avertiront vos groupes partagés afin de garantir la sécurité de tous.",
+          "action": {
+            "submit": "Enregistrer les préférences"
+          }
+        },
+        "notifications": {
+          "description": "Ces paramètres déterminent les notifications que vous recevez. Vous choisissez celles que vous souhaitez recevoir.",
+          "option": {
+            "share": {
+              "title": "Recettes partagées",
+              "description": "Lorsqu'une personne partage une recette dans un groupe."
+            },
+            "invites": {
+              "title": "Invitations de groupe",
+              "description": "Lorsque vous êtes invité à un nouveau groupe."
+            },
+            "comment": {
+              "title": "Commentaires",
+              "description": "Lorsqu'une personne commente une recette."
+            },
+            "like": {
+              "title": "J'aime",
+              "description": "Lorsqu'une personne aime votre recette."
+            }
+          },
+          "action": {
+            "submit": "Enregistrer les préférences"
+          }
         }
       }
     }
