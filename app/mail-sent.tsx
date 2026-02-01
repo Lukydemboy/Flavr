@@ -45,7 +45,7 @@ export default function MailSent() {
       </Pressable>
 
       <View className="grow">
-        <StyledText className="text-4xl font-bold mb-4" weight="bold">
+        <StyledText className="text-4xl font-bold mb-4" weight="black">
           Email sent
         </StyledText>
         <StyledText className="text-lg mb-8 text-slate-500">
@@ -90,12 +90,12 @@ export default function MailSent() {
             focusStickStyle: {
               width: 20,
               height: 20,
-              backgroundColor: 'green',
+              backgroundColor: '#32675e',
             },
-            focusedPinCodeContainerStyle: { borderColor: 'green' },
+            focusedPinCodeContainerStyle: { borderColor: '#32675e' },
             placeholderTextStyle: { fontSize: 20, color: 'gray' },
             filledPinCodeContainerStyle: {
-              borderColor: otpIsInvalid ? 'red' : 'green',
+              borderColor: otpIsInvalid ? 'red' : '#32675e',
             },
             disabledPinCodeContainerStyle: { borderColor: 'gray' },
           }}

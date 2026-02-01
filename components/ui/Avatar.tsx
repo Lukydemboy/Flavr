@@ -1,6 +1,6 @@
 import { View, Image } from 'react-native';
 import { StyledText } from './StyledText';
-import { User } from '@/context/authContext';
+import { User } from '@/domain/types/user';
 
 type Props = {
   user: User;
@@ -18,7 +18,7 @@ export const Avatar = ({ user, size = 32, className }: Props) => {
         <Image source={{ uri: user.image.url }} className="rounded-xl" style={{ width: size, height: size }} />
       ) : (
         <StyledText className={`text-lg`} weight="bold">
-          {user.username.slice(0, 1)}
+          {user.username?.slice(0, 1) ?? ''}
         </StyledText>
       )}
     </View>

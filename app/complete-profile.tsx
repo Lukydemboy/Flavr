@@ -26,14 +26,14 @@ export default function CompleteProfileScreen() {
   return (
     <Page safeAreaTop>
       <View className="grow">
-        <StyledText className="text-2xl mb-4" weight="bold">
+        <StyledText className="text-2xl mb-4" weight="black">
           Complete profile
         </StyledText>
-        <StyledText className="text-slate-400 leading-normal mb-8">
+        <StyledText className="text-slate-400 leading-relaxed mb-8">
           Your profile is incomplete. We just need a fun username to get you started, keep in mind this is what other
           users will see.
         </StyledText>
-        <StyledText className="mb-2 ml-2" weight="semibold">
+        <StyledText className="mb-2 ml-4" weight="bold">
           Username
         </StyledText>
         <form.Field name="username">
