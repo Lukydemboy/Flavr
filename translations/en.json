@@ -159,6 +159,10 @@
             "like": {
               "title": "Likes",
               "description": "When someone likes your recipe."
+            },
+            "recipeTranslated": {
+              "title": "Recipe translated",
+              "description": "When your recipe completed translating to different languages."
             }
           },
           "action": {

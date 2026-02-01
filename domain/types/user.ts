@@ -3,12 +3,11 @@ import { Language } from '../enums/language.enum';
 import { Asset } from './asset';
 
 export type NotificationPreferences = {
-  social?: {
-    recipeShares: boolean;
-    recipeLikes: boolean;
-    recipeComments: boolean;
-    groupInvitations: boolean;
-  };
+  recipeShares: boolean;
+  recipeLikes: boolean;
+  recipeComments: boolean;
+  groupInvitations: boolean;
+  recipeTranslated: boolean;
 };
 
 export type User = {

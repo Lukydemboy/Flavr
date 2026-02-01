@@ -159,6 +159,10 @@
             "like": {
               "title": "J'aime",
               "description": "Lorsqu'une personne aime votre recette."
+            },
+            "recipeTranslated": {
+              "title": "Recette traduite",
+              "description": "Lorsque votre recette a terminé sa traduction dans différentes langues."
             }
           },
           "action": {

@@ -159,6 +159,10 @@
             "like": {
               "title": "Likes",
               "description": "Wanneer iemand jouw recept leuk vindt."
+            },
+            "recipeTranslated": {
+              "title": "Recept vertaald",
+              "description": "Wanneer je recept klaar is met vertalen naar verschillende talen."
             }
           },
           "action": {

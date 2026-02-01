@@ -2,6 +2,7 @@ import HeartIcon from '@/components/icons/Heart';
 import MessageBubbleIcon from '@/components/icons/MessageBubble';
 import PeopleIcon from '@/components/icons/People';
 import ShareIcon from '@/components/icons/Share';
+import TranslateIcon from '@/components/icons/Translate';
 import { CircleLoader } from '@/components/loaders';
 import { ActionButton, Page, StyledText } from '@/components/ui';
 import { NotificationPreferences } from '@/domain/types/user';
@@ -11,17 +12,18 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, Switch, View } from 'react-native';
 
-const DEFAULT_SOCIAL_PREFERENCES: NonNullable<NotificationPreferences['social']> = {
+const DEFAULT_PREFERENCES: NonNullable<NotificationPreferences> = {
   recipeShares: true,
   recipeLikes: true,
   recipeComments: true,
   groupInvitations: true,
+  recipeTranslated: true,
 };
-type SocialNotificationKey = keyof NonNullable<NotificationPreferences['social']>;
+type NotificationKey = keyof NonNullable<NotificationPreferences>;
 
 const options: {
-  id: SocialNotificationKey;
-  icon: 'share' | 'group' | 'comment' | 'heart';
+  id: NotificationKey;
+  icon: 'share' | 'group' | 'comment' | 'heart' | 'translations';
   title: string;
   description: string;
 }[] = [
@@ -49,12 +51,16 @@ const options: {
     title: 'screen.settings.screen.notifications.option.like.title',
     description: 'screen.settings.screen.notifications.option.like.description',
   },
+  {
+    id: 'recipeTranslated',
+    icon: 'translations',
+    title: 'screen.settings.screen.notifications.option.recipeTranslated.title',
+    description: 'screen.settings.screen.notifications.option.recipeTranslated.description',
+  },
 ];
 
 export default function SettingsNotificationsScreen() {
-  const [notificationPreferences, setNotificationPreferences] = useState<NotificationPreferences>({
-    social: DEFAULT_SOCIAL_PREFERENCES,
-  });
+  const [notificationPreferences, setNotificationPreferences] = useState<NotificationPreferences>(DEFAULT_PREFERENCES);
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -63,7 +69,7 @@ export default function SettingsNotificationsScreen() {
 
   useEffect(() => {
     if (user) {
-      const preferences = user.preferences?.notifications || { social: DEFAULT_SOCIAL_PREFERENCES };
+      const preferences = user.preferences?.notifications || DEFAULT_PREFERENCES;
 
       setNotificationPreferences(preferences);
     }
@@ -103,15 +109,12 @@ export default function SettingsNotificationsScreen() {
               </View>
               <Switch
                 className="mt-3.5"
-                value={notificationPreferences.social?.[option.id]}
+                value={notificationPreferences?.[option.id]}
                 trackColor={{ true: '#32675e' }}
                 onValueChange={value => {
                   setNotificationPreferences(prev => ({
-                    ...prev,
-                    social: {
-                      ...(prev.social ?? DEFAULT_SOCIAL_PREFERENCES),
-                      [option.id]: value,
-                    },
+                    ...(prev ?? DEFAULT_PREFERENCES),
+                    [option.id]: value,
                   }));
                 }}
               />
@@ -145,6 +148,8 @@ const getIcon = (icon: string) => {
       return <MessageBubbleIcon width={24} height={24} color="#32675e" />;
     case 'heart':
       return <HeartIcon width={24} height={24} color="#32675e" />;
+    case 'translations':
+      return <TranslateIcon width={24} height={24} color="#32675e" />;
     default:
       return null;
   }
