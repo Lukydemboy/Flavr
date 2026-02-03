@@ -19,9 +19,10 @@ import { ShareIntentProvider } from 'expo-share-intent';
 import AppHeader from '@/components/headers/AppHeader';
 import { StorageKeys, useStorageState } from '@/hooks/storage';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import '../global.css';
-import i18n from '../i18n';
+import { useNotificationObserver } from '@/hooks/notification-observer';
 import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
+import '../global.css';
 
 configureAxios();
 
@@ -29,6 +30,9 @@ export default function RootLayout() {
   const { t } = useTranslation();
   const router = useRouter();
   const [[isLoadingInitialLanguage, initialLanguage]] = useStorageState(StorageKeys.Language);
+
+  useNotificationObserver();
+
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -174,6 +178,14 @@ export default function RootLayout() {
                         title={t('screen.settings.screen.language.title')}
                         fallbackBackscreen={'/(tabs)/settings'}
                       />
+                    ),
+                  }}
+                />
+                <Stack.Screen
+                  name="tutorials/instagram-import"
+                  options={{
+                    header: () => (
+                      <AppHeader title={t('screen.tutorials.instagramImport.title')} fallbackBackscreen={'/(tabs)'} />
                     ),
                   }}
                 />

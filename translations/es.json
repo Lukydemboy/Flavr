@@ -105,7 +105,6 @@
         },
         "language": {
           "title": "Idioma",
-          "description": "Seleccione el idioma para la aplicación.",
           "languageSelection": {
             "title": "Idioma de la aplicación",
             "options": {
@@ -180,6 +179,32 @@
           "action": {
             "submit": "Guardar preferencias"
           }
+        }
+      }
+    },
+    "tutorials": {
+      "instagramImport": {
+        "title": "Importar desde Instagram",
+        "description": "¿Encontraste una receta en Instagram que quieres guardar? Puedes importarla en solo unos pasos, sin necesidad de escribir nada manualmente.",
+        "step": {
+          "one": {
+            "title": "Encuentra una receta en Instagram",
+            "description": "Desplázate por el feed hasta encontrar una receta que te guste."
+          },
+          "two": {
+            "title": "Toca el icono de compartir",
+            "description": "Busca el icono del avión de papel en la esquina inferior derecha de la pantalla."
+          },
+          "three": {
+            "title": "Haz clic en el icono de Flavr",
+            "description": "Toca el icono de Flavr para importar tu receta y nosotros nos encargamos del resto."
+          }
+        },
+        "modal": {
+          "title": "Importar video desde Instagram"
+        },
+        "action": {
+          "watchVideo": "Ver el video"
         }
       }
     }

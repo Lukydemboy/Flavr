@@ -105,7 +105,6 @@
         },
         "language": {
           "title": "Taal",
-          "description": "Kies jouw taal voor de app.",
           "languageSelection": {
             "title": "App taal",
             "options": {
@@ -180,6 +179,32 @@
           "action": {
             "submit": "Voorkeuren opslaan"
           }
+        }
+      }
+    },
+    "tutorials": {
+      "instagramImport": {
+        "title": "Importeren vanuit Instagram",
+        "description": "Heb je een recept op Instagram gevonden dat je wilt opslaan? Je kunt het in slechts een paar stappen importeren, zonder handmatig te typen.",
+        "step": {
+          "one": {
+            "title": "Zoek een recept op Instagram",
+            "description": "Scroll door de feed tot je een recept vindt dat je leuk vindt."
+          },
+          "two": {
+            "title": "Tik op het deel-icoon",
+            "description": "Zoek het papieren vliegtuigje rechtsonder op het scherm."
+          },
+          "three": {
+            "title": "Klik op het Flavr-icoon",
+            "description": "Tik op het Flavr-icoon om je recept te importeren, wij doen de rest."
+          }
+        },
+        "modal": {
+          "title": "Video importeren van Instagram"
+        },
+        "action": {
+          "watchVideo": "Bekijk de video"
         }
       }
     }

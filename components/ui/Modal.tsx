@@ -1,6 +1,6 @@
-import { Modal, Pressable, TouchableOpacity, View } from "react-native";
-import { StyledText } from "./StyledText";
-import { CrossIcon } from "../icons/Cross";
+import { Modal, Pressable, TouchableOpacity, View } from 'react-native';
+import { StyledText } from './StyledText';
+import { CrossIcon } from '../icons/Cross';
 
 type Props = {
   modalVisible: boolean;
@@ -27,15 +27,9 @@ export const ModalComponent = ({
       onRequestClose={onClose}
       className="flex items-center justify-center"
     >
-      <TouchableOpacity
-        activeOpacity={1}
-        onPress={onClose}
-        className="items-center bg-black/45 pt-40 h-full relative"
-      >
+      <TouchableOpacity activeOpacity={1} onPress={onClose} className="items-center bg-black/45 pt-40 h-full relative">
         <View className="w-full" onStartShouldSetResponder={() => true}>
-          <View
-            className={`relative bg-white shadow-md p-6 rounded-xl w-11/12 mx-auto z-50 ${modalClassName}`}
-          >
+          <View className={`relative bg-white shadow-md p-6 rounded-xl w-11/12 mx-auto z-50 ${modalClassName}`}>
             {showCloseButton && (
               <Pressable
                 className="absolute z-10 top-0 right-0 h-10 w-10 flex items-center justify-center bg-gray-100 rounded-lg p-2"
@@ -46,7 +40,7 @@ export const ModalComponent = ({
             )}
 
             {title && (
-              <StyledText weight="bold" className="text-2xl mb-4">
+              <StyledText weight="black" className="text-2xl mb-4">
                 {title}
               </StyledText>
             )}

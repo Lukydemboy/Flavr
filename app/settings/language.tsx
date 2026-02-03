@@ -25,11 +25,6 @@ export default function SettingsLanguageScreen() {
   return (
     <Page scrollEnabled={false}>
       <ScrollView>
-        <StyledText className="text-xl mb-2" weight="black">
-          {t('screen.settings.screen.language.title')}
-        </StyledText>
-        <StyledText className="text-slate-500 mb-8">{t('screen.settings.screen.language.description')}</StyledText>
-
         <StyledText className="text-xl mb-4" weight="black">
           {t('screen.settings.screen.language.languageSelection.title')}
         </StyledText>

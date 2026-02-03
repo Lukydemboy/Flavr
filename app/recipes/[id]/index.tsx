@@ -50,20 +50,27 @@ export default function RecipeDetailScreen() {
           </Pressable>
 
           <View className="pr-4 flex flex-row">
-            <Pressable onPress={() => setIsDeleteModalVisible(true)} className="bg-white shadow-md rounded-xl p-3 ml-2">
-              <TrashCanIcon width={14} height={14} color="#f43f5e" />
-            </Pressable>
-            <Pressable
-              onPress={() =>
-                router.push({
-                  pathname: '/recipes/create/create',
-                  params: { id },
-                })
-              }
-              className="bg-white shadow-md rounded-xl p-3 ml-2"
-            >
-              <PencilIcon height={14} width={14} color="#000" />
-            </Pressable>
+            {user.id === recipe?.owner.id && (
+              <>
+                <Pressable
+                  onPress={() => setIsDeleteModalVisible(true)}
+                  className="bg-white shadow-md rounded-xl p-3 ml-2"
+                >
+                  <TrashCanIcon width={14} height={14} color="#f43f5e" />
+                </Pressable>
+                <Pressable
+                  onPress={() =>
+                    router.push({
+                      pathname: '/recipes/create/create',
+                      params: { id },
+                    })
+                  }
+                  className="bg-white shadow-md rounded-xl p-3 ml-2"
+                >
+                  <PencilIcon height={14} width={14} color="#000" />
+                </Pressable>
+              </>
+            )}
             <Pressable
               onPress={() =>
                 router.push({
@@ -92,7 +99,7 @@ export default function RecipeDetailScreen() {
                   {recipe?.name}
                 </StyledText>
 
-                {recipe.tags?.length && (
+                {!!recipe.tags?.length && (
                   <View className="flex flex-row flex-wrap gap-1">
                     {recipe.tags.map((tag, index) => (
                       <TagComponent key={index} tag={tag} />
