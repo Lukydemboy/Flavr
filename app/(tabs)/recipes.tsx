@@ -11,13 +11,14 @@ import { recipeKeys } from '@/queries/recipe';
 import { useTags } from '@/queries/tag';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, RefreshControl, ScrollView, View } from 'react-native';
 
 const initialPage = { number: 1, size: 10 };
 
 export default function RecipesScreen() {
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTags, setActiveTags] = useState<Tag[]>([]);
   const sheetRef = useRef<CreateRecipeOptionsSheet>(null);
@@ -47,6 +48,10 @@ export default function RecipesScreen() {
       }
     },
   });
+
+  useEffect(() => {
+    setRecipes(data?.pages.flatMap(page => page.content) ?? []);
+  }, [data]);
 
   return (
     <>
@@ -92,17 +97,19 @@ export default function RecipesScreen() {
           )}
         </View>
 
+        <StyledText>{recipes.length}</StyledText>
+
         <FlatList
           refreshControl={<RefreshControl refreshing={isFetching} onRefresh={refetch} />}
           numColumns={2}
-          data={data?.pages.flatMap(page => page.content || [])}
+          data={recipes}
           showsVerticalScrollIndicator={false}
           onEndReached={() => fetchNextPage()}
           columnWrapperClassName="justify-between"
           contentContainerClassName="gap-4"
           ListEmptyComponent={
             <>
-              {!isFetching && (
+              {!isFetching && recipes.length === 0 && (
                 <StyledText className="text-xl text-center mt-8 text-slate-400" weight="black">
                   {t('screen.recipes.list.empty')}
                 </StyledText>

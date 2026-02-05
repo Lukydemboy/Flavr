@@ -96,8 +96,6 @@ const getAllergyIcon = (allergen: Allergen) => {
       return <MilkIcon width={22} height={22} color="#32675e" />;
     case 'eggs':
       return <EggIcon width={24} height={24} color="#32675e" />;
-    // case 'Fish':
-    //   return <FishIcon width={28} height={28} color="#32675e" />;
     case 'shellfish':
       return <CrabIcon width={22} height={22} color="#32675e" />;
     case 'treeNuts':

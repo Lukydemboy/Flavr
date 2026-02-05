@@ -29,6 +29,7 @@
       "favicon": "./assets/app-icon/favicon.png"
     },
     "plugins": [
+      "expo-secure-store",
       "expo-router",
       "expo-notifications",
       [
