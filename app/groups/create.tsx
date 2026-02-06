@@ -9,18 +9,18 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, View } from 'react-native';
 import { z } from 'zod';
 
-const createGroupSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters').max(100),
-  description: z.string().max(1000),
-  visibility: z.enum(Visibility),
-});
-
 export default function CreateGroupScreen() {
   const { t } = useTranslation();
   const [visibility, setVisibility] = useState(Visibility.Public);
   const router = useRouter();
 
   const { mutateAsync: createGroup } = useCreateGroup();
+
+  const createGroupSchema = z.object({
+    name: z.string().min(2, t('screen.createGroups.form.name.validation.min')).max(100),
+    description: z.string().max(1000),
+    visibility: z.enum(Visibility),
+  });
 
   const form = useForm({
     defaultValues: { name: '', description: '', visibility: Visibility.Public },
@@ -68,7 +68,7 @@ export default function CreateGroupScreen() {
         <StyledText className="font-bold ml-2 mb-2 mt-4" weight="bold">
           {t('screen.createGroups.form.visibility.label')}
         </StyledText>
-        <View className="flex flex-row gap-x-4">
+        <View className="flex flex-row justify-between">
           <Pressable
             onPress={() => {
               form.setFieldValue('visibility', Visibility.Public);

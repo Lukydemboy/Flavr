@@ -68,6 +68,7 @@ export const useGenerateRecipeFromInstagram = () => {
       }).then(res => res.data);
     },
     onSuccess: () => {
+      console.log('Recipe generated from Instagram, invalidating query key', recipeKeys.lists());
       queryClient.invalidateQueries({ queryKey: recipeKeys.lists() });
     },
   });

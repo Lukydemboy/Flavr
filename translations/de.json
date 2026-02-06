@@ -64,7 +64,10 @@
       "form": {
         "name": {
           "label": "Gruppenname",
-          "placeholder": "Namen eingeben"
+          "placeholder": "Namen eingeben",
+          "validation": {
+            "min": "Der Name muss mindestens 2 Zeichen lang sein"
+          }
         },
         "description": {
           "label": "Gruppenbeschreibung",

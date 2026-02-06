@@ -25,7 +25,10 @@
       "form": {
         "name": {
           "label": "Nombre del grupo",
-          "placeholder": "Introduce un nombre"
+          "placeholder": "Introduce un nombre",
+          "validation": {
+            "min": "El nombre debe tener al menos 2 caracteres"
+          }
         },
         "description": {
           "label": "Descripción del grupo",

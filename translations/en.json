@@ -25,7 +25,10 @@
       "form": {
         "name": {
           "label": "Group Name",
-          "placeholder": "Enter a name"
+          "placeholder": "Enter a name",
+          "validation": {
+            "min": "Name must be at least 2 characters long"
+          }
         },
         "description": {
           "label": "Group Description",

@@ -25,7 +25,10 @@
       "form": {
         "name": {
           "label": "Groepsnaam",
-          "placeholder": "Voer een naam in"
+          "placeholder": "Voer een naam in",
+          "validation": {
+            "min": "De groepsnaam moet minstens 2 tekens bevatten"
+          }
         },
         "description": {
           "label": "Groepsbeschrijving",

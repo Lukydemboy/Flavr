@@ -25,7 +25,10 @@
       "form": {
         "name": {
           "label": "Nom du groupe",
-          "placeholder": "Saisissez un nom"
+          "placeholder": "Saisissez un nom",
+          "validation": {
+            "min": "Le nom doit comporter au moins 2 caractères"
+          }
         },
         "description": {
           "label": "Description du groupe",

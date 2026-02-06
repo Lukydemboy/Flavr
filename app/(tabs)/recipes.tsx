@@ -59,7 +59,7 @@ export default function RecipesScreen() {
         <View className="relative">
           <InputField
             placeholder={t('screen.recipes.search.placeholder')}
-            className="border border-gray-300 py-4 mb-4"
+            className="border border-gray-300"
             onChangeText={query => setSearchQuery(query)}
             value={searchQuery}
           />
@@ -96,8 +96,6 @@ export default function RecipesScreen() {
             </View>
           )}
         </View>
-
-        <StyledText>{recipes.length}</StyledText>
 
         <FlatList
           refreshControl={<RefreshControl refreshing={isFetching} onRefresh={refetch} />}

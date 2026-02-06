@@ -115,7 +115,9 @@ export default function RootLayout() {
                 <Stack.Screen
                   name="groups/create"
                   options={{
-                    header: () => <AppHeader title={t('screen.create.title')} fallbackBackscreen={'/(tabs)/groups'} />,
+                    header: () => (
+                      <AppHeader title={t('screen.createGroups.title')} fallbackBackscreen={'/(tabs)/groups'} />
+                    ),
                   }}
                 />
                 <Stack.Screen
@@ -131,7 +133,7 @@ export default function RootLayout() {
                   options={{
                     header: () => (
                       <AppHeader
-                        title={t('screen.settings.editProfile.title')}
+                        title={t('screen.settings.screen.editProfile.title')}
                         fallbackBackscreen={'/(tabs)/settings'}
                       />
                     ),

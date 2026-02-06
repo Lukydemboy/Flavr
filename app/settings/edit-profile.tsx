@@ -30,7 +30,7 @@ export default function SettingsEditProfileScreen() {
               preSelectedImage={user.image ?? undefined}
             />
           </View>
-          <StyledText className="mt-4 text-center text-lg font-bold" weight="bold">
+          <StyledText className="mt-4 text-center text-lg font-bold" weight="black">
             {user.username}
           </StyledText>
         </View>

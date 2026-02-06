@@ -63,7 +63,7 @@ export const RecipeDetails = ({ recipe }: Props) => {
                           : [...prev, ingredient];
                       });
                     }}
-                    className={`flex flex-row items-center gap-x-3 mb-2 p-3 border border-slate-200 rounded-xl pr-8 ${isCompleted ? 'bg-primary-50' : ''}`}
+                    className={`flex flex-row items-center gap-x-3 mb-2 p-3 border border-slate-200 rounded-xl pr-12 ${isCompleted ? 'bg-primary-50' : ''}`}
                   >
                     <View
                       className={`w-7 h-7 border-2 flex items-center justify-center border-${isCompleted ? 'primary-500' : 'slate-200'} rounded-full ${isCompleted ? 'bg-primary-500' : ''} transition`}
