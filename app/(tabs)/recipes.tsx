@@ -68,7 +68,7 @@ export default function RecipesScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
             className="mb-4"
-            contentContainerClassName="gap-x-2"
+            contentContainerClassName="gap-x-2 pt-2"
           >
             {tags?.map(tag => (
               <Pressable
