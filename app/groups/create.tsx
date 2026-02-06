@@ -5,6 +5,7 @@ import { useCreateGroup } from '@/queries/group';
 import { useForm } from '@tanstack/react-form';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, View } from 'react-native';
 import { z } from 'zod';
 
@@ -15,6 +16,7 @@ const createGroupSchema = z.object({
 });
 
 export default function CreateGroupScreen() {
+  const { t } = useTranslation();
   const [visibility, setVisibility] = useState(Visibility.Public);
   const router = useRouter();
 
@@ -29,24 +31,26 @@ export default function CreateGroupScreen() {
   });
 
   return (
-    <Page className="pt-4">
+    <Page>
       <ScrollView>
+        <StyledText className="text-gray-500 text-sm mb-4">{t('screen.createGroups.description')}</StyledText>
+
         <StyledText className="font-bold ml-2 mb-2" weight="bold">
-          Name
+          {t('screen.createGroups.form.name.label')}
         </StyledText>
         <form.Field name="name">
           {field => (
             <InputField
               value={field.state.value}
               onChangeText={text => form.setFieldValue('name', text)}
-              placeholder="Group name"
+              placeholder={t('screen.createGroups.form.name.placeholder')}
               error={field.state.meta.errors?.map(error => (error ? error.message : '')).join(', ')}
             />
           )}
         </form.Field>
 
         <StyledText className="font-bold ml-2 mb-2 mt-4" weight="bold">
-          Description
+          {t('screen.createGroups.form.description.label')}
         </StyledText>
         <form.Field name="description">
           {field => (
@@ -54,15 +58,15 @@ export default function CreateGroupScreen() {
               className="mb-4"
               value={field.state.value}
               onChangeText={text => form.setFieldValue('description', text)}
-              placeholder="Group description"
+              placeholder={t('screen.createGroups.form.description.placeholder')}
               error={field.state.meta.errors?.join(', ')}
               multiline
             />
           )}
         </form.Field>
 
-        <StyledText className="font-bold ml-2 mb-2" weight="bold">
-          Visibility
+        <StyledText className="font-bold ml-2 mb-2 mt-4" weight="bold">
+          {t('screen.createGroups.form.visibility.label')}
         </StyledText>
         <View className="flex flex-row gap-x-4">
           <Pressable
@@ -73,10 +77,10 @@ export default function CreateGroupScreen() {
             className={`rounded-2xl border-2 p-4 w-[48%] transition ${visibility === Visibility.Public ? 'border-primary-500 bg-primary-50' : 'border-slate-300 bg-white'}`}
           >
             <StyledText className="mb-2" weight="semiBold">
-              Public
+              {t('screen.createGroups.form.visibility.options.public.label')}
             </StyledText>
             <StyledText className="text-sm text-gray-500">
-              People can find your group in search results and join it.
+              {t('screen.createGroups.form.visibility.options.public.description')}
             </StyledText>
           </Pressable>
           <Pressable
@@ -87,10 +91,10 @@ export default function CreateGroupScreen() {
             className={`rounded-2xl border-2 p-4 w-[48%] transition ${visibility === Visibility.Private ? 'border-primary-500 bg-primary-50' : 'border-slate-300 bg-white'}`}
           >
             <StyledText className="mb-2" weight="semiBold">
-              Private
+              {t('screen.createGroups.form.visibility.options.private.label')}
             </StyledText>
             <StyledText className="text-sm text-gray-500">
-              People can not find your group in search results and can only join by invitation.
+              {t('screen.createGroups.form.visibility.options.private.description')}
             </StyledText>
           </Pressable>
         </View>
@@ -101,7 +105,7 @@ export default function CreateGroupScreen() {
           <ActionButton
             viewClassName="mt-auto"
             size="large"
-            text="Create group"
+            text={t('screen.createGroups.form.action.create')}
             isLoading={isSubmitting}
             disabled={!canSubmit}
             onPress={() => form.handleSubmit()}

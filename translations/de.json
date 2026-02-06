@@ -12,6 +12,13 @@
         }
       }
     },
+    "groups": {
+      "title": "Gruppen",
+      "empty": "Keine Gruppen gefunden",
+      "action": {
+        "create": "Gruppe erstellen"
+      }
+    },
     "create": {
       "title": "Erstelle ein Rezept",
       "image": {
@@ -48,6 +55,37 @@
         "details": {
           "ingredients": "Zutaten",
           "directions": "Zubereitung"
+        }
+      }
+    },
+    "createGroups": {
+      "title": "Gruppe erstellen",
+      "description": "Erstellen Sie eine neue Gruppe, um Rezepte mit anderen zu teilen. Laden Sie Ihre Freunde ein, der Gruppe beizutreten und Rezepte mit ihnen zu teilen.",
+      "form": {
+        "name": {
+          "label": "Gruppenname",
+          "placeholder": "Namen eingeben"
+        },
+        "description": {
+          "label": "Gruppenbeschreibung",
+          "placeholder": "Beschreibung eingeben"
+        },
+        "visibility": {
+          "label": "Sichtbarkeit der Gruppe",
+          "placeholder": "Sichtbarkeit auswählen",
+          "options": {
+            "public": {
+              "label": "Öffentlich",
+              "description": "Personen können Ihre Gruppe in den Suchergebnissen finden und ihr beitreten."
+            },
+            "private": {
+              "label": "Privat",
+              "description": "Nur eingeladene Mitglieder können Ihrer Gruppe beitreten."
+            }
+          }
+        },
+        "action": {
+          "create": "Gruppe erstellen"
         }
       }
     },

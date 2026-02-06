@@ -12,6 +12,44 @@
         }
       }
     },
+    "groups": {
+      "title": "Groepen",
+      "empty": "Geen groepen gevonden",
+      "action": {
+        "create": "Groep aanmaken"
+      }
+    },
+    "createGroups": {
+      "title": "Groep aanmaken",
+      "description": "Maak een nieuwe groep om recepten met anderen te delen. Nodig je vrienden uit om lid te worden van de groep en recepten met hen te delen.",
+      "form": {
+        "name": {
+          "label": "Groepsnaam",
+          "placeholder": "Voer een naam in"
+        },
+        "description": {
+          "label": "Groepsbeschrijving",
+          "placeholder": "Voer een beschrijving in"
+        },
+        "visibility": {
+          "label": "Zichtbaarheid van de groep",
+          "placeholder": "Selecteer zichtbaarheid",
+          "options": {
+            "public": {
+              "label": "Openbaar",
+              "description": "Mensen kunnen je groep vinden in zoekresultaten en lid worden."
+            },
+            "private": {
+              "label": "Privé",
+              "description": "Alleen uitgenodigde leden kunnen lid worden van je groep."
+            }
+          }
+        },
+        "action": {
+          "create": "Groep aanmaken"
+        }
+      }
+    },
     "create": {
       "title": "Nieuw recept",
       "image": {

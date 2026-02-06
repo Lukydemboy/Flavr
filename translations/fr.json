@@ -12,6 +12,44 @@
         }
       }
     },
+    "groups": {
+      "title": "Groupes",
+      "empty": "Aucun groupe trouvé",
+      "action": {
+        "create": "Créer un groupe"
+      }
+    },
+    "createGroups": {
+      "title": "Créer un groupe",
+      "description": "Créez un nouveau groupe pour partager des recettes avec d’autres. Invitez vos amis à rejoindre le groupe et à partager des recettes avec eux.",
+      "form": {
+        "name": {
+          "label": "Nom du groupe",
+          "placeholder": "Saisissez un nom"
+        },
+        "description": {
+          "label": "Description du groupe",
+          "placeholder": "Saisissez une description"
+        },
+        "visibility": {
+          "label": "Visibilité du groupe",
+          "placeholder": "Sélectionnez la visibilité",
+          "options": {
+            "public": {
+              "label": "Public",
+              "description": "Les personnes peuvent trouver votre groupe dans les résultats de recherche et le rejoindre."
+            },
+            "private": {
+              "label": "Privé",
+              "description": "Seuls les membres invités peuvent rejoindre votre groupe."
+            }
+          }
+        },
+        "action": {
+          "create": "Créer le groupe"
+        }
+      }
+    },
     "create": {
       "title": "Créer une recette",
       "image": {

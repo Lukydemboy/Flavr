@@ -1,4 +1,5 @@
 import { ChevronRightIcon } from '@/components/icons/ChevronRight';
+import { CircleLoader } from '@/components/loaders';
 import { Page, StyledText } from '@/components/ui';
 import { useGroups } from '@/queries/group';
 import { useRouter } from 'expo-router';
@@ -14,24 +15,30 @@ export default function GroupsScreen() {
   return (
     <Page safeAreaTop className="gap-y-4">
       <View className="flex flex-row justify-between items-center">
-        <StyledText className="text-2xl" weight="bold">
-          Groups
+        <StyledText className="text-2xl" weight="black">
+          {t('screen.groups.title')}
         </StyledText>
 
         <Pressable
           onPress={() => router.push('/groups/create')}
           className="bg-gray-200 p-2 rounded-lg flex flex-row items-center gap-x-2 px-3"
         >
-          <StyledText className="text-sm">Add</StyledText>
+          <StyledText className="text-sm">{t('screen.groups.action.create')}</StyledText>
         </Pressable>
       </View>
 
       <View className="grow mt-4">
-        {isLoading && <StyledText>Loading...</StyledText>}
+        {isLoading && (
+          <View className="items-center">
+            <CircleLoader />
+          </View>
+        )}
 
         {groups?.content.length === 0 && (
-          <View className="bg-white rounded-lg">
-            <StyledText>No groups found</StyledText>
+          <View className="mt-6">
+            <StyledText className="text-center text-slate-400 text-xl" weight="black">
+              {t('screen.groups.empty')}
+            </StyledText>
           </View>
         )}
 

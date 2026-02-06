@@ -28,19 +28,8 @@ export default function TabLayout() {
       screenOptions={{
         headerShadowVisible: false,
         tabBarStyle: {
-          paddingBottom: 10,
+          paddingBottom: 0,
           paddingTop: 10,
-          height: 60,
-          backgroundColor: 'white',
-          marginBottom: Platform.OS === 'ios' ? 30 : 0,
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          borderRadius: 25,
-          width: '87%',
-          borderTopWidth: 2,
-          borderColor: '#fff',
-          borderWidth: 2,
-          elevation: 4,
         },
         tabBarLabelStyle: {
           fontFamily: 'nunito',
