@@ -49,7 +49,7 @@ export default function SettingsScreen() {
         <StyledText className="text-primary-500" weight="bold">
           {t('screen.settings.personalization.title')}
         </StyledText>
-        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
+        {/*<View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
               <TagIcon width={24} height={24} color="#32675e" />
@@ -57,7 +57,7 @@ export default function SettingsScreen() {
             <StyledText weight="bold">{t('screen.settings.personalization.item.preferredTags')}</StyledText>
           </View>
           <ChevronRightIcon width={18} height={18} />
-        </View>
+        </View>*/}
         <Pressable
           onPress={() => router.push('/settings/dietary-preferences')}
           className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm"
