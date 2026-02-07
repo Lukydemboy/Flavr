@@ -6,7 +6,7 @@ import { useUpdateUser, useUpdateUserImage, useUser } from '@/queries/user';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 export default function SettingsEditProfileScreen() {
   const { t } = useTranslation();

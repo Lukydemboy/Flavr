@@ -41,7 +41,7 @@ export default function CreateRecipeScreen() {
   const { data: recipe } = useRecipe(id);
 
   useEffect(() => {
-    setIngredients(recipe?.ingredients.map(ingredient => ({ value: ingredient.value })) ?? []);
+    setIngredients(recipe?.ingredients.map(ingredient => ({ id: ingredient.id, value: ingredient.value })) ?? []);
     setSections(recipe?.sections ?? []);
   }, [recipe]);
 
@@ -51,8 +51,8 @@ export default function CreateRecipeScreen() {
       description: recipe?.description ?? '',
       servings: recipe?.servings.toString() ?? '',
       duration: recipe?.duration ? (recipe.duration / 60).toString() : '',
-      ingredient: '',
-      instructions: '',
+      ingredients: recipe?.ingredients.map(ingredient => ({ id: ingredient.id, value: ingredient.value })) ?? [],
+      sections: recipe?.sections.map(section => ({ id: section.id, value: section.value })) ?? [],
     },
     onSubmit: async ({ value }) => {
       let image: Asset | undefined;
