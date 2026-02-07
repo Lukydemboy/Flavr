@@ -125,7 +125,10 @@ export default function SettingsScreen() {
         <StyledText className="text-primary-500" weight="bold">
           {t('screen.settings.support.title')}
         </StyledText>
-        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
+        <Pressable
+          onPress={() => router.push('/settings/help-center')}
+          className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm"
+        >
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
               <QuestionMarkCircleIcon width={24} height={24} />
@@ -133,7 +136,7 @@ export default function SettingsScreen() {
             <StyledText weight="bold">{t('screen.settings.support.item.helpCenter')}</StyledText>
           </View>
           <ChevronRightIcon width={18} height={18} />
-        </View>
+        </Pressable>
         <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">

@@ -161,3 +161,15 @@ export const useUpdateDietaryPreferences = () => {
     },
   });
 };
+
+export const useDeleteUser = () => {
+  return useMutation({
+    mutationKey: userKeys.self,
+    mutationFn: async () => {
+      return axios<void>({
+        method: 'DELETE',
+        url: '/users/me',
+      }).then(res => res.data);
+    },
+  });
+};

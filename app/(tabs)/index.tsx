@@ -9,8 +9,10 @@ import { Recipe } from '@/domain/types/recipe';
 import { Tag } from '@/domain/types/tag';
 import { recipeKeys } from '@/queries/recipe';
 import { useTags } from '@/queries/tag';
+import { useUser } from '@/queries/user';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, RefreshControl, ScrollView, View } from 'react-native';
@@ -23,6 +25,8 @@ export default function HomeScreen() {
   const [activeTags, setActiveTags] = useState<Tag[]>([]);
   const sheetRef = useRef<CreateRecipeOptionsSheet>(null);
   const { t } = useTranslation();
+  const { data: user, isLoading: isLoadingUser } = useUser();
+  const router = useRouter();
 
   const { data: tags } = useTags();
   const { data, fetchNextPage, refetch, isFetching } = useInfiniteQuery({
@@ -48,6 +52,12 @@ export default function HomeScreen() {
       }
     },
   });
+
+  useEffect(() => {
+    if (!user?.username && !isLoadingUser) {
+      router.replace('/complete-profile');
+    }
+  }, [user, router, isLoadingUser]);
 
   useEffect(() => {
     setRecipes(data?.pages.flatMap(page => page.content) ?? []);

@@ -355,7 +355,7 @@ export default function CreateRecipeScreen() {
         title="Are you sure?"
         text="Deleting this section will remove all its steps. This can't be undone."
         buttonText="Delete"
-        onSubmit={() => {
+        onConfirm={() => {
           if (!selectedSection) return;
           setSections(sections.filter(section => section.id !== selectedSection.id));
         }}
@@ -366,7 +366,7 @@ export default function CreateRecipeScreen() {
         title="Are you sure?"
         text="Deleting this step can't be undone."
         buttonText="Delete"
-        onSubmit={() => {
+        onConfirm={() => {
           if (!selectedInstruction || !selectedSection) return;
 
           const section = sections.find(section => section.id === selectedSection.id);

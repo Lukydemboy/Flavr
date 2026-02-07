@@ -6,22 +6,23 @@ import { ActionButton, StyledText } from '../ui';
 type Props = {
   title: string;
   text: string;
+  isLoading?: boolean;
   buttonText: string;
-  onSubmit: () => void;
+  onConfirm: () => void;
   isDestructive?: boolean;
 };
 export type ConfirmationSheetRef = { open: () => void };
 
 export const ConfirmationSheet = forwardRef<ConfirmationSheetRef, Props>(
-  ({ title, text, buttonText, onSubmit, isDestructive = false }, ref) => {
+  ({ title, text, isLoading, buttonText, onConfirm, isDestructive = false }, ref) => {
     ConfirmationSheet.displayName = 'ConfirmationSheet';
 
     const sheet = useRef<TrueSheet>(null);
 
-    const handleOnSubmit = useCallback(() => {
-      onSubmit();
+    const handleOnConfirm = useCallback(() => {
+      onConfirm();
       sheet.current?.dismiss();
-    }, [onSubmit]);
+    }, [onConfirm]);
 
     useImperativeHandle(ref, () => ({
       open: () => sheet.current?.present(),
@@ -39,8 +40,10 @@ export const ConfirmationSheet = forwardRef<ConfirmationSheetRef, Props>(
             viewClassName="mt-6"
             size="large"
             text={buttonText}
-            onPress={handleOnSubmit}
-            buttonBgColorClass={isDestructive ? 'bg-rose-600' : 'bg-blue-500'}
+            onPress={handleOnConfirm}
+            buttonBgColorClass={isDestructive ? 'bg-rose-600' : 'bg-primary-500'}
+            isLoading={isLoading}
+            disabled={isLoading}
           />
         </View>
       </TrueSheet>

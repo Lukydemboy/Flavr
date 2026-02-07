@@ -220,6 +220,20 @@
           "action": {
             "submit": "Save preferences"
           }
+        },
+        "helpCenter": {
+          "title": "Help Center",
+          "description": "Need help with Flavr? Check out our help center for answers to common questions.",
+          "item": {
+            "deleteAccount": {
+              "label": "Delete account",
+              "description": "This action will permanently delete your account and all associated data. This action cannot be undone.",
+              "action": {
+                "confirm": "Are you sure you want to delete your account?",
+                "confirmButton": "Delete account"
+              }
+            }
+          }
         }
       }
     },

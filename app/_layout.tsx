@@ -184,6 +184,17 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen
+                  name="settings/help-center"
+                  options={{
+                    header: () => (
+                      <AppHeader
+                        title={t('screen.settings.screen.helpCenter.title')}
+                        fallbackBackscreen={'/(tabs)/settings'}
+                      />
+                    ),
+                  }}
+                />
+                <Stack.Screen
                   name="tutorials/instagram-import"
                   options={{
                     header: () => (
