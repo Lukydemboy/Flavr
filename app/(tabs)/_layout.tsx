@@ -50,7 +50,7 @@ export default function TabLayout() {
           tabBarShowLabel: false,
         }}
       />
-      <Tabs.Screen
+      {/*<Tabs.Screen
         name="recipes"
         options={{
           lazy: false,
@@ -60,7 +60,7 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => <BookIcon width={25} height={25} color={focused ? 'black' : '#A09FA8'} />,
           tabBarShowLabel: false,
         }}
-      />
+      />*/}
       <Tabs.Screen
         name="groups"
         options={{
