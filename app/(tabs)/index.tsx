@@ -24,8 +24,8 @@ export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTags, setActiveTags] = useState<Tag[]>([]);
   const sheetRef = useRef<CreateRecipeOptionsSheet>(null);
+  const { data: user, isFetching: isLoadingUser } = useUser();
   const { t } = useTranslation();
-  const { data: user, isLoading: isLoadingUser } = useUser();
   const router = useRouter();
 
   const { data: tags } = useTags();

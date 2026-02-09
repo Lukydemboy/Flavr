@@ -27,7 +27,7 @@ export default function ShareIntentScreen() {
     setIsSuccess(true);
     setTimeout(() => {
       resetShareIntent();
-      router.replace('/recipes');
+      router.replace('/(tabs)');
     }, SUCCESS_ANIMATION_DURATION);
   }, [resetShareIntent, router]);
 

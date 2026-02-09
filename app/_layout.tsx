@@ -78,133 +78,144 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <ShareIntentProvider>
         <SessionProvider>
-          <GestureHandlerRootView>
-            <SafeAreaProvider>
-              <Stack>
-                <Stack.Screen name="share-intent" options={{ headerShown: false }} />
-                <Stack.Screen name="start" options={{ headerShown: false }} />
-                <Stack.Screen name="login" options={{ headerShown: false }} />
-                <Stack.Screen name="mail-sent" options={{ headerShown: false }} />
-                <Stack.Screen name="complete-profile" options={{ headerShown: false }} />
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                <Stack.Screen name="recipes/[id]/index" options={{ headerShown: false }} />
-                <Stack.Screen
-                  name="recipes/[id]/share"
-                  options={{
-                    header: () => <AppHeader title={t('screen.shareRecipe.title')} />,
-                  }}
-                />
-                <Stack.Screen
-                  name="recipes/create/create"
-                  options={{
-                    header: () => <AppHeader title={t('screen.create.title')} />,
-                  }}
-                />
-                <Stack.Screen
-                  name="recipes/create/image"
-                  options={{
-                    header: () => <AppHeader title={t('screen.create.title')} fallbackBackscreen={'/(tabs)/recipes'} />,
-                  }}
-                />
-                <Stack.Screen
-                  name="recipes/create/link"
-                  options={{
-                    header: () => <AppHeader title={t('screen.create.title')} fallbackBackscreen={'/(tabs)/recipes'} />,
-                  }}
-                />
-                <Stack.Screen
-                  name="groups/create"
-                  options={{
-                    header: () => (
-                      <AppHeader title={t('screen.createGroups.title')} fallbackBackscreen={'/(tabs)/groups'} />
-                    ),
-                  }}
-                />
-                <Stack.Screen
-                  name="groups/[id]/index"
-                  options={{
-                    header: props => (
-                      <AppHeader title={props.options.title ?? ''} fallbackBackscreen={'/(tabs)/groups'} {...props} />
-                    ),
-                  }}
-                />
-                <Stack.Screen
-                  name="settings/edit-profile"
-                  options={{
-                    header: () => (
-                      <AppHeader
-                        title={t('screen.settings.screen.editProfile.title')}
-                        fallbackBackscreen={'/(tabs)/settings'}
-                      />
-                    ),
-                  }}
-                />
-                <Stack.Screen
-                  name="settings/dietary-preferences"
-                  options={{
-                    header: () => (
-                      <AppHeader
-                        title={t('screen.settings.screen.dietaryPreferences.title')}
-                        fallbackBackscreen={'/(tabs)/settings'}
-                      />
-                    ),
-                  }}
-                />
-                <Stack.Screen
-                  name="settings/allergies"
-                  options={{
-                    header: () => (
-                      <AppHeader
-                        title={t('screen.settings.screen.allergies.title')}
-                        fallbackBackscreen={'/(tabs)/settings'}
-                      />
-                    ),
-                  }}
-                />
-                <Stack.Screen
-                  name="settings/notifications"
-                  options={{
-                    header: () => (
-                      <AppHeader
-                        title={t('screen.settings.screen.notifications.title')}
-                        fallbackBackscreen={'/(tabs)/settings'}
-                      />
-                    ),
-                  }}
-                />
-                <Stack.Screen
-                  name="settings/language"
-                  options={{
-                    header: () => (
-                      <AppHeader
-                        title={t('screen.settings.screen.language.title')}
-                        fallbackBackscreen={'/(tabs)/settings'}
-                      />
-                    ),
-                  }}
-                />
-                <Stack.Screen
-                  name="settings/help-center"
-                  options={{
-                    header: () => (
-                      <AppHeader
-                        title={t('screen.settings.screen.helpCenter.title')}
-                        fallbackBackscreen={'/(tabs)/settings'}
-                      />
-                    ),
-                  }}
-                />
-                <Stack.Screen
-                  name="tutorials/instagram-import"
-                  options={{
-                    header: () => (
-                      <AppHeader title={t('screen.tutorials.instagramImport.title')} fallbackBackscreen={'/(tabs)'} />
-                    ),
-                  }}
-                />
-              </Stack>
-            </SafeAreaProvider>
-          </GestureHandlerRootView>
+          <SafeAreaProvider>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="share-intent" options={{ headerShown: false }} />
+              <Stack.Screen name="start" options={{ headerShown: false }} />
+              <Stack.Screen name="login" options={{ headerShown: false }} />
+              <Stack.Screen name="mail-sent" options={{ headerShown: false }} />
+              <Stack.Screen name="complete-profile" options={{ headerShown: false }} />
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="recipes/[id]/index" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="recipes/[id]/share"
+                options={{
+                  headerShown: true,
+                  header: () => <AppHeader title={t('screen.shareRecipe.title')} />,
+                }}
+              />
+              <Stack.Screen
+                name="recipes/create/create"
+                options={{
+                  headerShown: true,
+                  header: () => <AppHeader title={t('screen.create.title')} />,
+                }}
+              />
+              <Stack.Screen
+                name="recipes/create/image"
+                options={{
+                  headerShown: true,
+                  header: () => <AppHeader title={t('screen.create.title')} fallbackBackscreen={'/(tabs)'} />,
+                }}
+              />
+              <Stack.Screen
+                name="recipes/create/link"
+                options={{
+                  headerShown: true,
+                  header: () => <AppHeader title={t('screen.create.title')} fallbackBackscreen={'/(tabs)'} />,
+                }}
+              />
+              <Stack.Screen
+                name="groups/create"
+                options={{
+                  headerShown: true,
+                  header: () => (
+                    <AppHeader title={t('screen.createGroups.title')} fallbackBackscreen={'/(tabs)/groups'} />
+                  ),
+                }}
+              />
+              <Stack.Screen
+                name="groups/[id]/index"
+                options={{
+                  headerShown: true,
+                  header: props => (
+                    <AppHeader title={props.options.title ?? ''} fallbackBackscreen={'/(tabs)/groups'} {...props} />
+                  ),
+                }}
+              />
+              <Stack.Screen
+                name="settings/edit-profile"
+                options={{
+                  headerShown: true,
+                  header: () => (
+                    <AppHeader
+                      title={t('screen.settings.screen.editProfile.title')}
+                      fallbackBackscreen={'/(tabs)/settings'}
+                    />
+                  ),
+                }}
+              />
+              <Stack.Screen
+                name="settings/dietary-preferences"
+                options={{
+                  headerShown: true,
+                  header: () => (
+                    <AppHeader
+                      title={t('screen.settings.screen.dietaryPreferences.title')}
+                      fallbackBackscreen={'/(tabs)/settings'}
+                    />
+                  ),
+                }}
+              />
+              <Stack.Screen
+                name="settings/allergies"
+                options={{
+                  headerShown: true,
+                  header: () => (
+                    <AppHeader
+                      title={t('screen.settings.screen.allergies.title')}
+                      fallbackBackscreen={'/(tabs)/settings'}
+                    />
+                  ),
+                }}
+              />
+              <Stack.Screen
+                name="settings/notifications"
+                options={{
+                  headerShown: true,
+                  header: () => (
+                    <AppHeader
+                      title={t('screen.settings.screen.notifications.title')}
+                      fallbackBackscreen={'/(tabs)/settings'}
+                    />
+                  ),
+                }}
+              />
+              <Stack.Screen
+                name="settings/language"
+                options={{
+                  headerShown: true,
+                  header: () => (
+                    <AppHeader
+                      title={t('screen.settings.screen.language.title')}
+                      fallbackBackscreen={'/(tabs)/settings'}
+                    />
+                  ),
+                }}
+              />
+              <Stack.Screen
+                name="settings/help-center"
+                options={{
+                  headerShown: true,
+                  header: () => (
+                    <AppHeader
+                      title={t('screen.settings.screen.helpCenter.title')}
+                      fallbackBackscreen={'/(tabs)/settings'}
+                    />
+                  ),
+                }}
+              />
+              <Stack.Screen
+                name="tutorials/instagram-import"
+                options={{
+                  headerShown: true,
+                  header: () => (
+                    <AppHeader title={t('screen.tutorials.instagramImport.title')} fallbackBackscreen={'/(tabs)'} />
+                  ),
+                }}
+              />
+            </Stack>
+          </SafeAreaProvider>
         </SessionProvider>
       </ShareIntentProvider>
     </QueryClientProvider>

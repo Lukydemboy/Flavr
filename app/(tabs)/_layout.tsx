@@ -7,7 +7,6 @@ import { useUpdateUser, useUser } from '@/queries/user';
 import { PushNotifications } from '@/utils/push-notifications/push-notifications';
 import { Tabs } from 'expo-router';
 import { useEffect } from 'react';
-import { Platform } from 'react-native';
 
 export default function TabLayout() {
   const { data: user } = useUser();
