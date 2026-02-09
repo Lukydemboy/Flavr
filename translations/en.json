@@ -95,6 +95,17 @@
     "shareRecipe": {
       "title": "Share recipe",
       "description": "Share this recipe with your friends and family.",
+      "list": {
+        "empty": "You are not part of any group or you shared this recipe with all the groups you are part of."
+      },
+      "selectedList": {
+        "title": "Selected groups",
+        "description": "Start by searching users and tapping on the group's name to select them.",
+        "empty": "No groups selected yet",
+        "search": {
+          "placeholder": "Search groups..."
+        }
+      },
       "action": {
         "submit": "Share recipe"
       }

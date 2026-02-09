@@ -94,7 +94,18 @@
     },
     "shareRecipe": {
       "title": "Compartir receta",
-      "description": "Comparte esta receta con tus amigos y familiares. Cuando compartes la receta, pueden verla y compartirla.",
+      "description": "Comparte esta receta con tus amigos y familiares.",
+      "list": {
+        "empty": "No formas parte de ningún grupo o ya has compartido esta receta con todos los grupos a los que perteneces."
+      },
+      "selectedList": {
+        "title": "Grupos seleccionados",
+        "description": "Empieza buscando usuarios y toca el nombre del grupo para seleccionarlo.",
+        "empty": "Aún no hay grupos seleccionados",
+        "search": {
+          "placeholder": "Buscar grupos..."
+        }
+      },
       "action": {
         "submit": "Compartir receta"
       }

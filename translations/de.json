@@ -94,7 +94,18 @@
     },
     "shareRecipe": {
       "title": "Rezept teilen",
-      "description": "Teile dein Rezept mit anderen Nutzern oder Gruppen.",
+      "description": "Teile dieses Rezept mit deinen Freunden und deiner Familie.",
+      "list": {
+        "empty": "Du bist in keiner Gruppe oder du hast dieses Rezept bereits mit allen Gruppen geteilt, denen du angehörst."
+      },
+      "selectedList": {
+        "title": "Ausgewählte Gruppen",
+        "description": "Beginne mit der Suche nach Nutzern und tippe auf den Gruppennamen, um sie auszuwählen.",
+        "empty": "Noch keine Gruppen ausgewählt",
+        "search": {
+          "placeholder": "Gruppen suchen..."
+        }
+      },
       "action": {
         "submit": "Rezept teilen"
       }

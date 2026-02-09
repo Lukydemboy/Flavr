@@ -93,10 +93,21 @@
       }
     },
     "shareRecipe": {
-      "title": "Deel recept",
-      "description": "Deel dit recept met je vrienden en familie. Wanneer je het recept deelt, kunnen ze het recept bekijken en delen.",
+      "title": "Recept delen",
+      "description": "Deel dit recept met je vrienden en familie.",
+      "list": {
+        "empty": "Je maakt geen deel uit van een groep of je hebt dit recept al gedeeld met alle groepen waarvan je deel uitmaakt."
+      },
+      "selectedList": {
+        "title": "Geselecteerde groepen",
+        "description": "Begin met het zoeken naar gebruikers en tik op de naam van de groep om deze te selecteren.",
+        "empty": "Nog geen groepen geselecteerd",
+        "search": {
+          "placeholder": "Zoek groepen..."
+        }
+      },
       "action": {
-        "submit": "Deel recept"
+        "submit": "Recept delen"
       }
     },
     "settings": {

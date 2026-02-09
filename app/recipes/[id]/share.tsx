@@ -1,6 +1,6 @@
 import { CrossIcon } from '@/components/icons/Cross';
 import { CircleLoader } from '@/components/loaders';
-import { ActionButton, Page, StyledText, StyledTitle } from '@/components/ui';
+import { ActionButton, Page, StyledText } from '@/components/ui';
 import { InputField } from '@/components/ui/InputField';
 import { Group } from '@/domain/types/group';
 import { useGroups } from '@/queries/group';
@@ -48,25 +48,30 @@ export default function ShareRecipeScreen() {
     <Page>
       <StyledText className="text-slate-500 leading-relaxed text-left mb-4">
         {t('screen.shareRecipe.description')}
-        Select the groups you want the recipe to be shared with.
       </StyledText>
       <InputField
-        placeholder="Search groups..."
+        placeholder={t('screen.shareRecipe.selectedList.search.placeholder')}
         className="border border-gray-300 py-4 mb-4"
         onChangeText={query => setSearchQuery(query)}
         value={searchQuery}
       />
-      <ScrollView contentContainerClassName="grow mb-4 gap-1">
-        {isLoading && <StyledText>Loading...</StyledText>}
+      <ScrollView contentContainerClassName="grow mb-4 gap-1 bg-white rounded-xl p-4">
+        {isLoading && (
+          <View className="items-center">
+            <CircleLoader />
+          </View>
+        )}
 
-        {!isLoading && groups?.content.length === 0 && <StyledText>You are not part of any group</StyledText>}
+        {!isLoading && filteredGroups?.length === 0 && (
+          <StyledText className="text-sm text-slate-500">{t('screen.shareRecipe.list.empty')}</StyledText>
+        )}
 
         {!isLoading &&
           filteredGroups.map(group => {
             return (
               <Pressable
                 key={group.id}
-                className="flex-row items-center p-4 bg-white rounded-xl border-2 border-slate-200"
+                className="flex-row items-center p-3 bg-white rounded-xl border-2 border-slate-200"
                 onPress={() => {
                   if (selectedGroups.includes(group)) {
                     setSelectedGroups(selectedGroups.filter(group => group.id !== group.id));
@@ -75,7 +80,7 @@ export default function ShareRecipeScreen() {
                   }
                 }}
               >
-                <StyledText className="ml-2">{group.name}</StyledText>
+                <StyledText className="text-slate-700">{group.name}</StyledText>
               </Pressable>
             );
           })}
@@ -87,18 +92,15 @@ export default function ShareRecipeScreen() {
       >
         {!selectedGroups.length && (
           <View>
-            <StyledText className="text-gray-800" weight="semiBold">
-              No groups selected yet
+            <StyledText className="text-gray-800" weight="black">
+              {t('screen.shareRecipe.selectedList.title')}
             </StyledText>
             <StyledText className="text-xs text-gray-400 mt-2">
-              Start by searching users and tapping on the group&apos;s name to select them.
+              {t('screen.shareRecipe.selectedList.description')}
             </StyledText>
           </View>
         )}
 
-        <StyledText className="text-slate-600 mb-1" weight="semiBold">
-          Your recipe will be visible in the following groups:
-        </StyledText>
         {selectedGroups.map(group => (
           <View
             key={group.id}

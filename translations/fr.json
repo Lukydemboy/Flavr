@@ -94,9 +94,20 @@
     },
     "shareRecipe": {
       "title": "Partager la recette",
-      "description": "Partagez cette recette avec vos amis et votre famille. Lorsque vous partagez la recette, ils peuvent la voir et la partager.",
+      "description": "Partagez cette recette avec vos amis et votre famille.",
+      "list": {
+        "empty": "Vous ne faites partie d’aucun groupe ou vous avez déjà partagé cette recette avec tous les groupes auxquels vous appartenez."
+      },
+      "selectedList": {
+        "title": "Groupes sélectionnés",
+        "description": "Commencez par rechercher des utilisateurs et appuyez sur le nom du groupe pour le sélectionner.",
+        "empty": "Aucun groupe sélectionné pour le moment",
+        "search": {
+          "placeholder": "Rechercher des groupes..."
+        }
+      },
       "action": {
-        "submit": "Partager"
+        "submit": "Partager la recette"
       }
     },
     "settings": {
