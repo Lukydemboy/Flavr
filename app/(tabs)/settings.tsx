@@ -6,8 +6,7 @@ import { Avatar } from '@/components/ui/Avatar';
 import { useUser } from '@/queries/user';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
-import TagIcon from '@/components/icons/Tag';
+import { Linking, Pressable, View } from 'react-native';
 import ForkKnifeIcon from '@/components/icons/ForkKnife';
 import WarningIcon from '@/components/icons/Warning';
 import QuestionMarkCircleIcon from '@/components/icons/QuestionMarkCircle';
@@ -137,7 +136,10 @@ export default function SettingsScreen() {
           </View>
           <ChevronRightIcon width={18} height={18} />
         </Pressable>
-        <View className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm">
+        <Pressable
+          onPress={() => Linking.openURL('https://www.flavr-app.com/privacy')}
+          className="mt-2 p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm"
+        >
           <View className="flex flex-row gap-x-4 w-full items-center">
             <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
               <ShieldIcon width={24} height={24} color="#32675e" />
@@ -145,7 +147,7 @@ export default function SettingsScreen() {
             <StyledText weight="bold">{t('screen.settings.support.item.privacyPolicy')}</StyledText>
           </View>
           <ChevronRightIcon width={18} height={18} />
-        </View>
+        </Pressable>
       </View>
 
       <Pressable

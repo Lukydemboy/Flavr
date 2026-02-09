@@ -1,9 +1,11 @@
 import { CrossIcon } from '@/components/icons/Cross';
 import PlusIcon from '@/components/icons/Plus';
+import { InformationModal } from '@/components/modals/InformationModal';
 import { RecipePreview } from '@/components/recipes/RecipePreview';
 import { CreateRecipeOptionsSheet } from '@/components/sheets/CreateRecipeOptionsSheet';
 import { Page, StyledText } from '@/components/ui';
 import { InputField } from '@/components/ui/InputField';
+import { ErrorCode } from '@/domain/enums/error.enum';
 import { Paginated } from '@/domain/types/listings';
 import { Recipe } from '@/domain/types/recipe';
 import { Tag } from '@/domain/types/tag';
@@ -12,7 +14,7 @@ import { useTags } from '@/queries/tag';
 import { useUser } from '@/queries/user';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, RefreshControl, ScrollView, View } from 'react-native';
@@ -23,6 +25,7 @@ export default function HomeScreen() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTags, setActiveTags] = useState<Tag[]>([]);
+  const { error } = useLocalSearchParams<{ error: ErrorCode }>();
   const sheetRef = useRef<CreateRecipeOptionsSheet>(null);
   const { data: user, isFetching: isLoadingUser } = useUser();
   const { t } = useTranslation();
@@ -136,6 +139,15 @@ export default function HomeScreen() {
         <PlusIcon color="#fff" width={14} height={14} />
       </Pressable>
       <CreateRecipeOptionsSheet ref={sheetRef} />
+      <InformationModal
+        title={t(`screen.recipes.error.modal.${error?.toLowerCase()}.title`)}
+        text={t(`screen.recipes.error.modal.${error?.toLowerCase()}.description`)}
+        isError
+        isModalVisible={!!error}
+        setIsModalVisible={isModalVisible => {
+          if (!isModalVisible) router.replace({ pathname: '/(tabs)', params: {} });
+        }}
+      />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Text } from 'react-native';
+import { StyleProp, Text, TextStyle } from 'react-native';
 
 export type FontWeight =
   | 'thin'
@@ -16,8 +16,13 @@ type Props = {
   children: ReactNode;
   weight?: FontWeight;
   className?: string;
+  style?: StyleProp<TextStyle>;
 };
 
-export const StyledText = ({ children, weight = 'regular', className }: Props) => {
-  return <Text className={`font-nunito-${weight} ${className}`}>{children}</Text>;
+export const StyledText = ({ children, weight = 'regular', className, style }: Props) => {
+  return (
+    <Text className={`font-nunito-${weight} ${className}`} style={style}>
+      {children}
+    </Text>
+  );
 };

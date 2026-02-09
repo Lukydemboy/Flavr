@@ -34,7 +34,7 @@ export default function RecipeDetailScreen() {
   }
 
   if (!recipe && !isLoading) {
-    return <Redirect href={'/recipes'} />;
+    return <Redirect href={'/(tabs)'} />;
   }
 
   return (
@@ -50,7 +50,7 @@ export default function RecipeDetailScreen() {
           </Pressable>
 
           <View className="pr-4 flex flex-row">
-            {user.id === recipe?.owner.id && (
+            {user.id === recipe?.owner?.id && (
               <>
                 <Pressable
                   onPress={() => setIsDeleteModalVisible(true)}
@@ -108,7 +108,9 @@ export default function RecipeDetailScreen() {
                 )}
 
                 {recipe.description && (
-                  <StyledText className="text-slate-500 mt-2 mb-4 leading-relaxed">{recipe.description}</StyledText>
+                  <StyledText className="text-slate-500 mt-2 mb-4" style={{ lineHeight: 21 }}>
+                    {recipe.description}
+                  </StyledText>
                 )}
 
                 <View className="mt-2 flex flex-row justify-between border border-slate-200 bg-slate-50 rounded-xl p-3">

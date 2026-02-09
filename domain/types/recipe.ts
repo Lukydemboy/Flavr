@@ -1,8 +1,7 @@
-import { User } from '@/context/authContext';
 import { Group } from './group';
-import { Image } from './image';
 import { Asset } from './asset';
 import { Tag } from './tag';
+import { User } from './user';
 
 export type Recipe = {
   id: string;

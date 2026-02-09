@@ -12,11 +12,54 @@
         }
       }
     },
+    "shareIntent": {
+      "title": "Guac is momenteel je recept aan het schrijven!",
+      "hint": "Dit kan even duren."
+    },
     "groups": {
       "title": "Groepen",
       "empty": "Geen groepen gevonden",
+      "item": {
+        "members": "{{memberCount}} leden"
+      },
       "action": {
         "create": "Groep aanmaken"
+      }
+    },
+    "groupDetail": {
+      "members": "{{memberCount}} leden",
+      "action": {
+        "invite": "Uitnodigen"
+      },
+      "list": {
+        "item": {
+          "action": {
+            "kick": "Verwijderen"
+          }
+        }
+      },
+      "modal": {
+        "kick": {
+          "title": "Weet je het zeker?",
+          "description": "Weet je zeker dat je {{username}} uit de groep wilt verwijderen? Je zult hen opnieuw moeten uitnodigen.",
+          "action": {
+            "cancel": "Annuleren",
+            "confirm": "Bevestigen"
+          }
+        }
+      }
+    },
+    "groupInvite": {
+      "title": "Uitnodigen voor groep",
+      "form": {
+        "search": "Gebruikers zoeken..."
+      },
+      "list": {
+        "empty": "Geen gebruikers gevonden die nog niet in de groep zitten"
+      },
+      "selectedList": {
+        "title": "Nog geen gebruikers geselecteerd",
+        "description": "Begin met het zoeken naar gebruikers en tik op de avatar van de gebruiker om deze te selecteren."
       }
     },
     "createGroups": {

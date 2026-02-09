@@ -1,16 +1,19 @@
 import { CrossIcon } from '@/components/icons/Cross';
-import { ActionButton, Page, StyledText, StyledTitle } from '@/components/ui';
+import { ActionButton, Page, StyledText } from '@/components/ui';
 import { Avatar } from '@/components/ui/Avatar';
 import { InputField } from '@/components/ui/InputField';
-import { User } from '@/context/authContext';
 import { useGroup, useInviteUsers } from '@/queries/group';
 import { useUsers } from '@/queries/user';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View, ScrollView, Pressable } from 'react-native';
 import { isEqual } from 'lodash';
+import { User } from '@/domain/types/user';
+import { useTranslation } from 'react-i18next';
+import { CircleLoader } from '@/components/loaders';
 
 export default function GroupInviteScreen() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [searchQuery, setSearchQuery] = useState('');
@@ -39,17 +42,20 @@ export default function GroupInviteScreen() {
 
   return (
     <Page contentContainerClassName="max-h-full">
-      <StyledTitle className="text-xl text-left font-bold mb-4 pt-6">Invite members</StyledTitle>
       <InputField
-        placeholder="Search users..."
+        placeholder={t('screen.groupInvite.form.search')}
         className="border border-gray-300 py-4 mb-4"
         onChangeText={query => setSearchQuery(query)}
         value={searchQuery}
       />
       <ScrollView contentContainerClassName="grow mb-4 gap-1">
-        {isLoading && <StyledText>Loading...</StyledText>}
+        {isLoading && (
+          <View className="items-center">
+            <CircleLoader />
+          </View>
+        )}
 
-        {!isLoading && filteredUsers?.length === 0 && <StyledText>No users found</StyledText>}
+        {!isLoading && filteredUsers?.length === 0 && <StyledText>{t('screen.groupInvite.list.empty')}</StyledText>}
 
         {!isLoading &&
           filteredUsers?.map(user => {
@@ -75,11 +81,11 @@ export default function GroupInviteScreen() {
       <View className="bg-white p-4 rounded-xl flex flex-row flex-wrap gap-2 mt-4">
         {!selectedUsers.length && (
           <View>
-            <StyledText className="text-gray-800" weight="semiBold">
-              No users selected yet
+            <StyledText className="text-gray-800" weight="black">
+              {t('screen.groupInvite.selectedList.title')}
             </StyledText>
             <StyledText className="text-xs text-gray-400 mt-2">
-              Start by searching users and tapping on the user&apos;s avatar to select them.
+              {t('screen.groupInvite.selectedList.description')}
             </StyledText>
           </View>
         )}
@@ -114,7 +120,7 @@ export default function GroupInviteScreen() {
             router.back();
           });
         }}
-        text="Invite members"
+        text={t('screen.shareRecipe.selectedList.action.submit')}
       />
     </Page>
   );

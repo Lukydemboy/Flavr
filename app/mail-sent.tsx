@@ -1,6 +1,6 @@
 import ChevronLeftIcon from '@/components/icons/ChevronLeft';
 import { ActionButton, Page, StyledText } from '@/components/ui';
-import { ErrorCodes } from '@/domain/enums/error';
+import { ErrorCode } from '@/domain/enums/error.enum';
 import { ApiErrorResponse } from '@/domain/types/error';
 import { AxiosError } from 'axios';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -27,7 +27,7 @@ export default function MailSent() {
       .catch((err: AxiosError) => {
         const errorResponse = err.response?.data as ApiErrorResponse;
 
-        if (errorResponse.code === ErrorCodes.OtpInvalid) {
+        if (errorResponse.code === ErrorCode.OtpInvalid) {
           setOtpIsInvalid(true);
         }
       })

@@ -1,14 +1,16 @@
 import { CircleLoader } from '@/components/loaders';
 import { ActionButton, ModalComponent, Page, StyledText } from '@/components/ui';
 import { Avatar } from '@/components/ui/Avatar';
-import { User } from '@/context/authContext';
+import { User } from '@/domain/types/user';
 import { useGroup, useKickMember } from '@/queries/group';
 import { useUser } from '@/queries/user';
 import { Redirect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, View } from 'react-native';
 
 export default function GroupDetailScreen() {
+  const { t } = useTranslation();
   const router = useRouter();
   const [isOwner, setIsOwner] = useState(false);
   const [isKickModalVisible, setIsKickModalVisible] = useState(false);
@@ -45,20 +47,19 @@ export default function GroupDetailScreen() {
   return (
     <>
       <Page>
-        <StyledText className="text-xl mt-4" weight="bold">
-          {group?.name}
-        </StyledText>
         <StyledText className="text-slate-500 mt-4">{group?.description}</StyledText>
 
         <View className="flex flex-row justify-between items-end mt-12">
           <View>
             <StyledText weight="semiBold">Members</StyledText>
-            <StyledText className="text-xs text-slate-500">{group?.members.length} members</StyledText>
+            <StyledText className="text-xs text-slate-500">
+              {t('screen.groupDetail.members', { memberCount: group?.members.length })}
+            </StyledText>
           </View>
           <Pressable onPress={() => router.push(`/groups/${id}/invite`)}>
             {isOwner && (
               <StyledText className="text-sm px-3 py-1 rounded-lg bg-green-100 text-primary-500 border border-green-400">
-                Invite
+                {t('screen.groupDetail.action.invite')}
               </StyledText>
             )}
           </Pressable>
@@ -83,7 +84,7 @@ export default function GroupDetailScreen() {
                 >
                   <View className="bg-rose-100 px-2 py-1 rounded-lg">
                     <StyledText className="text-sm text-rose-600" weight="semiBold">
-                      Kick
+                      {t('screen.groupDetail.list.item.action.kick')}
                     </StyledText>
                   </View>
                 </Pressable>
@@ -93,14 +94,14 @@ export default function GroupDetailScreen() {
         </ScrollView>
 
         <ModalComponent
-          title="Are you sure?"
+          title={t('screen.groupDetail.modal.kick.title')}
           modalVisible={isKickModalVisible}
           onClose={() => setIsKickModalVisible(false)}
         >
           {selectedMember && (
             <>
               <StyledText className="text-sm text-slate-500">
-                Are you sure you want to kick {selectedMember?.username} from the group? You will have to reinvite them.
+                {t('screen.groupDetail.modal.kick.description', { username: selectedMember?.username })}
               </StyledText>
 
               <View className="flex flex-row justify-end gap-x-2 mt-4">
@@ -111,7 +112,7 @@ export default function GroupDetailScreen() {
                     setIsKickModalVisible(false);
                     setSelectedMember(null);
                   }}
-                  text="Cancel"
+                  text={t('screen.groupDetail.modal.kick.action.cancel')}
                 />
                 <ActionButton
                   buttonBgColorClass="bg-rose-500"
@@ -122,7 +123,7 @@ export default function GroupDetailScreen() {
                     setIsKickModalVisible(false);
                     setSelectedMember(null);
                   }}
-                  text="Confirm"
+                  text={t('screen.groupDetail.modal.kick.action.confirm')}
                 />
               </View>
             </>

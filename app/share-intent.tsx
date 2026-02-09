@@ -1,5 +1,4 @@
 import { Image, View } from 'react-native';
-
 import { useRouter } from 'expo-router';
 import { ShareIntent, useShareIntentContext } from 'expo-share-intent';
 import { useCallback, useEffect, useState } from 'react';
@@ -11,10 +10,13 @@ import {
 import { Page, StyledText } from '@/components/ui';
 import { CircleLoader } from '@/components/loaders';
 import LottieView from 'lottie-react-native';
+import { ErrorCode } from '@/domain/enums/error.enum';
+import { useTranslation } from 'react-i18next';
 
 const SUCCESS_ANIMATION_DURATION = 500;
 
 export default function ShareIntentScreen() {
+  const { t } = useTranslation();
   const router = useRouter();
   const [isSuccess, setIsSuccess] = useState(false);
   const { hasShareIntent, shareIntent, resetShareIntent } = useShareIntentContext();
@@ -31,19 +33,30 @@ export default function ShareIntentScreen() {
     }, SUCCESS_ANIMATION_DURATION);
   }, [resetShareIntent, router]);
 
-  const handleShareIntent = useCallback((intent: ShareIntent) => {
-    if (intent.type === 'weburl' && intent.webUrl) {
-      if (intent.webUrl?.includes('instagram')) {
-        return generateFromInstagram(intent.webUrl).then(() => onSuccess());
+  const handleShareIntent = useCallback(async (intent: ShareIntent) => {
+    try {
+      if (intent.type === 'weburl' && intent.webUrl) {
+        if (intent.webUrl?.includes('instagram')) {
+          await generateFromInstagram(intent.webUrl);
+          onSuccess();
+          return;
+        }
+
+        await generateFromUrl(intent.webUrl);
+        onSuccess();
+        return;
       }
 
-      return generateFromUrl(intent.webUrl).then(() => onSuccess());
-    }
+      if (intent.files?.length) {
+        const file = intent.files[0];
 
-    if (intent.files?.length) {
-      const file = intent.files[0];
-
-      return generateFromImage(file).then(() => onSuccess());
+        await generateFromImage(file);
+        onSuccess();
+        return;
+      }
+    } catch (error) {
+      console.error('Failed to generate recipe', error);
+      router.replace({ pathname: '/(tabs)', params: { error: ErrorCode.FailedToGenerateRecipe } });
     }
   }, []);
 
@@ -76,7 +89,7 @@ export default function ShareIntentScreen() {
 
       <View className="px-4 grow">
         <StyledText className="font-nunito-black text-2xl text-center mt-4" weight="bold">
-          Guac is currently writing your recipe!
+          {t('screen.shareIntent.title')}
         </StyledText>
 
         <View className="flex justify-center items-center mt-4">
@@ -84,7 +97,7 @@ export default function ShareIntentScreen() {
         </View>
 
         <StyledText className="font-nunito-regular text-sm text-slate-400 text-center mt-auto" weight="regular">
-          This can take a minute or two.
+          {t('screen.shareIntent.hint')}
         </StyledText>
       </View>
 

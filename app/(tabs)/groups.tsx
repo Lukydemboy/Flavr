@@ -15,7 +15,7 @@ export default function GroupsScreen() {
   return (
     <Page safeAreaTop className="gap-y-4">
       <View className="flex flex-row justify-between items-center">
-        <StyledText className="text-2xl" weight="black">
+        <StyledText className="text-xl" weight="black">
           {t('screen.groups.title')}
         </StyledText>
 
@@ -55,11 +55,11 @@ export default function GroupsScreen() {
               }
             >
               <View>
-                <StyledText className="text-lg" weight="bold">
+                <StyledText className="text-lg" weight="black">
                   {group.name}
                 </StyledText>
                 <View className="flex flex-row justify-between items-center mt-2">
-                  <StyledText className="text-sm">{group.members.length} Members</StyledText>
+                  <StyledText className="text-xs">{group.members.length} members</StyledText>
                 </View>
               </View>
               <ChevronRightIcon width={16} height={16} color="#000" />

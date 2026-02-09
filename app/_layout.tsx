@@ -18,7 +18,6 @@ import { configureAxios } from '@/utils/requests/requests';
 import { ShareIntentProvider } from 'expo-share-intent';
 import AppHeader from '@/components/headers/AppHeader';
 import { StorageKeys, useStorageState } from '@/hooks/storage';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useNotificationObserver } from '@/hooks/notification-observer';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
@@ -130,6 +129,15 @@ export default function RootLayout() {
                   headerShown: true,
                   header: props => (
                     <AppHeader title={props.options.title ?? ''} fallbackBackscreen={'/(tabs)/groups'} {...props} />
+                  ),
+                }}
+              />
+              <Stack.Screen
+                name="groups/[id]/invite"
+                options={{
+                  headerShown: true,
+                  header: props => (
+                    <AppHeader title={t('screen.groupInvite.title')} fallbackBackscreen={'/(tabs)/groups'} {...props} />
                   ),
                 }}
               />

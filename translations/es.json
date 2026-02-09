@@ -12,11 +12,54 @@
         }
       }
     },
+    "shareIntent": {
+      "title": "¡Guac está escribiendo tu receta!",
+      "hint": "Esto puede tardar un momento."
+    },
     "groups": {
       "title": "Grupos",
       "empty": "No se encontraron grupos",
+      "item": {
+        "members": "{{memberCount}} miembros"
+      },
       "action": {
         "create": "Crear grupo"
+      }
+    },
+    "groupDetail": {
+      "members": "{{memberCount}} miembros",
+      "action": {
+        "invite": "Invitar"
+      },
+      "list": {
+        "item": {
+          "action": {
+            "kick": "Expulsar"
+          }
+        }
+      },
+      "modal": {
+        "kick": {
+          "title": "¿Estás seguro?",
+          "description": "¿Estás seguro de que quieres expulsar a {{username}} del grupo? Tendrás que volver a invitarlo.",
+          "action": {
+            "cancel": "Cancelar",
+            "confirm": "Confirmar"
+          }
+        }
+      }
+    },
+    "groupInvite": {
+      "title": "Invitar al grupo",
+      "form": {
+        "search": "Buscar usuarios..."
+      },
+      "list": {
+        "empty": "No se encontraron usuarios que aún no estén en el grupo"
+      },
+      "selectedList": {
+        "title": "Aún no hay usuarios seleccionados",
+        "description": "Empieza buscando usuarios y toca el avatar del usuario para seleccionarlo."
       }
     },
     "createGroups": {

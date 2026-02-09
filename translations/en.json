@@ -10,13 +10,64 @@
           "duration": "{{duration}} minutes",
           "sharedBy": "Shared by {{name}}"
         }
+      },
+      "error": {
+        "modal": {
+          "failed_to_generate_recipe": {
+            "title": "Failed to generate recipe",
+            "description": "We're sorry, but we were unable to generate a recipe at this time. Make sure the url you provided has the necessary information. For Instagram and TikTok, make sure the post is public and has the recipe in the caption."
+          }
+        }
       }
+    },
+    "shareIntent": {
+      "title": "Guac is currently writing your recipe!",
+      "hint": "This can take a minute."
     },
     "groups": {
       "title": "Groups",
       "empty": "No groups found",
+      "item": {
+        "members": "{{memberCount}} members"
+      },
       "action": {
         "create": "Create group"
+      }
+    },
+    "groupDetail": {
+      "members": "{{memberCount}} members",
+      "action": {
+        "invite": "Invite"
+      },
+      "list": {
+        "item": {
+          "action": {
+            "kick": "Kick"
+          }
+        }
+      },
+      "modal": {
+        "kick": {
+          "title": "Are you sure?",
+          "description": "Are you sure you want to kick {{username}} from the group? You will have to reinvite them.",
+          "action": {
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+          }
+        }
+      }
+    },
+    "groupInvite": {
+      "title": "Invite to group",
+      "form": {
+        "search": "Search users..."
+      },
+      "list": {
+        "empty": "No users found that are not in the group already"
+      },
+      "selectedList": {
+        "title": "No users selected yet",
+        "description": "Start by searching users and tapping on the user&apos;s avatar to select them."
       }
     },
     "createGroups": {
@@ -100,10 +151,13 @@
       },
       "selectedList": {
         "title": "Selected groups",
-        "description": "Start by searching users and tapping on the group's name to select them.",
+        "description": "Start by searching and tapping on the group's name to select them.",
         "empty": "No groups selected yet",
         "search": {
           "placeholder": "Search groups..."
+        },
+        "action": {
+          "submit": "Invite members"
         }
       },
       "action": {
