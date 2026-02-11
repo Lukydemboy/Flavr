@@ -8,6 +8,7 @@ import { useSession } from '@/context/authContext';
 import TrashCanIcon from '@/components/icons/TrashCan';
 import { ConfirmationSheet, ConfirmationSheetRef } from '@/components/sheets/ConfirmationSheet';
 import { useRef } from 'react';
+import OwlIcon from '@/components/icons/Owl';
 
 export default function HelpCenterScreen() {
   const { signOut } = useSession();
@@ -24,7 +25,19 @@ export default function HelpCenterScreen() {
 
   return (
     <Page safeAreaTop={false}>
-      <View>
+      <View className="gap-y-4">
+        <Pressable
+          onPress={() => router.push('/tutorials')}
+          className="p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm"
+        >
+          <View className="flex flex-row gap-x-4 w-full items-center">
+            <View className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center">
+              <OwlIcon width={24} height={24} color="#32675e" />
+            </View>
+            <StyledText weight="bold">{t('screen.settings.screen.helpCenter.item.tutorials.label')}</StyledText>
+          </View>
+          <ChevronRightIcon width={18} height={18} />
+        </Pressable>
         <Pressable
           onPress={() => confirmationSheetRef.current?.open()}
           className="p-2 pl-4 rounded-xl bg-white flex items-center justify-center flex-row pr-6 shadow-sm"

@@ -274,10 +274,33 @@
           "action": {
             "submit": "Enregistrer les préférences"
           }
+        },
+        "helpCenter": {
+          "title": "Centre d’aide",
+          "description": "Besoin d’aide avec Flavr ? Consultez notre centre d’aide pour obtenir des réponses aux questions fréquentes.",
+          "item": {
+            "tutorials": {
+              "label": "Tutoriels"
+            },
+            "deleteAccount": {
+              "label": "Supprimer le compte",
+              "description": "Cette action supprimera définitivement votre compte et toutes les données associées. Cette action est irréversible.",
+              "action": {
+                "confirm": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+                "confirmButton": "Supprimer le compte"
+              }
+            }
+          }
         }
       }
     },
     "tutorials": {
+      "title": "Tutoriels",
+      "item": {
+        "instagram": {
+          "label": "Générer une recette Instagram"
+        }
+      },
       "instagramImport": {
         "title": "Importer depuis Instagram",
         "description": "Vous avez trouvé une recette sur Instagram que vous souhaitez enregistrer ? Vous pouvez l’importer en quelques étapes seulement, sans aucune saisie manuelle.",

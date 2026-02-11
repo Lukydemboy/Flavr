@@ -274,10 +274,33 @@
           "action": {
             "submit": "Voorkeuren opslaan"
           }
+        },
+        "helpCenter": {
+          "title": "Helpcentrum",
+          "description": "Hulp nodig met Flavr? Bekijk ons helpcentrum voor antwoorden op veelgestelde vragen.",
+          "item": {
+            "tutorials": {
+              "label": "Tutorials"
+            },
+            "deleteAccount": {
+              "label": "Account verwijderen",
+              "description": "Deze actie zal je account en alle bijbehorende gegevens permanent verwijderen. Deze actie kan niet ongedaan worden gemaakt.",
+              "action": {
+                "confirm": "Weet je zeker dat je je account wilt verwijderen?",
+                "confirmButton": "Account verwijderen"
+              }
+            }
+          }
         }
       }
     },
     "tutorials": {
+      "title": "Tutorials",
+      "item": {
+        "instagram": {
+          "label": "Genereer Instagram-recept"
+        }
+      },
       "instagramImport": {
         "title": "Importeren vanuit Instagram",
         "description": "Heb je een recept op Instagram gevonden dat je wilt opslaan? Je kunt het in slechts een paar stappen importeren, zonder handmatig te typen.",

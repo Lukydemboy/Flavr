@@ -274,10 +274,33 @@
           "action": {
             "submit": "Einstellungen speichern"
           }
+        },
+        "helpCenter": {
+          "title": "Hilfezentrum",
+          "description": "Brauchst du Hilfe mit Flavr? Besuche unser Hilfezentrum für Antworten auf häufig gestellte Fragen.",
+          "item": {
+            "tutorials": {
+              "label": "Anleitungen"
+            },
+            "deleteAccount": {
+              "label": "Konto löschen",
+              "description": "Diese Aktion wird dein Konto und alle zugehörigen Daten dauerhaft löschen. Diese Aktion kann nicht rückgängig gemacht werden.",
+              "action": {
+                "confirm": "Bist du sicher, dass du dein Konto löschen möchtest?",
+                "confirmButton": "Konto löschen"
+              }
+            }
+          }
         }
       }
     },
     "tutorials": {
+      "title": "Anleitungen",
+      "item": {
+        "instagram": {
+          "label": "Instagram-Rezept generieren"
+        }
+      },
       "instagramImport": {
         "title": "Von Instagram importieren",
         "description": "Hast du ein Rezept auf Instagram gefunden, das du speichern möchtest? Du kannst es in nur wenigen Schritten importieren – ganz ohne manuelles Abtippen.",

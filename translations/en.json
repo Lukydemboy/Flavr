@@ -290,6 +290,9 @@
           "title": "Help Center",
           "description": "Need help with Flavr? Check out our help center for answers to common questions.",
           "item": {
+            "tutorials": {
+              "label": "Tutorials"
+            },
             "deleteAccount": {
               "label": "Delete account",
               "description": "This action will permanently delete your account and all associated data. This action cannot be undone.",
@@ -303,6 +306,12 @@
       }
     },
     "tutorials": {
+      "title": "Tutorials",
+      "item": {
+        "instagram": {
+          "label": "Generate Instagram recipe"
+        }
+      },
       "instagramImport": {
         "title": "Importing from Instagram",
         "description": "Found a recipe on Instagram you want to save? You can import it in just a few steps, no manual typing required.",

@@ -16,7 +16,7 @@ export default function CompleteProfileScreen() {
     onSubmit: async ({ value }) => {
       const { username } = value;
       await updateUser({ username }).then(() => {
-        router.replace('/(tabs)');
+        router.replace('/notification-consent');
       });
     },
   });
