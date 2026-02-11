@@ -9,20 +9,20 @@ import { ErrorCode } from '@/domain/enums/error.enum';
 import { Paginated } from '@/domain/types/listings';
 import { Recipe } from '@/domain/types/recipe';
 import { Tag } from '@/domain/types/tag';
+import { useIsPageReady } from '@/hooks/transtition';
 import { recipeKeys } from '@/queries/recipe';
 import { useTags } from '@/queries/tag';
 import { useUser } from '@/queries/user';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, RefreshControl, ScrollView, View } from 'react-native';
 
 const initialPage = { number: 1, size: 10 };
 
 export default function HomeScreen() {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTags, setActiveTags] = useState<Tag[]>([]);
   const { error } = useLocalSearchParams<{ error: ErrorCode }>();
@@ -30,6 +30,7 @@ export default function HomeScreen() {
   const { data: user, isFetching: isLoadingUser } = useUser();
   const { t } = useTranslation();
   const router = useRouter();
+  const isPageReady = useIsPageReady();
 
   const { data: tags } = useTags();
   const { data, fetchNextPage, refetch, isFetching } = useInfiniteQuery({
@@ -62,9 +63,7 @@ export default function HomeScreen() {
     }
   }, [user, router, isLoadingUser]);
 
-  useEffect(() => {
-    setRecipes(data?.pages.flatMap(page => page.content) ?? []);
-  }, [data]);
+  const recipes = useMemo(() => data?.pages.flatMap(page => page.content) ?? [], [data]);
 
   return (
     <>
@@ -115,7 +114,10 @@ export default function HomeScreen() {
           numColumns={2}
           data={recipes}
           showsVerticalScrollIndicator={false}
-          onEndReached={() => fetchNextPage()}
+          // Something funky is going on when the page is transitioning and refetched while Tanstack Query is refetching
+          // So only fetch the next page when the page is done transitioning
+          // https://github.com/TanStack/query/discussions/6709
+          onEndReached={() => (isPageReady ? fetchNextPage() : {})}
           columnWrapperClassName="justify-between"
           contentContainerClassName="gap-4"
           ListEmptyComponent={

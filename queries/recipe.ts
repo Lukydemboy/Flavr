@@ -68,7 +68,7 @@ export const useGenerateRecipeFromInstagram = () => {
       }).then(res => res.data);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: recipeKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: recipeKeys.lists(), refetchType: 'none' });
     },
   });
 };
