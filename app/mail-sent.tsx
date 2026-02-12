@@ -5,7 +5,7 @@ import { ApiErrorResponse } from '@/domain/types/error';
 import { AxiosError } from 'axios';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { Platform, PlatformIOSStatic, Pressable, View } from 'react-native';
 import { OtpInput } from 'react-native-otp-entry';
 import { useSession } from '@/context/authContext';
 
@@ -17,8 +17,18 @@ export default function MailSent() {
   const { login } = useSession();
   const router = useRouter();
 
+  const isTablet = () => {
+    if (Platform.OS === 'ios') {
+      const platformIOS = Platform as PlatformIOSStatic;
+      return platformIOS.isPad;
+    }
+
+    return false;
+  };
+
   const handleLogin = (otp: string) => {
     setIsLoading(true);
+
     login({ email, otp })
       .then(() => {
         router.dismissAll();
@@ -76,7 +86,8 @@ export default function MailSent() {
           }}
           theme={{
             pinCodeContainerStyle: {
-              height: 44,
+              height: isTablet() ? 100 : 44,
+              width: isTablet() ? 100 : 44,
               borderWidth: 2,
               borderRadius: 12,
               backgroundColor: 'white',

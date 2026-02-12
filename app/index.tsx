@@ -27,6 +27,5 @@ export default function IndexScreen() {
 }
 
 const doesAppNeedUpdate = (minAppVersion?: string) => {
-  console.log('does app need update?', minAppVersion, packageJson.version);
   return minAppVersion && packageJson.version < minAppVersion;
 };

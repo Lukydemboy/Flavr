@@ -47,9 +47,6 @@ export function SessionProvider(props: PropsWithChildren) {
             })
             .then(res => {
               setSession(JSON.stringify(res.data as Session));
-            })
-            .catch(err => {
-              console.error(err);
             });
         },
         signOut: async () => {
