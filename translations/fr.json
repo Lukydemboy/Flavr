@@ -1,5 +1,14 @@
 {
   "screen": {
+    "update": {
+      "title": "Une nouvelle version de l'application est disponible",
+      "description": "Vous utilisez une ancienne version de l'application. Pour bénéficier de la meilleure expérience, veuillez mettre à jour vers la dernière version.",
+      "action": {
+        "update": {
+          "label": "Mettre à jour"
+        }
+      }
+    },
     "recipes": {
       "search": {
         "placeholder": "Chercher des recettes..."

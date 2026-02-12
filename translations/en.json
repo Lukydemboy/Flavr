@@ -1,5 +1,14 @@
 {
   "screen": {
+    "update": {
+      "title": "A new app version is available",
+      "description": "You are running an old version of the app. To get the best experience, please update to the latest version.",
+      "action": {
+        "update": {
+          "label": "Update"
+        }
+      }
+    },
     "recipes": {
       "search": {
         "placeholder": "Search recipes..."

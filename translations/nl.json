@@ -1,5 +1,14 @@
 {
   "screen": {
+    "update": {
+      "title": "Er is een nieuwe versie van de app beschikbaar",
+      "description": "U gebruikt een oude versie van de app. Werk bij naar de nieuwste versie voor de beste ervaring.",
+      "action": {
+        "update": {
+          "label": "Bijwerken"
+        }
+      }
+    },
     "recipes": {
       "search": {
         "placeholder": "Zoek recepten..."

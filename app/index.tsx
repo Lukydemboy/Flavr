@@ -2,9 +2,12 @@ import { Redirect, useRouter } from 'expo-router';
 import { useStorageState } from '@/hooks/storage';
 import { useShareIntentContext } from 'expo-share-intent';
 import { useEffect } from 'react';
+import * as packageJson from '../package.json';
+import { useAppConfig } from '@/queries/app-config';
 
 export default function IndexScreen() {
   const [[isLoadingSession, session]] = useStorageState('session');
+  const { data: appConfig, isLoading: isFetchingAppConfig } = useAppConfig();
   const { hasShareIntent } = useShareIntentContext();
   const router = useRouter();
 
@@ -14,7 +17,16 @@ export default function IndexScreen() {
     }
   }, [hasShareIntent, isLoadingSession, router]);
 
-  if (isLoadingSession) return null;
+  if (isLoadingSession || isFetchingAppConfig) return null;
+
+  if (doesAppNeedUpdate(appConfig?.minAppVersion)) {
+    return <Redirect href={'/update'} />;
+  }
 
   return <>{session ? <Redirect href="/(tabs)" /> : <Redirect href={'/start'} />}</>;
 }
+
+const doesAppNeedUpdate = (minAppVersion?: string) => {
+  console.log('does app need update?', minAppVersion, packageJson.version);
+  return minAppVersion && packageJson.version < minAppVersion;
+};
