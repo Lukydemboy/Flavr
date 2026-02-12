@@ -1,11 +1,18 @@
 import { ActionButton, Page, StyledText } from '@/components/ui';
 import { InputField } from '@/components/ui/InputField';
+import { ApiErrorResponse } from '@/domain/types/error';
 import { useUpdateUser, useUser } from '@/queries/user';
 import { useForm } from '@tanstack/react-form';
 import { Redirect, useRouter } from 'expo-router';
+import { useState } from 'react';
 import { View } from 'react-native';
 
+const enum CompleteProfileErrors {
+  USERNAME_ALREADY_EXISTS = 'username_already_exists',
+}
+
 export default function CompleteProfileScreen() {
+  const [isErrorShown, setIsErrorShown] = useState(false);
   const { data: user } = useUser();
   const router = useRouter();
 
@@ -15,9 +22,18 @@ export default function CompleteProfileScreen() {
     defaultValues: { username: '' },
     onSubmit: async ({ value }) => {
       const { username } = value;
-      await updateUser({ username }).then(() => {
-        router.replace('/notification-consent');
-      });
+
+      setIsErrorShown(false);
+
+      await updateUser({ username })
+        .then(() => router.replace('/notification-consent'))
+        .catch(err => {
+          const errorResponse = err.response?.data as ApiErrorResponse;
+
+          if (errorResponse.code === CompleteProfileErrors.USERNAME_ALREADY_EXISTS) {
+            setIsErrorShown(true);
+          }
+        });
     },
   });
 
@@ -40,9 +56,10 @@ export default function CompleteProfileScreen() {
           {field => (
             <InputField
               placeholder="Your fun username"
+              className={isErrorShown ? 'border-pink-60 border-2' : ''}
               value={field.state.value}
               onChangeText={text => form.setFieldValue('username', text)}
-              error={field.state.meta.errors ? field.state.meta.errors.join(', ') : undefined}
+              error={isErrorShown ? 'Username is already in use' : undefined}
             />
           )}
         </form.Field>
