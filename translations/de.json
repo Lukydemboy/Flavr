@@ -303,6 +303,25 @@
         }
       }
     },
+    "support": {
+      "title": "Support kontaktieren",
+      "description": "Haben Sie eine Frage oder ein Problem? Senden Sie eine Anfrage, und unser Support-Team wird sie umgehend prüfen. Bitte geben Sie so viele Details wie möglich an, damit wir Ihnen schnell und effektiv helfen können.",
+      "notice": {
+        "success": {
+          "title": "Wir haben Ihre Nachricht erhalten",
+          "description": "Vielen Dank für Ihre Kontaktaufnahme. Unser Support-Team hat Ihre Anfrage erhalten und wird sich so schnell wie möglich bei Ihnen melden."
+        }
+      },
+      "form": {
+        "message": {
+          "label": "Nachricht",
+          "placeholder": "Beschreiben Sie Ihr Problem"
+        }
+      },
+      "action": {
+        "submit": "Support kontaktieren"
+      }
+    },
     "tutorials": {
       "title": "Anleitungen",
       "item": {

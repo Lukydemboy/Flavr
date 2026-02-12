@@ -291,6 +291,9 @@
             "tutorials": {
               "label": "Tutorials"
             },
+            "support": {
+              "label": "Contacteer support"
+            },
             "deleteAccount": {
               "label": "Account verwijderen",
               "description": "Deze actie zal je account en alle bijbehorende gegevens permanent verwijderen. Deze actie kan niet ongedaan worden gemaakt.",
@@ -301,6 +304,25 @@
             }
           }
         }
+      }
+    },
+    "support": {
+      "title": "Contacteer support",
+      "description": "Heb je een vraag of loop je tegen een probleem aan? Dien een verzoek in en ons supportteam zal dit snel beoordelen. Geef zoveel mogelijk details zodat we je snel en effectief kunnen helpen.",
+      "notice": {
+        "success": {
+          "title": "We hebben je bericht ontvangen",
+          "description": "Bedankt dat je contact met ons hebt opgenomen. Ons supportteam heeft je aanvraag ontvangen en zal zo snel mogelijk contact met je opnemen."
+        }
+      },
+      "form": {
+        "message": {
+          "label": "Bericht",
+          "placeholder": "Beschrijf je probleem"
+        }
+      },
+      "action": {
+        "submit": "Contact opnemen met support"
       }
     },
     "tutorials": {

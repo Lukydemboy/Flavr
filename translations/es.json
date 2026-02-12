@@ -291,6 +291,9 @@
             "tutorials": {
               "label": "Tutoriales"
             },
+            "support": {
+              "label": "Contactar con soporte"
+            },
             "deleteAccount": {
               "label": "Eliminar cuenta",
               "description": "Esta acción eliminará permanentemente tu cuenta y todos los datos asociados. Esta acción no se puede deshacer.",
@@ -301,6 +304,25 @@
             }
           }
         }
+      }
+    },
+    "support": {
+      "title": "Contactar con soporte",
+      "description": "¿Tiene alguna pregunta o está experimentando un problema? Envíe una solicitud y nuestro equipo de soporte la revisará rápidamente. Incluya tantos detalles como sea posible para que podamos ayudarle de manera rápida y eficaz.",
+      "notice": {
+        "success": {
+          "title": "Hemos recibido tu mensaje",
+          "description": "Gracias por ponerte en contacto con nosotros. Nuestro equipo de soporte ha recibido tu solicitud y te responderá lo antes posible."
+        }
+      },
+      "form": {
+        "message": {
+          "label": "Mensaje",
+          "placeholder": "Describa su problema"
+        }
+      },
+      "action": {
+        "submit": "Contactar con soporte"
       }
     },
     "tutorials": {

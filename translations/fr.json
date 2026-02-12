@@ -291,6 +291,9 @@
             "tutorials": {
               "label": "Tutoriels"
             },
+            "support": {
+              "label": "Contacter le support"
+            },
             "deleteAccount": {
               "label": "Supprimer le compte",
               "description": "Cette action supprimera définitivement votre compte et toutes les données associées. Cette action est irréversible.",
@@ -301,6 +304,25 @@
             }
           }
         }
+      }
+    },
+    "support": {
+      "title": "Contacter le support",
+      "description": "Vous avez une question ou rencontrez un problème ? Soumettez une demande et notre équipe de support l’examinera rapidement. Veuillez inclure autant de détails que possible afin que nous puissions vous aider rapidement et efficacement.",
+      "notice": {
+        "success": {
+          "title": "Nous avons bien reçu votre message",
+          "description": "Merci de nous avoir contactés. Notre équipe d’assistance a bien reçu votre demande et vous répondra dans les plus brefs délais."
+        }
+      },
+      "form": {
+        "message": {
+          "label": "Message",
+          "placeholder": "Décrivez votre problème"
+        }
+      },
+      "action": {
+        "submit": "Contacter le support"
       }
     },
     "tutorials": {

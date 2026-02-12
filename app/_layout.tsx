@@ -214,6 +214,13 @@ export default function RootLayout() {
                 }}
               />
               <Stack.Screen
+                name="support/index"
+                options={{
+                  headerShown: true,
+                  header: () => <AppHeader title={t('screen.support.title')} fallbackBackscreen={'/(tabs)/settings'} />,
+                }}
+              />
+              <Stack.Screen
                 name="tutorials/index"
                 options={{
                   headerShown: true,
