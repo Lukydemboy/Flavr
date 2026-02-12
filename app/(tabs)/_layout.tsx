@@ -3,14 +3,23 @@ import HouseIcon from '@/components/icons/House';
 import PeopleIcon from '@/components/icons/People';
 import { HapticTab } from '@/components/ui';
 import { Tabs } from 'expo-router';
+import { Platform, PlatformIOSStatic } from 'react-native';
 
 export default function TabLayout() {
+  const isDeviceIPad = () => {
+    if (Platform.OS === 'ios') {
+      const platformIOS = Platform as PlatformIOSStatic;
+      return platformIOS.isPad;
+    }
+    return false;
+  };
+
   return (
     <Tabs
       screenOptions={{
         headerShadowVisible: false,
         tabBarStyle: {
-          paddingBottom: 0,
+          paddingBottom: isDeviceIPad() ? 10 : 0,
           paddingTop: 10,
         },
         tabBarLabelStyle: {

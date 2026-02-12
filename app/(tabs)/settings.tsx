@@ -29,8 +29,8 @@ export default function SettingsScreen() {
   }
 
   return (
-    <Page safeAreaTop className="gap-y-4">
-      <View className="p-4 rounded-xl bg-white flex items-center justify-center">
+    <Page safeAreaTop className="gap-y-4 sm:w-10/12 mx-auto">
+      <View className="p-4 rounded-xl bg-white flex items-center justify-center sm:w-1/2 sm:mx-auto">
         <Avatar size={120} user={user}></Avatar>
         <StyledText className="text-xl mt-6" weight="black">
           {user.username}

@@ -94,21 +94,23 @@ export default function SettingsNotificationsScreen() {
           {options.map(option => (
             <View
               key={option.title}
-              className="flex-row items-center justify-between bg-white rounded-2xl shadow-sm mx-1 p-3 pr-2 mb-2 gap-x-2"
+              className="flex-row items-center bg-white rounded-2xl shadow-sm mx-1 p-3 pr-2 mb-2 gap-x-2"
             >
-              <View className="size-14 bg-primary-100 rounded-2xl flex items-center justify-center">
-                {getIcon(option.icon)}
-              </View>
-              <View className="shrink">
-                <StyledText className="ml-2 mb-0.5" weight="bold">
-                  {t(option.title)}
-                </StyledText>
-                <StyledText className="ml-2 text-slate-500 text-xs" weight="regular">
-                  {t(option.description)}
-                </StyledText>
+              <View className="flex flex-row items-center gap-x-2 shrink">
+                <View className="size-14 bg-primary-100 rounded-2xl flex items-center justify-center">
+                  {getIcon(option.icon)}
+                </View>
+                <View className="shrink">
+                  <StyledText className="ml-2 mb-0.5" weight="bold">
+                    {t(option.title)}
+                  </StyledText>
+                  <StyledText className="ml-2 text-slate-500 text-xs" weight="regular">
+                    {t(option.description)}
+                  </StyledText>
+                </View>
               </View>
               <Switch
-                className="mt-3.5"
+                className="mt-3.5 ml-auto"
                 value={notificationPreferences?.[option.id]}
                 trackColor={{ true: '#32675e' }}
                 onValueChange={value => {
