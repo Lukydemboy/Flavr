@@ -13,11 +13,8 @@ export default function StartPage() {
         </View>
       </View>
       <View className="relative px-8 pt-8 grow z-10">
-        <StyledText className="text-4xl leading-relaxed" weight="bold">
+        <StyledText className="text-4xl leading-relaxed" weight="black">
           Start sharing your cooking journey
-        </StyledText>
-        <StyledText className="text-2xl leading-relaxed mt-4" weight="thin">
-          more than a recipe manager
         </StyledText>
         <ActionButton
           textClassName="font-bold"

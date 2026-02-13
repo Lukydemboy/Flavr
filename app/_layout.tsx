@@ -75,7 +75,16 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ShareIntentProvider>
+      <ShareIntentProvider
+        options={{
+          resetOnBackground: true,
+          onResetShareIntent: () => {
+            router.replace({
+              pathname: '/',
+            });
+          },
+        }}
+      >
         <SessionProvider>
           <SafeAreaProvider>
             <Stack screenOptions={{ headerShown: false }}>

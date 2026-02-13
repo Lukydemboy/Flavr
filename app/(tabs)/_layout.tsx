@@ -2,10 +2,17 @@ import CogIcon from '@/components/icons/Cog';
 import HouseIcon from '@/components/icons/House';
 import PeopleIcon from '@/components/icons/People';
 import { HapticTab } from '@/components/ui';
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
+import { useShareIntentContext } from 'expo-share-intent';
 import { Platform, PlatformIOSStatic } from 'react-native';
 
 export default function TabLayout() {
+  const { hasShareIntent } = useShareIntentContext();
+
+  if (hasShareIntent && Platform.OS === 'android') {
+    return <Redirect href={'/share-intent'} />;
+  }
+
   const isDeviceIPad = () => {
     if (Platform.OS === 'ios') {
       const platformIOS = Platform as PlatformIOSStatic;

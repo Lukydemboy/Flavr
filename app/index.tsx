@@ -13,7 +13,7 @@ export default function IndexScreen() {
 
   useEffect(() => {
     if (hasShareIntent && !isLoadingSession) {
-      router.replace({ pathname: '/share-intent' });
+      return router.replace({ pathname: '/share-intent' });
     }
   }, [hasShareIntent, isLoadingSession, router]);
 
